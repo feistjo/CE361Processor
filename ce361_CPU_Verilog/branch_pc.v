@@ -8,6 +8,5 @@ module fuck_around(A, B, out)
 
     // weeeeeeeee
 
-
-
-endmodule
+   
+endmodule // fuck_around

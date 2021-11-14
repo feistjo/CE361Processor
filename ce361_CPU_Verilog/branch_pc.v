@@ -1,12 +1,15 @@
 // do shit here idk man
 
 
-module fuck_around(A, B, out)
-    input [31:0] A;
-    input [31:0] B;
-    output [31:0] out;
+module pc_branch(A, imm16, nPC_sel, pc_out);
+   input [31:0] A;
+   input [15:0] imm16;
+   input 	nPC_sel;
+   output [31:0] pc_out;
 
-    // weeeeeeeee
+   
+
+    
 
    
 endmodule // fuck_around

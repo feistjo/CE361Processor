@@ -35,6 +35,20 @@ module cpu(clk);
 	mux_32 datamux(ALUout, DataOut, busW);
 endmodule
 
+module extender(in16, ExtOp, out32);
+	input [15:0] in16;
+	input ExtOp;
+	output [31:0] out32;
+	
+	genvar i;
+	generate
+	for (i = 31; i > 15; i = i - 1) begin
+		mux mux_ext_n(ExtOp, 1'b0, in16[15], out32[i]);
+	end
+	endgenerate
+	assign out32[15:0] = in16;
+endmodule
+
 module mux_5(sel, src0, src1, z);
 	input sel;
 	input [4:0] src0, src1;

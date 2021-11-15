@@ -3,18 +3,53 @@ module cpu(clk);
 	//get instruction Inst
 	wire equal, sign, nPC_sel, RegWr, RegDst, ExtOp, ALUSrc, MemWr, MemToReg;
 	wire [2:0] ALUctr;
-	control(Inst[31:26], Inst[5:0], Inst[25:21], Inst[20:16], Inst[15:11], Inst[15:0], equal, sign, nPC_sel, RegWr, RegDst, ExtOp, ALUSrc, ALUctr, MemWr, MemToReg);
+	wire [4:0] Rs, Rt, Rd;
+	assign Rt = Inst[25:21];
+	assign Rs = Inst[20:16];
+	assign Rd = Inst[15:11];
+	wire [15:0] Imm16;
+	assign Imm16 = Inst[15:0];
+	wire [4:0] shamt;
+	assign shamt = Inst[10:6];
+	control(Inst[31:26], Inst[5:0], equal, sign, nPC_sel, RegWr, RegDst, ExtOp, ALUSrc, ALUctr, MemWr, MemToReg);
 	
-	//datapath, 
+	wire [31:0] busW, busA, busB;
+	wire [5:0] Rw;
+	mux_5 mux_rw(RegDst, Rt, Rd, Rw);
+	registers datareg(clk, RegWr, busW, Rw, Rs, Rt,, busA, busB);
+	
+	wire [31:0] Imm32;
+	extender immext(Imm16, ExtOp, Imm32);
+	
+	wire [31:0] ALUIn2;
+	mux_32 muxb(busB, Imm32, ALUIn2);
+	
+	wire [31:0] ALUout;
+	wire ovf;
+	ALU alu1(ALUctr, busA, ALUIn2, shamt, ovf, equal, ALUout);
+	assign sign = ALUout[31];
+	
+	//Data Memory DataIn=busB, WrEn=MemWr, adr=ALUout, clk=clk, dout=DataOut
+	wire [31:0] DataOut;
+	
+	mux_32 datamux(ALUout, DataOut, busW);
 endmodule
 
-module control(Op, Fun, Rt, Rs, Rd, Imm16, equal, sign, nPC_sel, RegWr, RegDst, ExtOp, ALUSrc, ALUctr, MemWr, MemtoReg);
+module mux_5(sel, src0, src1, z);
+	input sel;
+	input [4:0] src0, src1;
+	output [4:0] z;
+	genvar i;
+	generate
+	for (i = 0; i < 5; i = i + 1) begin
+		mux mux_5_n(sel, src0[i], src1[i], z[i]);
+	end
+	endgenerate
+endmodule
+
+module control(Op, Fun, equal, sign, nPC_sel, RegWr, RegDst, ExtOp, ALUSrc, ALUctr, MemWr, MemtoReg);
 	input [5:0] Op;
 	input [5:0] Fun;
-	input [4:0] Rt;
-	input [4:0] Rs;
-	input [4:0] Rd;
-	input [15:0] Imm16;
 	input equal, sign;
 	output nPC_sel, RegWr, RegDst, ALUSrc, MemWr, MemtoReg;
 	output ExtOp;

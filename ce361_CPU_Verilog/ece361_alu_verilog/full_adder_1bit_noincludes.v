@@ -1,6 +1,3 @@
-`include "ece361_alu_verilog/and_gate.v"
-`include "ece361_alu_verilog/or_gate.v"
-
 module full_adder_1bit(x,y,c,z,cout);
     input x;
     input y;

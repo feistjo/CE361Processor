@@ -1,6 +1,14 @@
+`include "lib/mux.v"
+`include "lib/mux_32.v"
+`include "lib/not_gate.v"
+`include "ece361_alu_verilog/ALU.v"
+`include "registers.v"
+`include "extend.v"
+
 module cpu(clk);
 	input clk;
 	//get instruction Inst
+	wire [31:0] Inst;
 	wire equal, sign, nPC_sel, RegWr, RegDst, ExtOp, ALUSrc, MemWr, MemToReg;
 	wire [2:0] ALUctr;
 	wire [4:0] Rs, Rt, Rd;
@@ -11,42 +19,28 @@ module cpu(clk);
 	assign Imm16 = Inst[15:0];
 	wire [4:0] shamt;
 	assign shamt = Inst[10:6];
-	control(Inst[31:26], Inst[5:0], equal, sign, nPC_sel, RegWr, RegDst, ExtOp, ALUSrc, ALUctr, MemWr, MemToReg);
+	control controls(Inst[31:26], Inst[5:0], equal, sign, nPC_sel, RegWr, RegDst, ExtOp, ALUSrc, ALUctr, MemWr, MemToReg);
 	
 	wire [31:0] busW, busA, busB;
-	wire [5:0] Rw;
+	wire [4:0] Rw;
 	mux_5 mux_rw(RegDst, Rt, Rd, Rw);
-	registers datareg(clk, RegWr, busW, Rw, Rs, Rt,, busA, busB);
+	registers datareg(clk, RegWr, busW, Rw, Rs, Rt, busA, busB);
 	
 	wire [31:0] Imm32;
 	extender immext(Imm16, ExtOp, Imm32);
 	
 	wire [31:0] ALUIn2;
-	mux_32 muxb(busB, Imm32, ALUIn2);
+	mux_32 muxb({31'b0, ALUSrc}, busB, Imm32, ALUIn2);
 	
 	wire [31:0] ALUout;
-	wire ovf;
-	ALU alu1(ALUctr, busA, ALUIn2, shamt, ovf, equal, ALUout);
+	wire ovf, cout;
+	ALU alu1(ALUctr, busA, ALUIn2, shamt, cout, ovf, equal, ALUout);
 	assign sign = ALUout[31];
 	
 	//Data Memory DataIn=busB, WrEn=MemWr, adr=ALUout, clk=clk, dout=DataOut
 	wire [31:0] DataOut;
 	
-	mux_32 datamux(ALUout, DataOut, busW);
-endmodule
-
-module extender(in16, ExtOp, out32);
-	input [15:0] in16;
-	input ExtOp;
-	output [31:0] out32;
-	
-	genvar i;
-	generate
-	for (i = 31; i > 15; i = i - 1) begin
-		mux mux_ext_n(ExtOp, 1'b0, in16[15], out32[i]);
-	end
-	endgenerate
-	assign out32[15:0] = in16;
+	mux_32 datamux({31'b0, MemToReg}, ALUout, DataOut, busW);
 endmodule
 
 module mux_5(sel, src0, src1, z);
@@ -83,7 +77,7 @@ module control(Op, Fun, equal, sign, nPC_sel, RegWr, RegDst, ExtOp, ALUSrc, ALUc
 	wire bgtz_t, ltorz, not_ltorz;
 	or_gate orltorz(equal, sign, ltorz);
 	not_gate notltorz(ltorz, not_ltorz);
-	and_gate bgtzand(func[2], not_ltorz);
+	and_gate bgtzand(func[2], not_ltorz, bgtz_t);
 	wire branch_or1;
 	or_gate branchor1(beq_t, bne_t, branch_or1);
 	or_gate branchor2(branch_or1, bgtz_t, nPC_sel);
@@ -111,7 +105,7 @@ module control(Op, Fun, equal, sign, nPC_sel, RegWr, RegDst, ExtOp, ALUSrc, ALUc
 endmodule
 
 module get_ALUctr(func, ALUctr);
-	input [5:0] func;
+	input [14:0] func;
 	output [2:0] ALUctr;
 	//maybe figure out how to use ALUCU?
 	//ALU ALUctr 0=and, 1=or, 2=fa, 3=slt_signed, 4=fa_u, 5=sll, 6=sub, 7=slt
@@ -178,7 +172,7 @@ module decode_func(Op, Fun, func, RegDst);
 	
 	wire r_type;
 	set_if_eq setr(Op, 6'b000000, r_type);
-	assign RegDst = r_type
+	assign RegDst = r_type;
 	
 	wire [8:0] r_func; //[add, addu, sub, subu, and, or, sll, slt, sltu]
 	set_if_eq addr(Fun, 6'b100000, r_func[8]);

@@ -1,5 +1,5 @@
 // sign and zero extend.
-`include "lib/and_gate.v"
+//`include "lib/and_gate.v" included by ALU
 
 module extender(in, ext, out);
    input [15:0] in;

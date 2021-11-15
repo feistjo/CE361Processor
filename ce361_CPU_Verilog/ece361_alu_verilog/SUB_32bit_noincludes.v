@@ -1,6 +1,3 @@
-`include "ece361_alu_verilog/full_adder_1bit.v"
-`include "ece361_alu_verilog/xor_gate.v"
-
 module SUB_32bit(x,y,cin,z,borrow,ovf);
     
     input [31:0] x;

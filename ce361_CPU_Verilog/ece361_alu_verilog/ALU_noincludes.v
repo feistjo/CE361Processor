@@ -1,14 +1,3 @@
-`include "ece361_alu_verilog/SLT.v"
-`include "ece361_alu_verilog/SLT_signed.v"
-`include "ece361_alu_verilog/SUB_32bit.v"
-`include "ece361_alu_verilog/and_gate_32.v"
-`include "ece361_alu_verilog/full_adder_32bit.v"
-`include "ece361_alu_verilog/mux8_1_1bit.v"
-`include "ece361_alu_verilog/mux8_1_32bit.v"
-`include "ece361_alu_verilog/nor_32bit.v"
-`include "ece361_alu_verilog/or_gate_32.v"
-`include "ece361_alu_verilog/sll_32bit.v"
-
 module ALU(ctrl, A,B,shamt,cout,ovf,ze,R);
     input [2:0] ctrl;
     input [31:0] A;

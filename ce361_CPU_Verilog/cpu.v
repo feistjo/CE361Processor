@@ -19,7 +19,7 @@ module cpu(clk);
 	assign Imm16 = Inst[15:0];
 	wire [4:0] shamt;
 	assign shamt = Inst[10:6];
-	control controls(.Op(Inst[31:26]), .Fun(Inst[5:0]), .equal(equal), .sign(sign), .nPC_sel(nPC_sel), .RegWr(RegWr), .RegDst(RegDst), .ExtOp(ExtOp), .ALUSrc(ALUSrc), .ALUctr(ALUctr), .MemWr(MemWr), .MemToReg(MemToReg));
+	control controls(.Op(Inst[31:26]), .Fun(Inst[5:0]), .equal(equal), .sign(sign), .nPC_sel(nPC_sel), .RegWr(RegWr), .RegDst(RegDst), .ExtOp(ExtOp), .ALUSrc(ALUSrc), .ALUctr(ALUctr), .MemWr(MemWr), .MemtoReg(MemToReg));
 	
 	wire [31:0] busW, busA, busB;
 	wire [4:0] Rw;

@@ -1,4 +1,4 @@
-module fibbonacci_tb();
+module fibonacci_tb();
 	reg clk;
 	reg [31:0] Inst;
 	parameter n = 10;

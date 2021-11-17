@@ -41,7 +41,7 @@ module registers (
 	//generate our register array
 	genvar i;
 	generate 
-		for (i = 0; i < NUM_REGS; i = i+1) begin
+		for (i = 1; i < NUM_REGS; i = i+1) begin
 			dff_32 cust_dff_32 (
 				.clk 	(clk),
 				.d_32 	(mem_in[i]),
@@ -49,6 +49,8 @@ module registers (
 			);
 		end
 	endgenerate
+	
+	assign mem_out[0] = 32'b0;
 	
 	//~~~~~~~~~~Function~~~~~~~~~~
 	//decode the Rw from 5 bits to an enable bit for each register
@@ -74,7 +76,7 @@ module registers (
    //value between busW and current value based on RegWr and Rw
 	genvar k;
 	generate
-		for(k=0; k < NUM_REGS; k=k+1) begin
+		for(k=1; k < NUM_REGS; k=k+1) begin
 			mux_32 mux_32_gen(
 				.sel 	({31'b0, reg_wr_en[k]}),
 				.src0 	(mem_out[k]),

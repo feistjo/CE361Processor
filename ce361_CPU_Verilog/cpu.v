@@ -5,10 +5,10 @@
 //`include "registers.v"
 //`include "extend.v"
 
-module cpu(clk);
+module cpu(clk, Inst);
 	input clk;
 	//get instruction Inst
-	wire [31:0] Inst;
+	input [31:0] Inst;
 	wire equal, sign, nPC_sel, RegWr, RegDst, ExtOp, ALUSrc, MemWr, MemToReg;
 	wire [2:0] ALUctr;
 	wire [4:0] Rs, Rt, Rd;
@@ -39,8 +39,14 @@ module cpu(clk);
 	
 	//Data Memory DataIn=busB, WrEn=MemWr, adr=ALUout, clk=clk, dout=DataOut
 	wire [31:0] DataOut;
+	read_0 testread(DataOut);
 	
 	mux_32 datamux({31'b0, MemToReg}, ALUout, DataOut, busW);
+endmodule
+
+module read_0(dout);
+	output [31:0] dout;
+	assign dout = 31'b0;
 endmodule
 
 module mux_5(sel, src0, src1, z);
@@ -127,9 +133,11 @@ module get_ALUctr(func, ALUctr);
 	wire alu_slt;
 	assign alu_slt = func[1];
 	
-	//ALU fa_u (100): addu
-	wire alu_fau;
-	assign alu_fau = func[12];
+	//ALU fa_u (100): addu, lw, sw
+	wire alu_fau, alu_fau_or1;
+	or_gate orfau1(func[12], func[6], alu_fau_or1);
+	or_gate orfau2(func[5], alu_fau_or1, alu_fau);
+	//assign alu_fau = func[12];
 	
 	//ALU sll (101): sll
 	wire alu_sll;

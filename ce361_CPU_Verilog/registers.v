@@ -1,4 +1,4 @@
-`timescale 1 ns/10 ps
+//`timescale 1 ns/10 ps
 //`include "lib/dff.v"
 //`include "lib/mux_32.v"
 //`include "lib/and_gate.v"

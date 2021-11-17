@@ -21,10 +21,10 @@ module fibbonacci_tb();
 			clk = 1'b0;
 			#1
 			clk = 1'b1;
-			#1
 			
 			//fibbonacci
 			for (i = 0; i < n; i = i + 1) begin
+				#1
 				if (i % 2 == 0)
 					towrite = 5'b00001;
 				else

@@ -26,9 +26,9 @@ module fibbonacci_tb();
 			for (i = 0; i < n; i = i + 1) begin
 				reg [4:0] towrite;
 				if (i % 2 == 0) begin
-					towrite = 5'b00001;
+					assign towrite = 5'b00001;
 				end else begin
-					towrite = 5'b00010;
+					assign towrite = 5'b00010;
 				end
 				Inst = {16'b000000_00001_00001, towrite, 11'b00000_100000}; //add $1, $1, $1
 				clk = 1'b0;

@@ -1,4 +1,4 @@
-  module control_tb();
+module control_tb();
 	reg [5:0] Op, Fun;
 	wire equal, sign, nPC_sel, RegWr, RegDst, ExtOp, MemWr, ALUSrc, MemToReg;
 	wire [2:0] ALUctr;

@@ -9,7 +9,7 @@
 		begin
 			$monitor(Op, Fun, func, RegDst);
 			Op = 6'b0;
-			Fun = 6'b100000
+			Fun = 6'b100000;
 			#10
 	end
  endmodule

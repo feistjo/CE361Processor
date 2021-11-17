@@ -2,7 +2,7 @@
 //`include "lib/mux_32.v"
 //`include "lib/not_gate.v"
 //`include "ece361_alu_verilog/ALU.v"
-
+//`include "registers.v"
 //`include "extend.v"
 
 module cpu(clk);

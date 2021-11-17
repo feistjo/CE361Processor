@@ -24,7 +24,7 @@ module cpu(clk);
 	wire [31:0] busW, busA, busB;
 	wire [4:0] Rw;
 	mux_5 mux_rw(RegDst, Rt, Rd, Rw);
-	//registers datareg(.clk(clk), .RegWr(RegWr), .busW(busW), .Rw(Rw), .Ra(Rs), .Rb(Rt), .busA(busA), .busB(busB));
+	registers datareg(.clk(clk), .RegWr(RegWr), .busW(busW), .Rw(Rw), .Ra(Rs), .Rb(Rt), .busA(busA), .busB(busB));
 	
 	wire [31:0] Imm32;
 	extender immext(.in(Imm16), .ext(ExtOp), .out(Imm32));

@@ -2,7 +2,7 @@
 // needs adders, mux, extender
 `include "extend.v"
 //`include "registers.v"
-//`include "lib/sram.v"
+`include "lib/sram.v"
 //`include "lib/syncram.v"
 `include "lib/mux_32.v"
 //`include "ece361_alu_verilog/adder_32.v"

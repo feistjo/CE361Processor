@@ -6,5 +6,5 @@
 -gui
 -access
 r
-lib/sram.v
-test/sram_tb.v
+branch_pc.v
+pc_tb.v

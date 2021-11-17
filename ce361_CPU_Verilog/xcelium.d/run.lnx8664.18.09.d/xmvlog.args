@@ -5,8 +5,8 @@
 -XLMODE
 ./xcelium.d/run.lnx8664.18.09.d
 -RUNMODE
-lib/sram.v
-test/sram_tb.v
+branch_pc.v
+pc_tb.v
 -CDSLIB
 ./xcelium.d/run.lnx8664.18.09.d/cdsrun.lib
 -HDLVAR

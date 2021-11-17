@@ -1,19 +1,28 @@
 // do shit here idk man
 // needs adders, mux, extender
 `include "extend.v"
-//`include "registers.v"
-`include "lib/sram.v"
-//`include "lib/syncram.v"
 `include "lib/mux_32.v"
-//`include "ece361_alu_verilog/adder_32.v"
-//`include "ece361_alu_verilog/ALU_noincludes.v"
 
-module pc_branch_dff(clk);
+module pc_clk(clk, nPC_sel, imm16, pc_fin);
    input clk;
-   // call pc_branch here with clock
+   input nPC_sel;
+   input [15:0] imm16;
+   output reg [31:0] pc_fin;
+   reg [31:0] 	 pc_counter = 32'h00400020;
+   wire [31:0] 	 temp_pc;
    
-endmodule // pc_branch_dff
+   pc_branch fuct(.pc_in(pc_counter),
+		  .imm16(imm16),
+		  .nPC_sel(nPC_sel),
+		  .pc_out(temp_pc));
 
+   always @(negedge clk)
+     begin
+	pc_counter <= temp_pc;
+	pc_fin <= pc_counter;
+     end
+    
+endmodule // pc_branch_dff
 
 module pc_branch(pc_in, imm16, nPC_sel, pc_out);
    input [31:0] pc_in;
@@ -25,7 +34,7 @@ module pc_branch(pc_in, imm16, nPC_sel, pc_out);
    wire [31:0] 	 branch_next;
    
    // start by extending
-   extender immext(.in(imm16), .ext(1), .out(imm16ext));
+   extender immext(.in(imm16), .ext(1'b1), .out(imm16ext));
 
    // PC + 4
    assign pc_next = pc_in + 32'b0100;

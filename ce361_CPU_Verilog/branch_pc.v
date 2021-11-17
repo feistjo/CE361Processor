@@ -10,11 +10,17 @@ module pc_clk(clk, nPC_sel, imm16, pc_fin, read_val);
    output [31:0] pc_fin;
    output [31:0] read_val; // also for debug
    wire [31:0] 	 temp_pc;
-   wire [31:0] 	 prev_pc;	 
+   wire [31:0] 	 prev_pc;
+   wire [31:0] 	 imm16ext;
 
+   // start by extending
+   extender immext(.in(imm16), .ext(1'b1), .out(imm16ext));
+   
    // read pc and store in prev
    pc_register pc(.in(prev_pc),
 		  .clk(clk),
+		  .nPC_sel(nPC_sel),
+		  .imm16(imm16ext),
 		  .out(temp_pc));
 
    assign read_val = temp_pc;
@@ -28,22 +34,33 @@ module pc_clk(clk, nPC_sel, imm16, pc_fin, read_val);
 		  .pc_out(temp_pc));
     */
        
-endmodule // pc_branch_dff
+endmodule // pc_clk
 
 // register for the pc. if rw = 0 read, if rw = 1 write
-module pc_register(in, clk,  out);
+module pc_register(in, clk, nPC_sel, imm16, out);
    input [31:0] in;
+   input 	nPC_sel;
+   input [31:0] imm16;
    input 	clk;
    output reg [31:0] out;
-   reg [31:0] 	     pc = 32'h00400020;	     
+   reg [31:0] 	     pc = 32'h00400020;	
+     
    initial begin
       out <= 32'h00400020;
    end
    
    always @(negedge clk)
      begin
-	out <= pc;
-	pc <= in;
+        if (nPC_sel == 0) begin
+	   pc <= pc + 4;
+	   out <= pc;
+	end
+	else begin
+	  if (nPC_sel == 1) begin
+	     pc <= pc + 4 + imm16;
+	     out <= pc;
+	  end	   
+	end
      end // always @ (negedge clk)
    
 endmodule // pc_register
@@ -53,7 +70,7 @@ module pc_branch(pc_in, imm16, nPC_sel, pc_out);
    input [31:0] pc_in;
    input [15:0] imm16;
    input 	nPC_sel;
-   output reg [31:0] pc_out;
+   output [31:0] pc_out;
    wire [31:0] 	 imm16ext;
    wire [31:0] 	 pc_next;
    wire [31:0] 	 branch_next;

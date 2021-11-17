@@ -6,5 +6,5 @@
 -gui
 -access
 r
-branch_pc.v
-pc_tb.v
+inst_mem.v
+inst_tb.v

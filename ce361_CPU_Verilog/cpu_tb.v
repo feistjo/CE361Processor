@@ -26,5 +26,9 @@ module cpu_tb();
 			clk = 1'b0;
 			#1
 			clk = 1'b1;
+			#1
+			clk = 1'b0;
+			#1
+			clk = 1'b1;
 	end
 endmodule

@@ -34,25 +34,28 @@ module registers_tb ();
 
 	initial 
 	begin
-		RegWr_tb = 1'b1;
-		busW_tb = 32'h00000000;
-		Rw_tb = 5'b00000;
-		Ra_tb = 5'b00000;
-		Rb_tb = 5'b00000;
-		#10;
-
-		RegWr_tb = 1'b1;
-		busW_tb = 32'h00000000;
-		Rw_tb = 5'b00001;
-		Ra_tb = 5'b00001;
-		Rb_tb = 5'b00000;
-		#10;
-
-		RegWr_tb = 1'b1;
-		busW_tb = 32'h00000000;
-		Rw_tb = 5'b00010;
-		Ra_tb = 5'b00000;
-		Rb_tb = 5'b00000;
+	   RegWr_tb = 1'b1;
+	   busW_tb = 32'h00000000;
+	   Rw_tb = 5'b00000;
+	   Ra_tb = 5'b00000;
+	   Rb_tb = 5'b00000;
+	   #10;
+	   
+	   RegWr_tb = 1'b1;
+	   busW_tb = 32'h00000000;
+	   Rw_tb = 5'b00001;
+	   Ra_tb = 5'b00001;
+	   Rb_tb = 5'b00000;
+	   #10;
+	   
+	   RegWr_tb = 1'b1;
+	   busW_tb = 32'h00000000;
+	   Rw_tb = 5'b00010;
+	   Ra_tb = 5'b00000;
+	   Rb_tb = 5'b00000;
+	   #10;
+	   $finish; // lance added this
+	  
 	end
 
 endmodule

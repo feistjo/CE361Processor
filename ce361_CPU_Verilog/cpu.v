@@ -19,22 +19,22 @@ module cpu(clk);
 	assign Imm16 = Inst[15:0];
 	wire [4:0] shamt;
 	assign shamt = Inst[10:6];
-	control controls(Inst[31:26], Inst[5:0], equal, sign, nPC_sel, RegWr, RegDst, ExtOp, ALUSrc, ALUctr, MemWr, MemToReg);
+	control controls(.Op(Inst[31:26]), .Fun(Inst[5:0]), .equal(equal), .sign(sign), .nPC_sel(nPC_sel), .RegWr(RegWr), .RegDst(RegDst), .ExtOp(ExtOp), .ALUSrc(ALUSrc), .ALUctr(ALUctr), .MemWr(MemWr), .MemToReg(MemToReg));
 	
 	wire [31:0] busW, busA, busB;
 	wire [4:0] Rw;
 	mux_5 mux_rw(RegDst, Rt, Rd, Rw);
-	registers datareg(clk, RegWr, busW, Rw, Rs, Rt, busA, busB);
+	registers datareg(.clk(clk), .RegWr(RegWr), .busW(busW), .Rw(Rw), .Ra(Rs), .Rb(Rt), .busA(busA), .busB(busB));
 	
 	wire [31:0] Imm32;
-	extender immext(Imm16, ExtOp, Imm32);
+	extender immext(.in(Imm16), .ext(ExtOp), .out(Imm32));
 	
 	wire [31:0] ALUIn2;
 	mux_32 muxb({31'b0, ALUSrc}, busB, Imm32, ALUIn2);
 	
 	wire [31:0] ALUout;
 	wire ovf, cout;
-	ALU alu1(ALUctr, busA, ALUIn2, shamt, cout, ovf, equal, ALUout);
+	ALU alu1(.ctrl(ALUctr), .A(busA), .B(ALUIn2), .shamt(shamt), .cout(cout), .ovf(ovf), .ze(equal), .R(ALUout));
 	assign sign = ALUout[31];
 	
 	//Data Memory DataIn=busB, WrEn=MemWr, adr=ALUout, clk=clk, dout=DataOut
@@ -65,8 +65,8 @@ module control(Op, Fun, equal, sign, nPC_sel, RegWr, RegDst, ExtOp, ALUSrc, ALUc
 	
 	
 	wire [14:0] func; //[add, addi, addu, sub, subu, and, or, sll, lw, sw, beq, bne, bgtz, slt, sltu]
-	decode_func getfunc(Op, Fun, func, RegDst);
-	get_ALUctr getaluctr(func, ALUctr);
+	decode_func getfunc(.Op(Op), .Fun(Fun), .func(func), .RegDst(RegDst));
+	get_ALUctr getaluctr(.func(func), .ALUctr(ALUctr));
 	
 	//nPC_sel branches
 	wire beq_t;

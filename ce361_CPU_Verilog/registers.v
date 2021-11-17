@@ -35,9 +35,9 @@ module dff_32 (
 		for(i = 0; i < DATA_WIDTH; i=i+1) 
 		begin
 			dff cust_dff (
-				.clk 	(clk),
-				.d 		(d_32[i]),
-				.q 		(q_32[i])
+				      .clk 	(clk),
+				      .d 	(d_32[i]),
+				      .q 	(q_32[i])
 			);
 		end
 	endgenerate

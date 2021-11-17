@@ -1,10 +1,19 @@
 // do shit here idk man
 // needs adders, mux, extender
 `include "extend.v"
-`include "lib/sram.v"
-`include "lib/syncram.v"
+//`include "registers.v"
+//`include "lib/sram.v"
+//`include "lib/syncram.v"
 `include "lib/mux_32.v"
-`include "ece361_alu_verilog/full_adder_32bit.v"
+//`include "ece361_alu_verilog/adder_32.v"
+//`include "ece361_alu_verilog/ALU_noincludes.v"
+
+module pc_branch_dff(clk);
+   input clk;
+   // call pc_branch here with clock
+   
+endmodule // pc_branch_dff
+
 
 module pc_branch(pc_in, imm16, nPC_sel, pc_out);
    input [31:0] pc_in;
@@ -14,30 +23,33 @@ module pc_branch(pc_in, imm16, nPC_sel, pc_out);
    wire [31:0] 	 imm16ext;
    wire [31:0] 	 pc_next;
    wire [31:0] 	 branch_next;
-   //wire [31:0] 	 temp_pc_in;
-   //wire [31:0] 	 temp_pc_out;
-
+   
    // start by extending
    extender immext(.in(imm16), .ext(1), .out(imm16ext));
 
    // PC + 4
-   full_adder_32bit nextadd(.x(pc_in),
-			    .y(32'b0100),
-			    .cin(0), 
-			    .z(pc_next), 
-			    .cout, 
-			    .ovf);
+   assign pc_next = pc_in + 32'b0100;
+
+   // structural code:
+   /*
+   adder_32 nextadd(.a(pc_in),
+		    .b(32'b0100), 
+		    .z(pc_next));
+    */
    // PC + 4 (from last add) + imm16 extended
-   full_adder_32bit branchadd(.x(pc_next),
-			      .y(imm16ext), 
-			      .cin(0), 
-			      .z(branch_next), 
-			      .cout, 
-			      .ovf);
+   assign branch_next = pc_next + imm16ext;
+
+   // structural code:
+   /*
+   adder_32 branchadd(.a(pc_next),
+		      .b(imm16ext),  
+		      .z(branch_next));
+    */
+   
    // selects between incrementing pc and branching based on imm16
    mux_32 nPC(.sel({31'b0,nPC_sel}),
 	      .src0(pc_next),
 	      .src1(branch_next),
 	      .z(pc_out));
    
-endmodule // fuck_around
+endmodule // branch_pc

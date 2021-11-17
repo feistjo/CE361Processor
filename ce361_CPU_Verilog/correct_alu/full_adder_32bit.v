@@ -1,4 +1,4 @@
-.module full_adder_32bit(x,y,cin,z,cout,ovf);
+module full_adder_32bit(x,y,cin,z,cout,ovf);
     
     input [31:0] x;
     input [31:0] y;

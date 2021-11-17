@@ -1,6 +1,7 @@
 module control_tb();
 	reg [5:0] Op, Fun;
-	wire equal, sign, nPC_sel, RegWr, RegDst, ExtOp, MemWr, ALUSrc, MemToReg;
+	reg equal, sign;
+	wire nPC_sel, RegWr, RegDst, ExtOp, MemWr, ALUSrc, MemToReg;
 	wire [2:0] ALUctr;
 	
 	control controls(.Op(Op), .Fun(Fun), .equal(equal), .sign(sign), .nPC_sel(nPC_sel), .RegWr(RegWr), .RegDst(RegDst), .ExtOp(ExtOp), .ALUSrc(ALUSrc), .ALUctr(ALUctr), .MemWr(MemWr), .MemtoReg(MemToReg));

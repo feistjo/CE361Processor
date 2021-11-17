@@ -3,6 +3,7 @@ module fibbonacci_tb();
 	reg [31:0] Inst;
 	parameter n = 10;
 	reg [4:0] towrite;
+	integer i;
 	
 	cpu fib_cpu(clk, Inst);
 	
@@ -23,7 +24,6 @@ module fibbonacci_tb();
 			#1
 			
 			//fibbonacci
-			integer i;
 			for (i = 0; i < n; i = i + 1)
 				if (i % 2 == 0)
 					towrite = 5'b00001;

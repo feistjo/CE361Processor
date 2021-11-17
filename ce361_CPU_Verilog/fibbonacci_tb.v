@@ -30,10 +30,10 @@ module fibbonacci_tb();
 				end else begin
 					assign towrite = 5'b00010;
 				end
-				Inst = {16'b000000_00001_00001, towrite, 11'b00000_100000}; //add $1, $1, $1
-				clk = 1'b0;
+				assign Inst = {16'b000000_00001_00001, towrite, 11'b00000_100000}; //add $1, $1, $1
+				assign clk = 1'b0;
 				#1
-				clk = 1'b1;
+				assign clk = 1'b1;
 				#1
 			end
 			clk = 1'b0;

@@ -2,6 +2,7 @@ module fibbonacci_tb();
 	reg clk;
 	reg [31:0] Inst;
 	parameter n = 10;
+	reg [4:0] towrite;
 	
 	cpu fib_cpu(clk, Inst);
 	
@@ -23,17 +24,15 @@ module fibbonacci_tb();
 			
 			//fibbonacci
 			integer i;
-			for (i = 0; i < n; i = i + 1) begin
-				reg [4:0] towrite;
-				if (i % 2 == 0) begin
-					assign towrite = 5'b00001;
-				end else begin
-					assign towrite = 5'b00010;
-				end
-				assign Inst = {16'b000000_00001_00001, towrite, 11'b00000_100000}; //add $1, $1, $1
-				assign clk = 1'b0;
+			for (i = 0; i < n; i = i + 1)
+				if (i % 2 == 0)
+					towrite = 5'b00001;
+				else
+					towrite = 5'b00010;
+				Inst = {16'b000000_00001_00001, towrite, 11'b00000_100000}; //add $1, $1, $1
+				clk = 1'b0;
 				#1
-				assign clk = 1'b1;
+				clk = 1'b1;
 				#1
 			end
 			clk = 1'b0;

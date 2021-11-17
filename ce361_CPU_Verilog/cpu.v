@@ -101,7 +101,7 @@ module control(Op, Fun, equal, sign, nPC_sel, RegWr, RegDst, ExtOp, ALUSrc, ALUc
 	assign MemWr = func[5];
 	
 	//MemToReg: only on lw
-	assign MemToReg = func[6];
+	assign MemtoReg = func[6];
 endmodule
 
 module get_ALUctr(func, ALUctr);

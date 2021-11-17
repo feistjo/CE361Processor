@@ -1,4 +1,4 @@
- module decode_func_tb;
+ module decode_func_tb();
 	reg [5:0] Op, Fun;
 	wire [14:0] func;
 	wire RegDst;

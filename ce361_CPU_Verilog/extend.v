@@ -1,5 +1,6 @@
 // sign and zero extend.
 //`include "lib/and_gate.v" included by ALU
+//`timescale 1ns/10ps
 
 module extender(in, ext, out);
    input [15:0] in;

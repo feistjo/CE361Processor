@@ -6,7 +6,6 @@ module cpu_tb();
 	
 	initial
 		begin
-			$monitor(test_cpu.datareg.mem_out[1][31:0], clk, Inst);
 			clk = 1'b1;
 			#1
 			Inst = 31'b000000_00000_00000_00001_00000_100000; //add $1, $0, $0

@@ -57,8 +57,14 @@ module sram_tb;
       t_oe = 1'b1;
       t_we = 1'b0;
       t_addr = 32'h10000024;
-      
-     
+
+       #10;
+       t_cs = 1'b1;
+       t_oe = 1'b1;
+       t_we = 1'b0;
+       t_addr = 32'h10000024;
+
+       #10;    
   end
   
 endmodule

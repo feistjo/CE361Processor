@@ -1,6 +1,6 @@
 module sram(cs,oe,we,addr,din,dout);
   
-  parameter mem_file;
+  parameter mem_file = 0;
   input cs;
   input oe;
   input we;

@@ -98,10 +98,11 @@ module control(Op, Fun, equal, sign, nPC_sel, RegWr, RegDst, ExtOp, ALUSrc, ALUc
 	not_gate alusrcnot(RegDst, ALUSrc);
 	
 	//MemWr: only on sw
-	assign MemWr = func[5];
+	assign MemWr = func[6];
 	
 	//MemToReg: only on lw
 	assign MemtoReg = func[6];
+	
 endmodule
 
 module get_ALUctr(func, ALUctr);

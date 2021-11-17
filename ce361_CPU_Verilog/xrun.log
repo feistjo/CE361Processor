@@ -1,37 +1,60 @@
 xrun(64): 18.09-s011: (c) Copyright 1995-2019 Cadence Design Systems, Inc.
-TOOL:	xrun(64)	18.09-s011: Started on Nov 14, 2021 at 17:02:49 CST
+TOOL:	xrun(64)	18.09-s011: Started on Nov 16, 2021 at 22:34:05 CST
 xrun
 	-64bit
 	-gui
 	-access r
-	extend.v
-	extend_test.v
-Recompiling... reason: file './extend_test.v' is newer than expected.
-	expected: Sun Nov 14 16:59:00 2021
-	actual:   Sun Nov 14 17:02:44 2021
-file: extend_test.v
-	module worklib.ext_tb:v
+	branch_pc.v
+	pc_tb.v
+file: branch_pc.v
+	module worklib.extender:v
+		errors: 0, warnings: 0
+	module worklib.mux_32:v
+		errors: 0, warnings: 0
+	module worklib.pc_branch_dff:v
+		errors: 0, warnings: 0
+	module worklib.pc_branch:v
+		errors: 0, warnings: 0
+file: pc_tb.v
+	module worklib.pc_tb:v
 		errors: 0, warnings: 0
 		Caching library 'worklib' ....... Done
 	Elaborating the design hierarchy:
+		Caching library 'worklib' ....... Done
 	Top level design units:
-		ext_tb
+		pc_branch_dff
+		pc_tb
+xmelab: *W,DSEMEL: This SystemVerilog design will be simulated as per IEEE 1800-2009 SystemVerilog simulation semantics. Use -disable_sem2009 option for turning off SV 2009 simulation semantics.
+   extender immext(.in(imm16), .ext(1), .out(imm16ext));
+                                    |
+xmelab: *W,CUVMPW (./branch_pc.v,28|36): port sizes differ in port connection (32/1).
 	Building instance overlay tables: .................... Done
 	Generating native compiled code:
-		worklib.ext_tb:v <0x04de7215>
-			streams:   1, words:  1228
+		worklib.mux_32:v <0x77f62cd3>
+			streams:   2, words:   511
+		worklib.and_gate:v <0x7a729899>
+			streams:   0, words:     0
+		worklib.extender:v <0x7c83a902>
+			streams:   1, words:   256
+		worklib.pc_branch:v <0x11662443>
+			streams:   3, words:   490
+		worklib.pc_tb:v <0x5fc0aedb>
+			streams:   1, words:  1449
 	Building instance specific data structures.
 	Loading native compiled code:     .................... Done
 	Design hierarchy summary:
-		             Instances  Unique
-		Modules:             3       3
-		Registers:           2       2
-		Scalar wires:        2       -
-		Expanded wires:     16       1
-		Vectored wires:      1       -
-		Initial blocks:      1       1
-		Cont. assignments:   1       2
-	Writing initial simulation snapshot: worklib.ext_tb:v
+		              Instances  Unique
+		Modules:              6       6
+		Registers:            4       4
+		Scalar wires:         4       -
+		Expanded wires:      16       1
+		Vectored wires:       5       -
+		Always blocks:        1       1
+		Initial blocks:       1       1
+		Cont. assignments:    3       4
+		Pseudo assignments:   1       1
+	Writing initial simulation snapshot: worklib.pc_branch_dff:v
+xmsim: *W,DSEM2009: This SystemVerilog design is simulated as per IEEE 1800-2009 SystemVerilog simulation semantics. Use -disable_sem2009 option for turning off SV 2009 simulation semantics.
 
 -------------------------------------
 Relinquished control to SimVision...
@@ -39,10 +62,8 @@ xcelium>
 xcelium> source /vol/cadence2018/XCELIUM1809/tools/xcelium/files/xmsimrc
 xcelium> database -open waves -into waves.shm -default
 Created default SHM database waves
-xcelium> probe -create -shm ext_tb.in_tb ext_tb.out_tb ext_tb.sel_tb
+xcelium> probe -create -shm pc_tb.imm16tb pc_tb.nPC_seltb pc_tb.pc_intb pc_tb.pc_outtb
 Created probe 1
 xcelium> run
 xmsim: *W,RNQUIE: Simulation is complete.
-xcelium> ^C
-xcelium> exit
-TOOL:	xrun(64)	18.09-s011: Exiting on Nov 14, 2021 at 17:03:18 CST  (total: 00:00:29)
+xcelium> 

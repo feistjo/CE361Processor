@@ -4,9 +4,9 @@ module registers_tb ();
 	reg clk_tb;
 	reg RegWr_tb;
 	reg [31:0] busW_tb;
-	reg [4:0] Rw;
-	reg [4:0] Ra;
-	reg [4:0] Rb;
+	reg [4:0] Rw_tb;
+	reg [4:0] Ra_tb;
+	reg [4:0] Rb_tb;
 
 	//outputs become wires
 	wire [31:0] busA_tb;

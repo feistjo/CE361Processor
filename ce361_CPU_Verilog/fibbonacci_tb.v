@@ -29,7 +29,7 @@ module fibbonacci_tb();
 					towrite = 5'b00001;
 				else
 					towrite = 5'b00010;
-				Inst = {16'b000000_00001_00001, towrite, 11'b00000_100000}; //add $1, $1, $1
+				Inst = {16'b000000_00001_00010, towrite, 11'b00000_100000}; //add $1, $2, $1
 				clk = 1'b0;
 				#1
 				clk = 1'b1;

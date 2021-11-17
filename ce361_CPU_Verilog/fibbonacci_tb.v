@@ -33,8 +33,8 @@ module fibbonacci_tb();
 				clk = 1'b0;
 				#1
 				clk = 1'b1;
-				#1
 			end
+			#1
 			clk = 1'b0;
 			#1
 			clk = 1'b1;

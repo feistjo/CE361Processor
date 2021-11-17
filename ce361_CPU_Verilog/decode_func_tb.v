@@ -11,5 +11,7 @@
 			Op = 6'b0;
 			Fun = 6'b100000;
 			#10
+			Op = 6'b0;
+			Fun = 6'b100000;
 	end
  endmodule

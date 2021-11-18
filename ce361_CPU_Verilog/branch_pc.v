@@ -60,7 +60,7 @@ module pc_register(in, clk, nPC_sel, imm16, out);
       out <= 32'h00400020;
    end
    
-   always @(negedge clk)
+   always @(posedge clk)
      begin
         if (nPC_sel == 0) begin
 	   pc <= pc + 4;

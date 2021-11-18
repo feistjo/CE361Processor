@@ -9,8 +9,8 @@ module cpu(clk);
 	input clk;
 	//get instruction Inst
 	wire [31:0] Inst;
-	fetch_inst instmem(.clk(clk), .imm16(Imm16), .nPC_sel(nPC_sel), .inst(Inst));
 	wire equal, sign, nPC_sel, RegWr, RegDst, ExtOp, ALUSrc, MemWr, MemToReg;
+	fetch_inst instmem(.clk(clk), .imm16(Imm16), .nPC_sel(nPC_sel), .inst(Inst));
 	wire [2:0] ALUctr;
 	wire [4:0] Rs, Rt, Rd;
 	assign Rt = Inst[20:16];

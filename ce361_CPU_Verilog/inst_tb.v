@@ -10,7 +10,7 @@ module inst_tb;
 
    initial begin
       clk_tb = 0;
-      #50 $finish;
+      #100 $finish;
    end
    
 endmodule // inst_tb

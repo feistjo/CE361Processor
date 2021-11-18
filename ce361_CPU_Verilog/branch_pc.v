@@ -68,7 +68,8 @@ module pc_register(in, clk, nPC_sel, imm16, out);
 	end
 	else begin
 	  if (nPC_sel == 1) begin
-	     pc <= pc + 4 + imm16;
+	     pc <= pc + 4;
+		 pc <= pc + imm16;
 	     out <= pc;
 	  end	   
 	end

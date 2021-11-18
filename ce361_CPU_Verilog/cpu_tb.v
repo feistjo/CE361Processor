@@ -9,9 +9,9 @@ module cpu_tb();
 	
 	always
 	begin
-		clk_tb = 1'b0;
+		clk = 1'b0;
 		#1;
-		clk_tb = 1'b1;
+		clk = 1'b1;
 		#1;	
 	end
 endmodule

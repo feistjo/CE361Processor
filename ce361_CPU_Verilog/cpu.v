@@ -182,7 +182,6 @@ module decode_func(Op, Fun, func, RegDst);
 	
 	wire r_type;
 	set_if_eq setr(Op, 6'b000000, r_type);
-	assign RegDst = r_type;
 	
 	wire [8:0] r_func; //[add, addu, sub, subu, and, or, sll, slt, sltu]
 	set_if_eq addr(Fun, 6'b100000, r_func[8]);
@@ -210,6 +209,11 @@ module decode_func(Op, Fun, func, RegDst);
 	set_if_eq bgtzf(Op, 6'b000111, func[2]);
 	mux sltmux(r_type, 1'b0, r_func[1], func[1]);
 	mux sltumux(r_type, 1'b0, r_func[0], func[0]);
+	
+	wire [1:0] branchors;
+	or_gate orb1(func[4], func[3], branchors[1]);
+	or_gate orb2(func[2], branchors[1], branchors[0]);
+	or_gate ordst(r_type, branchors[0], RegDst);
 endmodule
 
 module set_if_eq(x, y, z);

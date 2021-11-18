@@ -5,10 +5,11 @@
 //`include "registers.v"
 //`include "extend.v"
 
-module cpu(clk, Inst);
+module cpu(clk);
 	input clk;
 	//get instruction Inst
-	input [31:0] Inst;
+	wire [31:0] Inst;
+	fetch_inst instmem(.clk(clk), .inst(Inst));
 	wire equal, sign, nPC_sel, RegWr, RegDst, ExtOp, ALUSrc, MemWr, MemToReg;
 	wire [2:0] ALUctr;
 	wire [4:0] Rs, Rt, Rd;

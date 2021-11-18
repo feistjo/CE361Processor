@@ -1,6 +1,5 @@
 module cpu_tb();
 	reg clk;
-	reg [31:0] Inst;
 	
 	cpu cpu1(clk);
 	

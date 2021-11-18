@@ -64,13 +64,12 @@ module pc_register(in, clk, nPC_sel, imm16, out);
      begin
         if (nPC_sel == 0) begin
 	   pc <= pc + 4;
-	   out <= pc;
+	   out <= pc + 4;
 	end
 	else begin
 	  if (nPC_sel == 1) begin
-	     pc <= pc + 4;
-		 pc <= pc + imm16;
-	     out <= pc;
+	     pc <= pc + 4 + imm16;
+	     out <= pc + 4 + imm16;
 	  end	   
 	end
      end // always @ (negedge clk)

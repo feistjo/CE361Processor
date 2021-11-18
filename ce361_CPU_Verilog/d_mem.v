@@ -23,13 +23,13 @@ module d_mem(
 
     //~~~~~~~~~~Functions~~~~~~~~~~
     syncram syncram_1 (
-        .clk (clk);
-        .cs (1'b1);
-        .oe (1'b1);
-        .we (WrEn);
-        .addr (adr);
-        .din (data_in);
-        .dout (data_out);
+        .clk (clk),
+        .cs (1'b1),
+        .oe (1'b1),
+        .we (WrEn),
+        .addr (adr),
+        .din (data_in),
+        .dout (data_out)
     );
 
 endmodule

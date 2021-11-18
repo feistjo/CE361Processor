@@ -40,7 +40,8 @@ module cpu(clk);
 	
 	//Data Memory DataIn=busB, WrEn=MemWr, adr=ALUout, clk=clk, dout=DataOut
 	wire [31:0] DataOut;
-	read_0 testread(DataOut);
+	//read_0 testread(DataOut);
+	d_mem datamem(.clk(clk), .data_in(busB), .data_out(DataOut), .adr(ALUout), .WrEn(MemWr));
 	
 	mux_32 datamux({31'b0, MemToReg}, ALUout, DataOut, busW);
 endmodule

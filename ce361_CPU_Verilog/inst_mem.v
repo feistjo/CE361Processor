@@ -22,9 +22,5 @@ module fetch_inst(clk, inst);
 	       .addr(pc_addr),
 	       .din(32'hFFFFFFFF),
 	       .dout(inst));
-   defparam sram_get.mem_file = "data/bills_branch.dat";
-   
-   
-
 
 endmodule // fetch_mem

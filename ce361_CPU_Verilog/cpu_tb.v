@@ -2,33 +2,16 @@ module cpu_tb();
 	reg clk;
 	reg [31:0] Inst;
 	
-	cpu test_cpu(clk, Inst);
+	cpu cpu1(clk);
 	
-	initial
-		begin
-			clk = 1'b1;
-			#1
-			Inst = 31'b000000_00000_00000_00001_00000_100000; //add $1, $0, $0
-			clk = 1'b0;
-			#1
-			clk = 1'b1;
-			#1
-			Inst = 31'b001000_00000_00001_0000000000000001; //addi $1, $0, 0x1
-			clk = 1'b0;
-			#1
-			clk = 1'b1;
-			#1
-			Inst = 31'b000000_00001_00001_00001_00000_100000; //add $1, $1, $1
-			clk = 1'b0;
-			#1
-			clk = 1'b1;
-			#1
-			clk = 1'b0;
-			#1
-			clk = 1'b1;
-			#1
-			clk = 1'b0;
-			#1
-			clk = 1'b1;
+	defparam cpu1.instmem.sram_get.mem_file = "data/bills_branch.dat";
+	defparam cpu1.datamem.syncram_1.mem_file = "bbout.dat";
+	
+	always
+	begin
+		clk_tb = 1'b0;
+		#1;
+		clk_tb = 1'b1;
+		#1;	
 	end
 endmodule

@@ -34,6 +34,4 @@ module d_mem(
         .dout (data_out)
     );
 
-    defparam syncram_1.mem_file = "penis.dat";
-
 endmodule

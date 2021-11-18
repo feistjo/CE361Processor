@@ -3,8 +3,8 @@ module cpu_tb();
 	
 	cpu cpu1(clk);
 	
-	defparam cpu1.instmem.sram_get.mem_file = "data/sort_corrected_branch.dat";
-	defparam cpu1.datamem.syncram_1.mem_file = "data/sort_corrected_branch.dat";
+	defparam cpu1.instmem.sram_get.mem_file = "instruction_tests/beq.dat";
+	defparam cpu1.datamem.syncram_1.mem_file = "instruction_tests/beq.dat";
 	
 	always
 	begin

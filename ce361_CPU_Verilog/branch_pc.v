@@ -14,7 +14,7 @@ module pc_clk(clk, nPC_sel, imm16, pc_fin, read_val);
    wire [31:0] 	 imm16ext;
 
    // start by extending
-   extender immext(.in(imm16), .ext(1'b1), .out(imm16ext));
+   extender20 immext({.in(imm16), 4'b0}, .ext(1'b1), .out(imm16ext));
    
    // read pc and store in prev
    pc_register pc(.in(prev_pc),
@@ -35,6 +35,17 @@ module pc_clk(clk, nPC_sel, imm16, pc_fin, read_val);
     */
        
 endmodule // pc_clk
+
+module extender20(in, ext, out);
+   input [19:0] in;
+   input 	ext;
+   output [31:0] out;
+   wire 	 sign;
+
+   and_gate si(.x(ext), .y(in[19]), .z(sign));
+   assign out = {{12{sign}},{in[15:0]}};
+
+endmodule // extender
 
 // register for the pc. if rw = 0 read, if rw = 1 write
 module pc_register(in, clk, nPC_sel, imm16, out);

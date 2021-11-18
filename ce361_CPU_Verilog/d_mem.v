@@ -1,4 +1,6 @@
 //make sure to compile a syncram.v at some point before compiling this
+`include "lib/syncram.v"
+
 
 module d_mem(
     clk, //falling edge triggered
@@ -31,5 +33,7 @@ module d_mem(
         .din (data_in),
         .dout (data_out)
     );
+
+    defparam syncram_1.mem_file = "penis.dat";
 
 endmodule

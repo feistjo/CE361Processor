@@ -14,7 +14,7 @@ module pc_clk(clk, nPC_sel, imm16, pc_fin, read_val);
    wire [31:0] 	 imm16ext;
 
    // start by extending
-   extender20 immext({.in(imm16), 4'b0}, .ext(1'b1), .out(imm16ext));
+   extender20 immext(.in({imm16, 4'b0}), .ext(1'b1), .out(imm16ext));
    
    // read pc and store in prev
    pc_register pc(.in(prev_pc),

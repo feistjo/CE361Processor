@@ -4,7 +4,7 @@ module cpu_tb();
 	
 	cpu cpu1(clk);
 	
-	defparam cpu1.instmem.sram_get.mem_file = "fib.dat";
+	defparam cpu1.instmem.sram_get.mem_file = "inc.dat";
 	defparam cpu1.datamem.syncram_1.mem_file = "fibout.dat";
 	
 	always

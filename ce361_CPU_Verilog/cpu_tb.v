@@ -3,8 +3,8 @@ module cpu_tb();
 	
 	cpu cpu1(clk);
 	
-	defparam cpu1.instmem.sram_get.mem_file = "inc.dat";
-	defparam cpu1.datamem.syncram_1.mem_file = "incout.dat";
+	defparam cpu1.instmem.sram_get.mem_file = "data/sort_corrected_branch.bat";
+	defparam cpu1.datamem.syncram_1.mem_file = "data/sort_corrected_branch.bat";
 	
 	always
 	begin
@@ -16,7 +16,7 @@ module cpu_tb();
 	
 	initial
 		begin
-			#30
+			#1000
 			$finish;
 	end
 endmodule

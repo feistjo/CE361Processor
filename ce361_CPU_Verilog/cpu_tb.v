@@ -14,4 +14,10 @@ module cpu_tb();
 		clk = 1'b1;
 		#1;	
 	end
+	
+	initial
+		begin
+			#22
+			$finish
+	end
 endmodule

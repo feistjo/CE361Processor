@@ -18,6 +18,6 @@ module cpu_tb();
 	initial
 		begin
 			#22
-			$finish
+			$finish;
 	end
 endmodule

@@ -127,9 +127,12 @@ module get_ALUctr(func, ALUctr);
 	wire alu_or;
 	assign alu_or = func[8];
 	
-	//ALU fa (010): add, addi
+	//ALU fa (010): add, addi, lw, sw
 	wire alu_fa;
-	or_gate oradd(func[14], func[13], alu_fa);
+	wire alu_fa_or;
+	or_gate orfa1(func[6], func[5], alu_fa_or[1]);
+	or_gate orfa2(func[14], func[13], alu_fa_or[0]);
+	or_gate orfa(alu_fa_or[0], alu_fa_or[1], alu_fa);
 	
 	//ALU slt_signed (011): slt
 	wire alu_slt;
@@ -137,9 +140,7 @@ module get_ALUctr(func, ALUctr);
 	
 	//ALU fa_u (100): addu, lw, sw
 	wire alu_fau, alu_fau_or1;
-	or_gate orfau1(func[12], func[6], alu_fau_or1);
-	or_gate orfau2(func[5], alu_fau_or1, alu_fau);
-	//assign alu_fau = func[12];
+	assign alu_fau = func[12];
 	
 	//ALU sll (101): sll
 	wire alu_sll;

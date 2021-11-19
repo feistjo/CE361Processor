@@ -129,7 +129,7 @@ module get_ALUctr(func, ALUctr);
 	
 	//ALU fa (010): add, addi, lw, sw
 	wire alu_fa;
-	wire alu_fa_or;
+	wire [1:0] alu_fa_or;
 	or_gate orfa1(func[6], func[5], alu_fa_or[1]);
 	or_gate orfa2(func[14], func[13], alu_fa_or[0]);
 	or_gate orfa(alu_fa_or[0], alu_fa_or[1], alu_fa);

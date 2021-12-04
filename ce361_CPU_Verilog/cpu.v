@@ -8,34 +8,49 @@
 module cpu(clk);
 	input clk;
 	//get instruction Inst
-	wire [31:0] Inst;
-	wire equal, sign, nPC_sel, RegWr, RegDst, ExtOp, ALUSrc, MemWr, MemToReg;
-	wire [15:0] Imm16;
-	fetch_inst instmem(.clk(clk), .imm16(Imm16), .nPC_sel(nPC_sel), .inst(Inst));
-	wire [2:0] ALUctr;
-	wire [4:0] Rs, Rt, Rd;
-	assign Rt = Inst[20:16];
-	assign Rs = Inst[25:21];
-	assign Rd = Inst[15:11];
-	assign Imm16 = Inst[15:0];
+	wire [31:0] IFInst;
+	reg [31:0] IFIDInst;
+	wire [31:0] IDInst;
+	wire equal, sign, nPC_sel, IDRegWr, IDRegDst, IDExtOp, ALUSrc, IDMemWr, MemToReg;
+	reg IDEXRegWr, IDEXRegDst, IDEXExtOp;
+	wire [15:0] IDImm16;
+	reg [15:0] IDEXImm16;
+	fetch_inst instmem(.clk(clk), .imm16(Imm16), .nPC_sel(nPC_sel), .inst(IFInst)); //probably has to change
+	wire [2:0] IDALUctr;
+	reg [2:0] IDEXALUctr;
+	wire [4:0] Rs, IDRt, IDRd;
+	reg [4:0] IDEXRt, IDEXRd;
+	assign IDRt = IDInst[20:16];
+	assign Rs = IDInst[25:21];
+	assign IDRd = IDInst[15:11];
+	assign IDImm16 = IDInst[15:0];
 	wire [4:0] shamt;
-	assign shamt = Inst[10:6];
-	control controls(.Op(Inst[31:26]), .Fun(Inst[5:0]), .equal(equal), .sign(sign), .nPC_sel(nPC_sel), .RegWr(RegWr), .RegDst(RegDst), .ExtOp(ExtOp), .ALUSrc(ALUSrc), .ALUctr(ALUctr), .MemWr(MemWr), .MemtoReg(MemToReg));
+	assign shamt = IDInst[10:6];
+	control controls(.Op(IDInst[31:26]), .Fun(IDInst[5:0]), .equal(equal), .sign(sign), .nPC_sel(nPC_sel), .RegWr(IDRegWr), .RegDst(IDRegDst), .ExtOp(IDExtOp), .ALUSrc(ALUSrc), .ALUctr(IDALUctr), .MemWr(IDMemWr), .MemtoReg(MemToReg));
+
+	wire [4:0] EXRt, EXRd;
+	wire [31:0] WrbusW, IDbusA, IDbusB;
+	reg [31:0] IDEXbusA, IDEXbusB;
+	wire [4:0] EXRw, WrRw;
+	reg [4:0] EXMemRW;
+	wire EXRegWr, EXRegDst;
+	reg EXMemRegWr;
+	mux_5 mux_rw(EXRegDst, EXRt, EXRd, EXRw);
+	registers datareg(.clk(clk), .RegWr(WrRegWr), .busW(WrbusW), .Rw(WrRw), .Ra(Rs), .Rb(Rt), .busA(IDbusA), .busB(IDbusB));
 	
-	wire [31:0] busW, busA, busB;
-	wire [4:0] Rw;
-	mux_5 mux_rw(RegDst, Rt, Rd, Rw);
-	registers datareg(.clk(clk), .RegWr(RegWr), .busW(busW), .Rw(Rw), .Ra(Rs), .Rb(Rt), .busA(busA), .busB(busB));
-	
+	wire [15:0] EXImm16;
 	wire [31:0] Imm32;
-	extender immext(.in(Imm16), .ext(ExtOp), .out(Imm32));
+	wire EXExtOp;
+	extender immext(.in(EXImm16), .ext(EXExtOp), .out(Imm32));
 	
+	wire [31:0] EXBusA, EXBusB;
 	wire [31:0] ALUIn2;
-	mux_32 muxb({31'b0, ALUSrc}, busB, Imm32, ALUIn2);
+	mux_32 muxb({31'b0, ALUSrc}, EXbusB, Imm32, ALUIn2);
 	
+	wire [2:0] EXALUctr;
 	wire [31:0] ALUout;
 	wire ovf, cout;
-	ALU alu1(.ctrl(ALUctr), .A(busA), .B(ALUIn2), .shamt(shamt), .cout(cout), .ovf(ovf), .ze(equal), .R(ALUout));
+	ALU alu1(.ctrl(EXALUctr), .A(EXbusA), .B(ALUIn2), .shamt(shamt), .cout(cout), .ovf(ovf), .ze(equal), .R(ALUout));
 	assign sign = ALUout[31];
 	
 	//Data Memory DataIn=busB, WrEn=MemWr, adr=ALUout, clk=clk, dout=DataOut

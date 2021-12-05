@@ -13,11 +13,11 @@ module cpu(clk);
 	wire [31:0] IDInst;
 	assign IDInst = IFIDInst;
 	
-	wire zero, sign, IDnPC_sel, IDRegWr, IDRegDst, IDExtOp, IDALUSrc, IDMemWr, IDMemToReg;
+	wire zero, sign, IDRegWr, IDRegDst, IDExtOp, IDALUSrc, IDMemWr, IDMemToReg;
 	reg IDEXRegWr, IDEXRegDst, IDEXExtOp, IDEXALUSrc, IDEXMemWr, IDEXMemToReg, IDEXnPC_sel;
 	wire [15:0] IDImm16;
 	reg [15:0] IDEXImm16;
-	fetch_inst instmem(.clk(clk), .imm16(Imm16), .nPC_sel(nPC_sel), .inst(IFInst)); //probably has to change
+	fetch_inst instmem(.clk(clk), .imm16(EXImm16), .nPC_sel(nPC_sel), .inst(IFInst)); //probably has to change
 	wire [2:0] IDALUctr;
 	reg [2:0] IDEXALUctr;
 	wire [4:0] Rs, IDRt, IDRd;
@@ -33,7 +33,7 @@ module cpu(clk);
         reg [14:0] IDEXfunc;
         assign EXfunc <= IDEXfunc;
    
-	control controls(.Op(IDInst[31:26]), .Fun(IDInst[5:0]), .equal(zero), .sign(sign), .nPC_sel(IDnPC_sel), .RegWr(IDRegWr), .RegDst(IDRegDst), .ExtOp(IDExtOp), .ALUSrc(IDALUSrc), .ALUctr(IDALUctr), .MemWr(IDMemWr), .MemtoReg(MemToReg), .func(IDfunc));
+	control controls(.Op(IDInst[31:26]), .Fun(IDInst[5:0]), .equal(zero), .sign(sign), .RegWr(IDRegWr), .RegDst(IDRegDst), .ExtOp(IDExtOp), .ALUSrc(IDALUSrc), .ALUctr(IDALUctr), .MemWr(IDMemWr), .MemtoReg(MemToReg), .func(IDfunc));
 
 	wire [4:0] EXRt, EXRd;
 	assign EXRt <= IDEXRt;
@@ -64,9 +64,14 @@ module cpu(clk);
 	wire [31:0] ALUout;
 	wire [4:0] EXshamt;
 	wire EXzero;
+        wire nPC_sel;
 	reg EXMemzero;
 	wire ovf, cout;
 	ALU alu1(.ctrl(EXALUctr), .A(EXbusA), .B(ALUIn2), .shamt(EXshamt), .cout(cout), .ovf(ovf), .ze(EXzero), .R(ALUout));
+   
+        get_branched br(.func(EXfunc), .equal(EXzero), .nPC_sel(nPC_sel);
+
+        
 	assign sign = ALUout[31];
 	
 	reg [31:0] EXMemALUout;
@@ -110,31 +115,18 @@ module mux_5(sel, src0, src1, z);
 	endgenerate
 endmodule
 
-module control(Op, Fun, equal, sign, nPC_sel, RegWr, RegDst, ExtOp, ALUSrc, ALUctr, MemWr, MemtoReg, func);
+module control(Op, Fun, equal, sign, RegWr, RegDst, ExtOp, ALUSrc, ALUctr, MemWr, MemtoReg, func);
 	input [5:0] Op;
 	input [5:0] Fun;
 	input equal, sign;
-	output nPC_sel, RegWr, RegDst, ALUSrc, MemWr, MemtoReg;
+	output RegWr, RegDst, ALUSrc, MemWr, MemtoReg;
 	output ExtOp;
 	output [2:0] ALUctr;	
 	output [14:0] func; //[add, addi, addu, sub, subu, and, or, sll, lw, sw, beq, bne, bgtz, slt, sltu]
 
 	decode_func getfunc(.Op(Op), .Fun(Fun), .func(func), .RegDst(RegDst));
 	get_ALUctr getaluctr(.func(func), .ALUctr(ALUctr));
-	
-	//nPC_sel branches
-	wire beq_t;
-	and_gate beqand(func[4], equal, beq_t);
-	wire bne_t, not_equal;
-	not_gate noteq(equal, not_equal);
-	and_gate bneand(func[3], not_equal, bne_t);
-	wire bgtz_t, ltorz, not_ltorz;
-	or_gate orltorz(equal, sign, ltorz);
-	not_gate notltorz(ltorz, not_ltorz);
-	and_gate bgtzand(func[2], not_ltorz, bgtz_t);
-	wire branch_or1;
-	or_gate branchor1(beq_t, bne_t, branch_or1);
-	or_gate branchor2(branch_or1, bgtz_t, nPC_sel);
+       
 	
 	//RegWr: add, addi, addu, sub, subu, and, or, sll, lw, slt, sltu (not sw, bew, bne, bgtz)
 	wire [2:0] reg_wr_mid;
@@ -287,10 +279,23 @@ module set_if_eq(x, y, z);
 endmodule // set_if_eq
 
 
-module branch_lance(func, equal, nPC_sel);
+module get_branched(func, equal, nPC_sel);
    input [14:0] func;
    input 	equal;
    output 	nPC_sel;
+   
+   //nPC_sel branches
+   wire 	beq_t;
+   and_gate beqand(func[4], equal, beq_t);
+   wire 	bne_t,not_equal;
+   not_gate noteq(equal, not_equal);
+   and_gate bneand(func[3], not_equal, bne_t);
+   wire 	bgtz_t, ltorz, not_ltorz;
+   or_gate orltorz(equal, sign, ltorz);
+   not_gate notltorz(ltorz, not_ltorz);
+   and_gate bgtzand(func[2], not_ltorz, bgtz_t);
+   wire 	branch_or1;
+   or_gate branchor1(beq_t, bne_t, branch_or1);
+   or_gate branchor2(branch_or1, bgtz_t, nPC_sel);
 
-
-endmodule // branch_lance
+endmodule // get_branched

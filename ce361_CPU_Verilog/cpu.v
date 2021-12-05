@@ -29,7 +29,11 @@ module cpu(clk);
 	wire [4:0] IDshamt;
 	reg [4:0] IDEXshamt;
 	assign IDshamt = IDInst[10:6];
-	control controls(.Op(IDInst[31:26]), .Fun(IDInst[5:0]), .equal(zero), .sign(sign), .nPC_sel(IDnPC_sel), .RegWr(IDRegWr), .RegDst(IDRegDst), .ExtOp(IDExtOp), .ALUSrc(IDALUSrc), .ALUctr(IDALUctr), .MemWr(IDMemWr), .MemtoReg(MemToReg));
+        wire [14:0] IDfunc, EXfunc;
+        reg [14:0] IDEXfunc;
+        assign EXfunc <= IDEXfunc;
+   
+	control controls(.Op(IDInst[31:26]), .Fun(IDInst[5:0]), .equal(zero), .sign(sign), .nPC_sel(IDnPC_sel), .RegWr(IDRegWr), .RegDst(IDRegDst), .ExtOp(IDExtOp), .ALUSrc(IDALUSrc), .ALUctr(IDALUctr), .MemWr(IDMemWr), .MemtoReg(MemToReg), .func(IDfunc));
 
 	wire [4:0] EXRt, EXRd;
 	assign EXRt <= IDEXRt;
@@ -106,18 +110,15 @@ module mux_5(sel, src0, src1, z);
 	endgenerate
 endmodule
 
-module control(Op, Fun, equal, sign, nPC_sel, RegWr, RegDst, ExtOp, ALUSrc, ALUctr, MemWr, MemtoReg, func_out);
+module control(Op, Fun, equal, sign, nPC_sel, RegWr, RegDst, ExtOp, ALUSrc, ALUctr, MemWr, MemtoReg, func);
 	input [5:0] Op;
 	input [5:0] Fun;
 	input equal, sign;
 	output nPC_sel, RegWr, RegDst, ALUSrc, MemWr, MemtoReg;
 	output ExtOp;
-	output [2:0] ALUctr;
-   output [14:0]     func_out;
-   
-	
-	
-	wire [14:0] func; //[add, addi, addu, sub, subu, and, or, sll, lw, sw, beq, bne, bgtz, slt, sltu]
+	output [2:0] ALUctr;	
+	output [14:0] func; //[add, addi, addu, sub, subu, and, or, sll, lw, sw, beq, bne, bgtz, slt, sltu]
+
 	decode_func getfunc(.Op(Op), .Fun(Fun), .func(func), .RegDst(RegDst));
 	get_ALUctr getaluctr(.func(func), .ALUctr(ALUctr));
 	
@@ -287,7 +288,7 @@ endmodule // set_if_eq
 
 
 module branch_lance(func, equal, nPC_sel);
-   input [15:0] func;
+   input [14:0] func;
    input 	equal;
    output 	nPC_sel;
 

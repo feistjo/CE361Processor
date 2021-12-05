@@ -106,13 +106,15 @@ module mux_5(sel, src0, src1, z);
 	endgenerate
 endmodule
 
-module control(Op, Fun, equal, sign, nPC_sel, RegWr, RegDst, ExtOp, ALUSrc, ALUctr, MemWr, MemtoReg);
+module control(Op, Fun, equal, sign, nPC_sel, RegWr, RegDst, ExtOp, ALUSrc, ALUctr, MemWr, MemtoReg, func_out);
 	input [5:0] Op;
 	input [5:0] Fun;
 	input equal, sign;
 	output nPC_sel, RegWr, RegDst, ALUSrc, MemWr, MemtoReg;
 	output ExtOp;
 	output [2:0] ALUctr;
+   output [14:0]     func_out;
+   
 	
 	
 	wire [14:0] func; //[add, addi, addu, sub, subu, and, or, sll, lw, sw, beq, bne, bgtz, slt, sltu]
@@ -281,4 +283,13 @@ module set_if_eq(x, y, z);
 	or_gate or5(ored[2], ored[3], ored[4]);
 	
 	not_gate not1(ored[4], z);
-endmodule
+endmodule // set_if_eq
+
+
+module branch_lance(func, equal, nPC_sel);
+   input [15:0] func;
+   input 	equal;
+   output 	nPC_sel;
+
+
+endmodule // branch_lance

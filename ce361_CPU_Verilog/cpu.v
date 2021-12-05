@@ -11,6 +11,8 @@ module cpu(clk);
 	wire [31:0] IFInst;
 	reg [31:0] IFIDInst;
 	wire [31:0] IDInst;
+	assign IDInst = IFIDInst;
+	
 	wire zero, sign, IDnPC_sel, IDRegWr, IDRegDst, IDExtOp, IDALUSrc, IDMemWr, IDMemToReg;
 	reg IDEXRegWr, IDEXRegDst, IDEXExtOp, IDEXALUSrc, IDEXMemWr, IDEXMemToReg, IDEXnPC_sel;
 	wire [15:0] IDImm16;
@@ -30,6 +32,8 @@ module cpu(clk);
 	control controls(.Op(IDInst[31:26]), .Fun(IDInst[5:0]), .equal(zero), .sign(sign), .nPC_sel(IDnPC_sel), .RegWr(IDRegWr), .RegDst(IDRegDst), .ExtOp(IDExtOp), .ALUSrc(IDALUSrc), .ALUctr(IDALUctr), .MemWr(IDMemWr), .MemtoReg(MemToReg));
 
 	wire [4:0] EXRt, EXRd;
+	assign EXRt <= IDEXRt;
+	assign EXRd <= IDEXRd;
 	wire [31:0] WRbusW, IDbusA, IDbusB;
 	reg [31:0] IDEXbusA, IDEXbusB;
 	wire [4:0] EXRw, WrRw;
@@ -40,12 +44,15 @@ module cpu(clk);
 	registers datareg(.clk(clk), .RegWr(WRRegWr), .busW(WRbusW), .Rw(WrRw), .Ra(Rs), .Rb(Rt), .busA(IDbusA), .busB(IDbusB));
 	
 	wire [15:0] EXImm16;
+	assign EXImm16 <= IDEXImm16;
 	wire [31:0] Imm32;
 	wire EXExtOp;
 	extender immext(.in(EXImm16), .ext(EXExtOp), .out(Imm32));
 	
-	wire [31:0] EXBusA, EXBusB;
-	reg [31:0] EXMemBusA, EXMemBusB;
+	wire [31:0] EXbusA, EXbusB;
+	assign EXbusA <= IDEXbusA;
+	assign EXbusB <= IDEXbusB;
+	reg [31:0] EXMemBusB;
 	wire [31:0] ALUIn2;
 	mux_32 muxb({31'b0, ALUSrc}, EXbusB, Imm32, ALUIn2);
 	
@@ -60,18 +67,22 @@ module cpu(clk);
 	
 	reg [31:0] EXMemALUout;
 	wire [31:0] MemALUout;
+	assign MemALUout <= EXMemALUout;
 	reg [31:0] MemWrALUout;
 	wire [31:0] WrALUout;
+	assign WrALUout <= MemWrALUout;
 	
 	wire [4:0] MemRegRw;
 	reg [4:0] MemWrRegRw;
 	reg MemWrMemToReg;
 	wire WrMemToReg;
+	assign WrMemToReg <= MemWrMemToReg;
 	
 	//Data Memory DataIn=busB, WrEn=MemWr, adr=ALUout, clk=clk, dout=DataOut
 	wire [31:0] DataOut;
 	reg [31:0] MemWrDataOut;
 	wire [31:0] WrDataOut;
+	assign WrDataOut <= MemWrDataOut;
 	//read_0 testread(DataOut);
 	d_mem datamem(.clk(clk), .data_in(busB), .data_out(DataOut), .adr(ALUout), .WrEn(MemWr));
 	

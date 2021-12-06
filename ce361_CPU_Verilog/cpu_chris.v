@@ -10,6 +10,7 @@ module cpu(clk);
 	//get instruction Inst
 	wire [31:0] IFInst;
 	reg [31:0] IFIDInst;
+
 	wire [31:0] IDInst;
 	wire zero, sign, IDnPC_sel, IDRegWr, IDRegDst, IDExtOp, IDALUSrc, IDMemWr, IDMemToReg;
 	reg IDEXRegWr, IDEXRegDst, IDEXExtOp, IDEXALUSrc, IDEXMemWr, IDEXMemToReg, IDEXnPC_sel;
@@ -62,17 +63,7 @@ module cpu(clk);
 	wire [31:0] MemALUout;
 	reg [31:0] MemWrALUout;
 	wire [31:0] WrALUout;
-
-	//EX/MEM Pipeline Clocking
-	always @(posedge(clk))
-	begin
-		//EXMemtarget <= ;//doesn't exist
-		EXMemzero <= EXzero;
-		EXMemALUout <= ALUout;
-		EXMemRw <= EXRw;
-		EXMemBusB <= EXBusB;
-	end
-	
+	     
 	wire [4:0] MemRegRw;
 	reg [4:0] MemWrRegRw;
 	reg MemWrMemToReg;
@@ -84,16 +75,36 @@ module cpu(clk);
 	wire [31:0] WrDataOut;
 	//read_0 testread(DataOut);
 	d_mem datamem(.clk(clk), .data_in(busB), .data_out(DataOut), .adr(ALUout), .WrEn(MemWr));
-
-	//MEM/WR Pipeline Clocking
+	
+	mux_32 datamux({31'b0, WrMemToReg}, WrALUout, WrDataOut, busW);
+	
 	always @(posedge(clk))
 	begin
+		//IF/ID Pipeline
+		//PC+4
+		IFIDInst <= IFInst;
+		
+		//ID/EX Pipeline
+		//PC+4
+		IDEXImm16 <= IDImm16;
+		IDEXBusA <= IDbusA;
+		IDEXBusB <= IDbusB;
+		IDEXRt <= IDRt;
+		IDEXRd <= IDRd;
+
+		//EX/MEM Pipeline 
+		//PC+4
+		EXMemzero <= EXzero;
+		EXMemALUout <= ALUout;
+		EXMemRw <= EXRw;
+		EXMemBusB <= EXBusB;
+
+		//MEM/WR Pipeline 
 		MemWrRegRw <= MemRegRw;
 		MemWrALUout <= MemALUout;
 		MemWrDataOut <= DataOut;
 	end
-	
-	mux_32 datamux({31'b0, WrMemToReg}, WrALUout, WrDataOut, busW);
+
 endmodule
 
 module read_0(dout);

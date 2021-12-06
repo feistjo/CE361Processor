@@ -78,7 +78,7 @@ module cpu(clk);
 	assign EXRt = IDEXRt;
 	assign EXRd = IDEXRd;
 	wire [31:0] WRbusW, IDbusA, IDbusB;
-	assign WrbusW = MemWrRegD
+	assign WrbusW = MemWrRegD;
 	reg [31:0] IDEXbusA, IDEXbusB;
 	wire [4:0] EXRw, WrRw;
 	reg [4:0] EXMemRw;

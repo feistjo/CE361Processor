@@ -1,6 +1,6 @@
 1637129391 /home/lcg3895/ce361/CE361SingleCycleProcessor/ce361_CPU_Verilog/test/sram_tb.v
 1637186594 /home/lcg3895/ce361/CE361SingleCycleProcessor/ce361_CPU_Verilog/registers_tb.v
-1638756640 /home/lcg3895/ce361/CE361SingleCycleProcessor/ce361_CPU_Verilog/cpu.v
+1638758515 /home/lcg3895/ce361/CE361SingleCycleProcessor/ce361_CPU_Verilog/cpu.v
 1637188401 /home/lcg3895/ce361/CE361SingleCycleProcessor/ce361_CPU_Verilog/inst_mem.v
 1637019753 /home/lcg3895/ce361/CE361SingleCycleProcessor/ce361_CPU_Verilog/extend.v
 1637126062 /home/lcg3895/ce361/CE361SingleCycleProcessor/ce361_CPU_Verilog/lib/sram.v

@@ -116,8 +116,7 @@ module cpu(clk);
 		IDEXbusB <= IDbusB;
 		IDEXRt <= IDRt;
 		IDEXRd <= IDRd;
-	        IDEXnPC_sel <= IDnPC_sel;
-	        IDEXfunc <= IDfunc;
+	        
 	  	   
 		//EX/MEM Pipeline 
 		//PC+4
@@ -145,7 +144,8 @@ module cpu(clk);
 		IDEXMemWr <= IDMemWr;
 		
 		//Branch
-
+		IDEXnPC_sel <= IDnPC_sel;
+	    IDEXfunc <= IDfunc;
 		//MemtoReg
 		IDEXMemToReg <= IDMemToReg;
 		EXMemMemToReg <= EXMemToReg;

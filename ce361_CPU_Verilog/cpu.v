@@ -17,12 +17,17 @@ module cpu(clk);
 	assign IDInst = IFIDInst;
 
 	//pipeline control registers
+	//ExtOp
 	wire IDExtOp, EXExtOp;
 	reg IDEXExtOp;
 	assign EXExtOp = IDEXExtOp;
+	//ALUSrc
+	wire IDALUSrc, EXALUSrc;
+	reg IDEXALUSrc;
+	assign EXALUSrc = IDEXALUSrc;
 	
-	wire zero, sign, IDRegWr, IDRegDst, IDALUSrc, IDMemWr, IDMemToReg, IDnPC_sel;
-	reg IDEXRegWr, IDEXRegDst, IDEXALUSrc, IDEXMemWr, IDEXMemToReg, IDEXnPC_sel;
+	wire zero, sign, IDRegWr, IDRegDst, IDMemWr, IDMemToReg, IDnPC_sel;
+	reg IDEXRegWr, IDEXRegDst, IDEXMemWr, IDEXMemToReg, IDEXnPC_sel;
 	wire [15:0] IDImm16;
 	reg [15:0] IDEXImm16;
         wire [15:0] EXImm16;
@@ -73,7 +78,7 @@ module cpu(clk);
 	assign EXbusB = IDEXbusB;
 	reg [31:0] EXMemBusB;
 	wire [31:0] ALUIn2;
-	mux_32 muxb({31'b0, ALUSrc}, EXbusB, Imm32, ALUIn2);
+	mux_32 muxb({31'b0, EXALUSrc}, EXbusB, Imm32, ALUIn2);
 	
 	wire [2:0] EXALUctr;
 	wire [31:0] ALUout;

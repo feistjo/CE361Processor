@@ -101,7 +101,7 @@ module cpu(clk);
 	
 	mux_32 datamux({31'b0, WrMemToReg}, WrALUout, WrDataOut, busW);
 
-	always @(posedge clk)
+	always @(negedge clk)
 	begin
 		//IF/ID Pipeline
 		//PC+4
@@ -126,6 +126,27 @@ module cpu(clk);
 		MemWrRegRw <= MemRegRw;
 		MemWrALUout <= MemALUout;
 		MemWrDataOut <= DataOut;
+
+		//Control Logic
+		//ExtOp
+		IDEXExtOp <= IDExtOp;
+		//ALUSrc
+		IDEXALUSrc <= IDALUSrc;
+		//ALUOp
+		IDEXALUctr <= IDALUctr;
+		//RegDst
+		IDEXRegDst <= IDRegDst;
+		//MemWr
+		IDEXMemWr <= IDMemWr;
+		
+		//Branch
+
+		//MemtoReg
+		IDEXMemToReg <= IDMemToReg;
+		EXMemMemToReg <= EXMemToReg;
+		//RegWr
+		IDEXRegWr <= IDRegWr;
+
 	end
 
 endmodule

@@ -132,6 +132,26 @@ module cpu(clk);
 		MemWrDataOut <= DataOut;
 
 		//Pipeline Control Registers
+		//Control Logic
+		//ExtOp
+		IDEXExtOp <= IDExtOp;
+		//ALUSrc
+		IDEXALUSrc <= IDALUSrc;
+		//ALUOp
+		IDEXALUctr <= IDALUctr;
+		//RegDst
+		IDEXRegDst <= IDRegDst;
+		//MemWr
+		IDEXMemWr <= IDMemWr;
+		
+		//Branch
+
+		//MemtoReg
+		IDEXMemToReg <= IDMemToReg;
+		EXMemMemToReg <= EXMemToReg;
+		//RegWr
+		IDEXRegWr <= IDRegWr;
+
 	end
 
 endmodule

@@ -6,5 +6,5 @@
 -gui
 -access
 r
-inst_mem.v
-inst_tb.v
+cpu.v
+cpu_tb.v

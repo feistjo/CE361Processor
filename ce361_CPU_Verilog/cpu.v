@@ -4,6 +4,9 @@
 //`include "ece361_alu_verilog/ALU.v"
 //`include "registers.v"
 //`include "extend.v"
+`include  "d_mem.v"
+
+`include "inst_mem.v"
 
 module cpu(clk);
 	input clk;
@@ -17,6 +20,8 @@ module cpu(clk);
 	reg IDEXRegWr, IDEXRegDst, IDEXExtOp, IDEXALUSrc, IDEXMemWr, IDEXMemToReg, IDEXnPC_sel;
 	wire [15:0] IDImm16;
 	reg [15:0] IDEXImm16;
+        //wire [15:0] EXImm16;
+        //wire nPC_sel;
 	fetch_inst instmem(.clk(clk), .imm16(EXImm16), .nPC_sel(nPC_sel), .inst(IFInst)); //probably has to change
 	wire [2:0] IDALUctr;
 	reg [2:0] IDEXALUctr;
@@ -31,31 +36,31 @@ module cpu(clk);
 	assign IDshamt = IDInst[10:6];
         wire [14:0] IDfunc, EXfunc;
         reg [14:0] IDEXfunc;
-        assign EXfunc <= IDEXfunc;
+        assign EXfunc = IDEXfunc;
    
 	control controls(.Op(IDInst[31:26]), .Fun(IDInst[5:0]), .equal(zero), .sign(sign), .RegWr(IDRegWr), .RegDst(IDRegDst), .ExtOp(IDExtOp), .ALUSrc(IDALUSrc), .ALUctr(IDALUctr), .MemWr(IDMemWr), .MemtoReg(MemToReg), .func(IDfunc));
 
 	wire [4:0] EXRt, EXRd;
-	assign EXRt <= IDEXRt;
-	assign EXRd <= IDEXRd;
+	assign EXRt = IDEXRt;
+	assign EXRd = IDEXRd;
 	wire [31:0] WRbusW, IDbusA, IDbusB;
 	reg [31:0] IDEXbusA, IDEXbusB;
 	wire [4:0] EXRw, WrRw;
 	reg [4:0] EXMemRw;
-	wire EXRegWr, EXRegDst, EXMemToReg;;
+	wire EXRegWr, EXRegDst, EXMemToReg;
 	reg EXMemRegWr, EXMemMemToReg;
 	mux_5 mux_rw(EXRegDst, EXRt, EXRd, EXRw);
 	registers datareg(.clk(clk), .RegWr(WRRegWr), .busW(WRbusW), .Rw(WrRw), .Ra(Rs), .Rb(Rt), .busA(IDbusA), .busB(IDbusB));
 	
-	wire [15:0] EXImm16;
-	assign EXImm16 <= IDEXImm16;
+	
+	assign EXImm16 = IDEXImm16;
 	wire [31:0] Imm32;
 	wire EXExtOp;
 	extender immext(.in(EXImm16), .ext(EXExtOp), .out(Imm32));
 	
 	wire [31:0] EXbusA, EXbusB;
-	assign EXbusA <= IDEXbusA;
-	assign EXbusB <= IDEXbusB;
+	assign EXbusA = IDEXbusA;
+	assign EXbusB = IDEXbusB;
 	reg [31:0] EXMemBusB;
 	wire [31:0] ALUIn2;
 	mux_32 muxb({31'b0, ALUSrc}, EXbusB, Imm32, ALUIn2);
@@ -64,64 +69,63 @@ module cpu(clk);
 	wire [31:0] ALUout;
 	wire [4:0] EXshamt;
 	wire EXzero;
-        wire nPC_sel;
 	reg EXMemzero;
 	wire ovf, cout;
 	ALU alu1(.ctrl(EXALUctr), .A(EXbusA), .B(ALUIn2), .shamt(EXshamt), .cout(cout), .ovf(ovf), .ze(EXzero), .R(ALUout));
    
-        get_branched br(.func(EXfunc), .equal(EXzero), .nPC_sel(nPC_sel);
+        get_branched br(.func(EXfunc), .equal(EXzero), .nPC_sel(nPC_sel));
 
         
 	assign sign = ALUout[31];
 	
 	reg [31:0] EXMemALUout;
 	wire [31:0] MemALUout;
-	assign MemALUout <= EXMemALUout;
+	assign MemALUout = EXMemALUout;
 	reg [31:0] MemWrALUout;
 	wire [31:0] WrALUout;
-	assign WrALUout <= MemWrALUout;
+	assign WrALUout = MemWrALUout;
 	
 	wire [4:0] MemRegRw;
 	reg [4:0] MemWrRegRw;
 	reg MemWrMemToReg;
 	wire WrMemToReg;
-	assign WrMemToReg <= MemWrMemToReg;
+	assign WrMemToReg = MemWrMemToReg;
 	
 	//Data Memory DataIn=busB, WrEn=MemWr, adr=ALUout, clk=clk, dout=DataOut
 	wire [31:0] DataOut;
 	reg [31:0] MemWrDataOut;
 	wire [31:0] WrDataOut;
-	assign WrDataOut <= MemWrDataOut;
+	assign WrDataOut = MemWrDataOut;
 	//read_0 testread(DataOut);
 	d_mem datamem(.clk(clk), .data_in(busB), .data_out(DataOut), .adr(ALUout), .WrEn(MemWr));
 	
 	mux_32 datamux({31'b0, WrMemToReg}, WrALUout, WrDataOut, busW);
 
-	always @(posedge(clk))
+	always @(posedge clk)
 	begin
 		//IF/ID Pipeline
 		//PC+4
-		IFIDInst <= IFInst;
+		IFIDInst = IFInst;
 		
 		//ID/EX Pipeline
 		//PC+4
-		IDEXImm16 <= IDImm16;
-		IDEXBusA <= IDbusA;
-		IDEXBusB <= IDbusB;
-		IDEXRt <= IDRt;
-		IDEXRd <= IDRd;
+		IDEXImm16 = IDImm16;
+		IDEXbusA = IDbusA;
+		IDEXbusB = IDbusB;
+		IDEXRt = IDRt;
+		IDEXRd = IDRd;
 
 		//EX/MEM Pipeline 
 		//PC+4
-		EXMemzero <= EXzero;
-		EXMemALUout <= ALUout;
-		EXMemRw <= EXRw;
-		EXMemBusB <= EXBusB;
+		EXMemzero = EXzero;
+		EXMemALUout = ALUout;
+		EXMemRw = EXRw;
+		EXMemBusB = EXbusB;
 
 		//MEM/WR Pipeline 
-		MemWrRegRw <= MemRegRw;
-		MemWrALUout <= MemALUout;
-		MemWrDataOut <= DataOut;
+		MemWrRegRw = MemRegRw;
+		MemWrALUout = MemALUout;
+		MemWrDataOut = DataOut;
 	end
 
 endmodule

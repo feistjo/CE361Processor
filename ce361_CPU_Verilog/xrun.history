@@ -107,3 +107,21 @@ s106(17Nov2021:16:33:23):  xrun -64bit -gui -access r inst_mem.v inst_tb.v
 s107(17Nov2021:16:33:42):  xrun -64bit -gui -access r inst_mem.v inst_tb.v 
 s108(17Nov2021:16:35:36):  xrun -64bit -gui -access r inst_mem.v inst_tb.v 
 s109(17Nov2021:21:54:31):  xrun -64bit -gui -access r inst_mem.v inst_tb.v 
+s110(05Dec2021:18:55:32):  xrun -64bit -gui -access r cpu.v 
+s111(05Dec2021:18:56:25):  xrun -64bit -gui -access r cpu.v 
+s112(05Dec2021:18:57:00):  xrun -64bit -gui -access r cpu.v 
+s113(05Dec2021:18:57:59):  xrun -64bit -gui -access r cpu.v 
+s114(05Dec2021:19:00:15):  xrun -64bit -gui -access r cpu.v 
+s115(05Dec2021:19:01:45):  xrun -64bit -gui -access r cpu.v 
+s116(05Dec2021:19:03:41):  xrun -64bit -gui -access r cpu.v 
+s117(05Dec2021:19:07:50):  xrun -64bit -gui -access r cpu.v 
+s118(05Dec2021:19:15:36):  xrun -64bit -gui -access r cpu.v 
+s119(05Dec2021:19:17:27):  xrun -64bit -gui -access r cpu.v 
+s120(05Dec2021:19:18:42):  xrun -64bit -gui -access r cpu.v 
+s121(05Dec2021:19:19:40):  xrun -64bit -gui -access r cpu.v 
+s122(05Dec2021:19:20:18):  xrun -64bit -gui -access r cpu.v 
+s123(05Dec2021:19:20:59):  xrun -64bit -gui -access r cpu.v 
+s124(05Dec2021:19:23:13):  xrun -64bit -gui -access r cpu.v cpu_tb.v 
+s125(05Dec2021:19:23:35):  xrun -64bit -gui -access r cpu.v cpu_tb.v 
+s126(05Dec2021:19:25:29):  xrun -64bit -gui -access r cpu.v cpu_tb.v 
+s127(05Dec2021:19:26:15):  xrun -64bit -gui -access r cpu.v cpu_tb.v 

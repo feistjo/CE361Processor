@@ -33,7 +33,7 @@ module cpu(clk);
 	//MemWr
 	wire IDMemWr, EXMemWr, MemMemWr;
 	reg IDEXMemWr, EXMemMemWr;
-	assign EXMemWr = EDEXMemWr;
+	assign EXMemWr = IDEXMemWr;
 	assign MemMemWr = EXMemMemWr;
 	//Branch
 	//MemToReg
@@ -97,7 +97,7 @@ module cpu(clk);
 	mux_32 muxb({31'b0, EXALUSrc}, EXbusB, Imm32, ALUIn2);
 	
 	wire [2:0] EXALUctr;
-	assign EXALUctr = EDEXALUctr;
+	assign EXALUctr = IDEXALUctr;
 	wire [31:0] ALUout;
 	wire [4:0] EXshamt;
 	wire EXzero;

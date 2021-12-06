@@ -110,25 +110,31 @@ module cpu(clk);
 		
 		//ID/EX Pipeline
 		//PC+4
-		IDEXImm16 = IDImm16;
-		IDEXbusA = IDbusA;
-		IDEXbusB = IDbusB;
-		IDEXRt = IDRt;
-		IDEXRd = IDRd;
+		IDEXImm16 <= IDImm16;
+		IDEXbusA <= IDbusA;
+		IDEXbusB <= IDbusB;
+		IDEXRt <= IDRt;
+		IDEXRd <= IDRd;
 
 		//EX/MEM Pipeline 
 		//PC+4
-		EXMemzero = EXzero;
-		EXMemALUout = ALUout;
-		EXMemRw = EXRw;
-		EXMemBusB = EXbusB;
+		EXMemzero <= EXzero;
+		EXMemALUout <= ALUout;
+		EXMemRw <= EXRw;
+		EXMemBusB <= EXbusB;
 
 		//MEM/WR Pipeline 
+<<<<<<< HEAD
 		MemWrRegRw = MemRegRw;
 		MemWrALUout = MemALUout;
 		MemWrDataOut = DataOut;
 
 		//Pipeline Control Registers
+=======
+		MemWrRegRw <= MemRegRw;
+		MemWrALUout <= MemALUout;
+		MemWrDataOut <= DataOut;
+>>>>>>> 00e0929ec874b4921d0125cf931cf2c2a8a3e230
 	end
 
 endmodule

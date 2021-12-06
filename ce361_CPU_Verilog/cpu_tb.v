@@ -3,8 +3,8 @@ module cpu_tb();
 	
 	cpu cpu1(.clk(clk));
 	
-	defparam cpu1.instmem.sram_get.mem_file = "inc_nops.dat";
-	defparam cpu1.datamem.syncram_1.mem_file = "inc_nops.dat";
+	defparam cpu1.instmem.sram_get.mem_file = "no_stall.dat";
+	defparam cpu1.datamem.syncram_1.mem_file = "no_stall.dat";
 	
 	always
 	begin

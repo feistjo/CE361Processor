@@ -4,19 +4,25 @@
 //`include "ece361_alu_verilog/ALU.v"
 //`include "registers.v"
 //`include "extend.v"
+`include  "d_mem.v"
+
+`include "inst_mem.v"
 
 module cpu(clk);
 	input clk;
 	//get instruction Inst
 	wire [31:0] IFInst;
 	reg [31:0] IFIDInst;
-
 	wire [31:0] IDInst;
-	wire zero, sign, IDnPC_sel, IDRegWr, IDRegDst, IDExtOp, IDALUSrc, IDMemWr, IDMemToReg;
+	assign IDInst = IFIDInst;
+	
+	wire zero, sign, IDRegWr, IDRegDst, IDExtOp, IDALUSrc, IDMemWr, IDMemToReg;
 	reg IDEXRegWr, IDEXRegDst, IDEXExtOp, IDEXALUSrc, IDEXMemWr, IDEXMemToReg, IDEXnPC_sel;
 	wire [15:0] IDImm16;
 	reg [15:0] IDEXImm16;
-	fetch_inst instmem(.clk(clk), .imm16(Imm16), .nPC_sel(nPC_sel), .inst(IFInst)); //probably has to change
+        //wire [15:0] EXImm16;
+        //wire nPC_sel;
+	fetch_inst instmem(.clk(clk), .imm16(EXImm16), .nPC_sel(nPC_sel), .inst(IFInst)); //probably has to change
 	wire [2:0] IDALUctr;
 	reg [2:0] IDEXALUctr;
 	wire [4:0] Rs, IDRt, IDRd;
@@ -28,25 +34,34 @@ module cpu(clk);
 	wire [4:0] IDshamt;
 	reg [4:0] IDEXshamt;
 	assign IDshamt = IDInst[10:6];
-	control controls(.Op(IDInst[31:26]), .Fun(IDInst[5:0]), .equal(zero), .sign(sign), .nPC_sel(IDnPC_sel), .RegWr(IDRegWr), .RegDst(IDRegDst), .ExtOp(IDExtOp), .ALUSrc(IDALUSrc), .ALUctr(IDALUctr), .MemWr(IDMemWr), .MemtoReg(MemToReg));
+        wire [14:0] IDfunc, EXfunc;
+        reg [14:0] IDEXfunc;
+        assign EXfunc = IDEXfunc;
+   
+	control controls(.Op(IDInst[31:26]), .Fun(IDInst[5:0]), .equal(zero), .sign(sign), .RegWr(IDRegWr), .RegDst(IDRegDst), .ExtOp(IDExtOp), .ALUSrc(IDALUSrc), .ALUctr(IDALUctr), .MemWr(IDMemWr), .MemtoReg(MemToReg), .func(IDfunc));
 
 	wire [4:0] EXRt, EXRd;
+	assign EXRt = IDEXRt;
+	assign EXRd = IDEXRd;
 	wire [31:0] WRbusW, IDbusA, IDbusB;
 	reg [31:0] IDEXbusA, IDEXbusB;
-	wire [4:0] EXRw, WrRw; 
-	reg [4:0] EXMemRw; //EX/MEM Pipeline Register Write Address Register
-	wire EXRegWr, EXRegDst, EXMemToReg;;
-	reg EXMemRegWr, EXMemMemToReg; 
+	wire [4:0] EXRw, WrRw;
+	reg [4:0] EXMemRw;
+	wire EXRegWr, EXRegDst, EXMemToReg;
+	reg EXMemRegWr, EXMemMemToReg;
 	mux_5 mux_rw(EXRegDst, EXRt, EXRd, EXRw);
 	registers datareg(.clk(clk), .RegWr(WRRegWr), .busW(WRbusW), .Rw(WrRw), .Ra(Rs), .Rb(Rt), .busA(IDbusA), .busB(IDbusB));
 	
-	wire [15:0] EXImm16;
+	
+	assign EXImm16 = IDEXImm16;
 	wire [31:0] Imm32;
 	wire EXExtOp;
 	extender immext(.in(EXImm16), .ext(EXExtOp), .out(Imm32));
 	
-	wire [31:0] EXBusA, EXBusB;
-	reg [31:0] EXMemBusA, EXMemBusB;
+	wire [31:0] EXbusA, EXbusB;
+	assign EXbusA = IDEXbusA;
+	assign EXbusB = IDEXbusB;
+	reg [31:0] EXMemBusB;
 	wire [31:0] ALUIn2;
 	mux_32 muxb({31'b0, ALUSrc}, EXbusB, Imm32, ALUIn2);
 	
@@ -54,31 +69,39 @@ module cpu(clk);
 	wire [31:0] ALUout;
 	wire [4:0] EXshamt;
 	wire EXzero;
-	reg EXMemzero; //EX/MEM Pipeline Zero Register
+	reg EXMemzero;
 	wire ovf, cout;
 	ALU alu1(.ctrl(EXALUctr), .A(EXbusA), .B(ALUIn2), .shamt(EXshamt), .cout(cout), .ovf(ovf), .ze(EXzero), .R(ALUout));
+   
+        get_branched br(.func(EXfunc), .equal(EXzero), .nPC_sel(nPC_sel));
+
+        
 	assign sign = ALUout[31];
 	
-	reg [31:0] EXMemALUout; //EX/MEM Pipeline ALUout Register
+	reg [31:0] EXMemALUout;
 	wire [31:0] MemALUout;
+	assign MemALUout = EXMemALUout;
 	reg [31:0] MemWrALUout;
 	wire [31:0] WrALUout;
-	     
+	assign WrALUout = MemWrALUout;
+	
 	wire [4:0] MemRegRw;
 	reg [4:0] MemWrRegRw;
 	reg MemWrMemToReg;
 	wire WrMemToReg;
+	assign WrMemToReg = MemWrMemToReg;
 	
 	//Data Memory DataIn=busB, WrEn=MemWr, adr=ALUout, clk=clk, dout=DataOut
 	wire [31:0] DataOut;
 	reg [31:0] MemWrDataOut;
 	wire [31:0] WrDataOut;
+	assign WrDataOut = MemWrDataOut;
 	//read_0 testread(DataOut);
 	d_mem datamem(.clk(clk), .data_in(busB), .data_out(DataOut), .adr(ALUout), .WrEn(MemWr));
 	
 	mux_32 datamux({31'b0, WrMemToReg}, WrALUout, WrDataOut, busW);
-	
-	always @(posedge(clk))
+
+	always @(posedge clk)
 	begin
 		//IF/ID Pipeline
 		//PC+4
@@ -87,8 +110,8 @@ module cpu(clk);
 		//ID/EX Pipeline
 		//PC+4
 		IDEXImm16 <= IDImm16;
-		IDEXBusA <= IDbusA;
-		IDEXBusB <= IDbusB;
+		IDEXbusA <= IDbusA;
+		IDEXbusB <= IDbusB;
 		IDEXRt <= IDRt;
 		IDEXRd <= IDRd;
 
@@ -97,7 +120,7 @@ module cpu(clk);
 		EXMemzero <= EXzero;
 		EXMemALUout <= ALUout;
 		EXMemRw <= EXRw;
-		EXMemBusB <= EXBusB;
+		EXMemBusB <= EXbusB;
 
 		//MEM/WR Pipeline 
 		MemWrRegRw <= MemRegRw;
@@ -124,32 +147,18 @@ module mux_5(sel, src0, src1, z);
 	endgenerate
 endmodule
 
-module control(Op, Fun, equal, sign, nPC_sel, RegWr, RegDst, ExtOp, ALUSrc, ALUctr, MemWr, MemtoReg);
+module control(Op, Fun, equal, sign, RegWr, RegDst, ExtOp, ALUSrc, ALUctr, MemWr, MemtoReg, func);
 	input [5:0] Op;
 	input [5:0] Fun;
 	input equal, sign;
-	output nPC_sel, RegWr, RegDst, ALUSrc, MemWr, MemtoReg;
+	output RegWr, RegDst, ALUSrc, MemWr, MemtoReg;
 	output ExtOp;
-	output [2:0] ALUctr;
-	
-	
-	wire [14:0] func; //[add, addi, addu, sub, subu, and, or, sll, lw, sw, beq, bne, bgtz, slt, sltu]
+	output [2:0] ALUctr;	
+	output [14:0] func; //[add, addi, addu, sub, subu, and, or, sll, lw, sw, beq, bne, bgtz, slt, sltu]
+
 	decode_func getfunc(.Op(Op), .Fun(Fun), .func(func), .RegDst(RegDst));
 	get_ALUctr getaluctr(.func(func), .ALUctr(ALUctr));
-	
-	//nPC_sel branches
-	wire beq_t;
-	and_gate beqand(func[4], equal, beq_t);
-	wire bne_t, not_equal;
-	not_gate noteq(equal, not_equal);
-	and_gate bneand(func[3], not_equal, bne_t);
-	wire bgtz_t, ltorz, not_ltorz;
-	or_gate orltorz(equal, sign, ltorz);
-	not_gate notltorz(ltorz, not_ltorz);
-	and_gate bgtzand(func[2], not_ltorz, bgtz_t);
-	wire branch_or1;
-	or_gate branchor1(beq_t, bne_t, branch_or1);
-	or_gate branchor2(branch_or1, bgtz_t, nPC_sel);
+       
 	
 	//RegWr: add, addi, addu, sub, subu, and, or, sll, lw, slt, sltu (not sw, bew, bne, bgtz)
 	wire [2:0] reg_wr_mid;
@@ -299,4 +308,34 @@ module set_if_eq(x, y, z);
 	or_gate or5(ored[2], ored[3], ored[4]);
 	
 	not_gate not1(ored[4], z);
-endmodule
+endmodule // set_if_eq
+
+
+module get_branched(func, equal, nPC_sel);
+   input [14:0] func;
+   input 	equal;
+   output 	nPC_sel;
+   
+   //nPC_sel branches
+   wire 	beq_t;
+   and_gate beqand(func[4], equal, beq_t);
+   wire 	bne_t,not_equal;
+   not_gate noteq(equal, not_equal);
+   and_gate bneand(func[3], not_equal, bne_t);
+   wire 	bgtz_t, ltorz, not_ltorz;
+   or_gate orltorz(equal, sign, ltorz);
+   not_gate notltorz(ltorz, not_ltorz);
+   and_gate bgtzand(func[2], not_ltorz, bgtz_t);
+   wire 	branch_or1;
+   or_gate branchor1(beq_t, bne_t, branch_or1);
+   or_gate branchor2(branch_or1, bgtz_t, nPC_sel);
+
+endmodule // get_branched
+
+
+module hazard_detected(hazard);
+   output hazard;
+   
+
+   
+endmodule // hazard_detected

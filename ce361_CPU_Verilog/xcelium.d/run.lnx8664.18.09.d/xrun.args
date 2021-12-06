@@ -6,5 +6,5 @@
 -gui
 -access
 r
-cpu_lance.v
+cpu.v
 cpu_tb.v

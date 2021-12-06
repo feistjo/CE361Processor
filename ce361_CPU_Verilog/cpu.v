@@ -96,6 +96,34 @@ module cpu(clk);
 	d_mem datamem(.clk(clk), .data_in(busB), .data_out(DataOut), .adr(ALUout), .WrEn(MemWr));
 	
 	mux_32 datamux({31'b0, WrMemToReg}, WrALUout, WrDataOut, busW);
+
+	always @(posedge(clk))
+	begin
+		//IF/ID Pipeline
+		//PC+4
+		IFIDInst <= IFInst;
+		
+		//ID/EX Pipeline
+		//PC+4
+		IDEXImm16 <= IDImm16;
+		IDEXBusA <= IDbusA;
+		IDEXBusB <= IDbusB;
+		IDEXRt <= IDRt;
+		IDEXRd <= IDRd;
+
+		//EX/MEM Pipeline 
+		//PC+4
+		EXMemzero <= EXzero;
+		EXMemALUout <= ALUout;
+		EXMemRw <= EXRw;
+		EXMemBusB <= EXBusB;
+
+		//MEM/WR Pipeline 
+		MemWrRegRw <= MemRegRw;
+		MemWrALUout <= MemALUout;
+		MemWrDataOut <= DataOut;
+	end
+
 endmodule
 
 module read_0(dout);

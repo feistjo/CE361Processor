@@ -1,4 +1,3 @@
-
 //`include "lib/mux.v"
 //`include "lib/mux_32.v"
 //`include "lib/not_gate.v"
@@ -16,9 +15,19 @@ module cpu(clk);
 	reg [31:0] IFIDInst;
 	wire [31:0] IDInst;
 	assign IDInst = IFIDInst;
+
+	//pipeline control registers
+	//ExtOp
+	wire IDExtOp, EXExtOp;
+	reg IDEXExtOp;
+	assign EXExtOp = IDEXExtOp;
+	//ALUSrc
+	wire IDALUSrc, EXALUSrc;
+	reg IDEXALUSrc;
+	assign EXALUSrc = IDEXALUSrc;
 	
-	wire zero, sign, IDRegWr, IDRegDst, IDExtOp, IDALUSrc, IDMemWr, IDMemToReg, IDnPC_sel;
-	reg IDEXRegWr, IDEXRegDst, IDEXExtOp, IDEXALUSrc, IDEXMemWr, IDEXMemToReg, IDEXnPC_sel;
+	wire zero, sign, IDRegWr, IDRegDst, IDMemWr, IDMemToReg, IDnPC_sel;
+	reg IDEXRegWr, IDEXRegDst, IDEXMemWr, IDEXMemToReg, IDEXnPC_sel;
 	wire [15:0] IDImm16;
 	reg [15:0] IDEXImm16;
         wire [15:0] EXImm16;
@@ -46,6 +55,8 @@ module cpu(clk);
 	assign EXRt = IDEXRt;
 	assign EXRd = IDEXRd;
 	wire [31:0] WRbusW, IDbusA, IDbusB;
+	reg [31:0] MemWrRegD;
+	assign WRbusW = MemWrRegD;
 	reg [31:0] IDEXbusA, IDEXbusB;
 	wire [4:0] EXRw, WrRw;
 	reg [4:0] EXMemRw;
@@ -61,7 +72,6 @@ module cpu(clk);
 	
 	assign EXImm16 = IDEXImm16;
 	wire [31:0] Imm32;
-	wire EXExtOp;
 	extender immext(.in(EXImm16), .ext(EXExtOp), .out(Imm32));
 	
 	wire [31:0] EXbusA, EXbusB;
@@ -69,7 +79,7 @@ module cpu(clk);
 	assign EXbusB = IDEXbusB;
 	reg [31:0] EXMemBusB;
 	wire [31:0] ALUIn2;
-	mux_32 muxb({31'b0, ALUSrc}, EXbusB, Imm32, ALUIn2);
+	mux_32 muxb({31'b0, EXALUSrc}, EXbusB, Imm32, ALUIn2);
 	
 	wire [2:0] EXALUctr;
 	wire [31:0] ALUout;
@@ -78,14 +88,9 @@ module cpu(clk);
 	reg EXMemzero;
 	wire ovf, cout;
 	ALU alu1(.ctrl(EXALUctr), .A(EXbusA), .B(ALUIn2), .shamt(EXshamt), .cout(cout), .ovf(ovf), .ze(EXzero), .R(ALUout));
-   
-        get_branched br(.func(EXfunc), .equal(EXzero), .nPC_sel(IDnPC_sel));
-
-        
+  
+    get_branched br(.func(EXfunc), .equal(EXzero), .nPC_sel(IDnPC_sel));      
 	assign sign = ALUout[31];
-
-	reg EXMemMemWr;
-	wire EXMemWr;
 	
 	reg [31:0] EXMemALUout;
 	wire [31:0] MemALUout;
@@ -93,6 +98,8 @@ module cpu(clk);
 	reg [31:0] MemWrALUout;
 	wire [31:0] WrALUout;
 	assign WrALUout = MemWrALUout;
+	wire [31:0] EXMemWr;
+	reg [31:0] EXMemMemWr;
 	
 	wire [4:0] MemRegRw;
 	reg [4:0] MemWrRegRw;
@@ -375,4 +382,3 @@ module hazard_detected(hazard);
 
    
 endmodule // hazard_detected
-

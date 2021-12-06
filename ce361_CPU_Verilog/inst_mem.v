@@ -1,4 +1,4 @@
-ls`include "branch_pc.v"
+`include "branch_pc.v"
 `include "lib/sram.v"
 
 module fetch_inst(clk, imm16, nPC_sel, inst);

@@ -1,130 +1,256 @@
 xrun(64): 18.09-s011: (c) Copyright 1995-2019 Cadence Design Systems, Inc.
-TOOL:	xrun(64)	18.09-s011: Started on Nov 17, 2021 at 21:54:31 CST
+TOOL:	xrun(64)	18.09-s011: Started on Dec 05, 2021 at 19:26:15 CST
 xrun
 	-64bit
 	-gui
 	-access r
-	inst_mem.v
-	inst_tb.v
-Recompiling... reason: file './cpu.v' is newer than expected.
-	expected: Mon Nov 15 17:42:33 2021
-	actual:   Wed Nov 17 21:46:18 2021
-file: inst_mem.v
+	cpu.v
+	cpu_tb.v
+Recompiling... reason: file './cpu_tb.v' is newer than expected.
+	expected: Sun Dec  5 19:25:23 2021
+	actual:   Sun Dec  5 19:26:12 2021
+file: cpu.v
+        1'h2 : hex = 1;
+           |
+xmvlog: *W,INTOVF (lib/syncram.v,45|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
+(`include file: lib/syncram.v line 45, `include file: d_mem.v line 2, file: cpu.v line 7)
+        1'h3 : hex = 1;
+           |
+xmvlog: *W,INTOVF (lib/syncram.v,46|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
+(`include file: lib/syncram.v line 46, `include file: d_mem.v line 2, file: cpu.v line 7)
+        1'h4 : hex = 1;
+           |
+xmvlog: *W,INTOVF (lib/syncram.v,47|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
+(`include file: lib/syncram.v line 47, `include file: d_mem.v line 2, file: cpu.v line 7)
+        1'h5 : hex = 1;
+           |
+xmvlog: *W,INTOVF (lib/syncram.v,48|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
+(`include file: lib/syncram.v line 48, `include file: d_mem.v line 2, file: cpu.v line 7)
+        1'h6 : hex = 1;
+           |
+xmvlog: *W,INTOVF (lib/syncram.v,49|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
+(`include file: lib/syncram.v line 49, `include file: d_mem.v line 2, file: cpu.v line 7)
+        1'h7 : hex = 1;
+           |
+xmvlog: *W,INTOVF (lib/syncram.v,50|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
+(`include file: lib/syncram.v line 50, `include file: d_mem.v line 2, file: cpu.v line 7)
+        1'h8 : hex = 1;
+           |
+xmvlog: *W,INTOVF (lib/syncram.v,51|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
+(`include file: lib/syncram.v line 51, `include file: d_mem.v line 2, file: cpu.v line 7)
+        1'h9 : hex = 1;
+           |
+xmvlog: *W,INTOVF (lib/syncram.v,52|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
+(`include file: lib/syncram.v line 52, `include file: d_mem.v line 2, file: cpu.v line 7)
+        1'ha : hex = 1;
+           |
+xmvlog: *W,INTOVF (lib/syncram.v,53|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
+(`include file: lib/syncram.v line 53, `include file: d_mem.v line 2, file: cpu.v line 7)
+        1'hb : hex = 1;
+           |
+xmvlog: *W,INTOVF (lib/syncram.v,54|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
+(`include file: lib/syncram.v line 54, `include file: d_mem.v line 2, file: cpu.v line 7)
+        1'hc : hex = 1;
+           |
+xmvlog: *W,INTOVF (lib/syncram.v,55|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
+(`include file: lib/syncram.v line 55, `include file: d_mem.v line 2, file: cpu.v line 7)
+        1'hd : hex = 1;
+           |
+xmvlog: *W,INTOVF (lib/syncram.v,56|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
+(`include file: lib/syncram.v line 56, `include file: d_mem.v line 2, file: cpu.v line 7)
+        1'he : hex = 1;
+           |
+xmvlog: *W,INTOVF (lib/syncram.v,57|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
+(`include file: lib/syncram.v line 57, `include file: d_mem.v line 2, file: cpu.v line 7)
+        1'hf : hex = 1;
+           |
+xmvlog: *W,INTOVF (lib/syncram.v,58|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
+(`include file: lib/syncram.v line 58, `include file: d_mem.v line 2, file: cpu.v line 7)
+        1'hA : hex = 1;
+           |
+xmvlog: *W,INTOVF (lib/syncram.v,59|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
+(`include file: lib/syncram.v line 59, `include file: d_mem.v line 2, file: cpu.v line 7)
+        1'hB : hex = 1;
+           |
+xmvlog: *W,INTOVF (lib/syncram.v,60|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
+(`include file: lib/syncram.v line 60, `include file: d_mem.v line 2, file: cpu.v line 7)
+        1'hC : hex = 1;
+           |
+xmvlog: *W,INTOVF (lib/syncram.v,61|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
+(`include file: lib/syncram.v line 61, `include file: d_mem.v line 2, file: cpu.v line 7)
+        1'hD : hex = 1;
+           |
+xmvlog: *W,INTOVF (lib/syncram.v,62|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
+(`include file: lib/syncram.v line 62, `include file: d_mem.v line 2, file: cpu.v line 7)
+        1'hE : hex = 1;
+           |
+xmvlog: *W,INTOVF (lib/syncram.v,63|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
+(`include file: lib/syncram.v line 63, `include file: d_mem.v line 2, file: cpu.v line 7)
+        1'hF : hex = 1;
+           |
+xmvlog: *W,INTOVF (lib/syncram.v,64|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
+(`include file: lib/syncram.v line 64, `include file: d_mem.v line 2, file: cpu.v line 7)
+        initiate();
+                 |
+xmvlog: *W,TMTPAR (lib/syncram.v,172|17): A task enable with no arguments must not include an empty set of parentheses [10.2.2 (IEEE Std 1364-2005)].  The compiler has ignored the parentheses.  Use 'xmhelp xmvlog TMTPAR'  for further information.
+(`include file: lib/syncram.v line 172, `include file: d_mem.v line 2, file: cpu.v line 7)
+        checkRAM();
+                 |
+xmvlog: *W,TMTPAR (lib/syncram.v,177|17): A task enable with no arguments must not include an empty set of parentheses [10.2.2 (IEEE Std 1364-2005)].  The compiler has ignored the parentheses.  Use 'xmhelp xmvlog TMTPAR'  for further information.
+(`include file: lib/syncram.v line 177, `include file: d_mem.v line 2, file: cpu.v line 7)
         1'h2 : hex = 1;
            |
 xmvlog: *W,INTOVF (lib/sram.v,44|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
-(`include file: lib/sram.v line 44, file: inst_mem.v line 2)
+(`include file: lib/sram.v line 44, `include file: inst_mem.v line 2, file: cpu.v line 9)
         1'h3 : hex = 1;
            |
 xmvlog: *W,INTOVF (lib/sram.v,45|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
-(`include file: lib/sram.v line 45, file: inst_mem.v line 2)
+(`include file: lib/sram.v line 45, `include file: inst_mem.v line 2, file: cpu.v line 9)
         1'h4 : hex = 1;
            |
 xmvlog: *W,INTOVF (lib/sram.v,46|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
-(`include file: lib/sram.v line 46, file: inst_mem.v line 2)
+(`include file: lib/sram.v line 46, `include file: inst_mem.v line 2, file: cpu.v line 9)
         1'h5 : hex = 1;
            |
 xmvlog: *W,INTOVF (lib/sram.v,47|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
-(`include file: lib/sram.v line 47, file: inst_mem.v line 2)
+(`include file: lib/sram.v line 47, `include file: inst_mem.v line 2, file: cpu.v line 9)
         1'h6 : hex = 1;
            |
 xmvlog: *W,INTOVF (lib/sram.v,48|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
-(`include file: lib/sram.v line 48, file: inst_mem.v line 2)
+(`include file: lib/sram.v line 48, `include file: inst_mem.v line 2, file: cpu.v line 9)
         1'h7 : hex = 1;
            |
 xmvlog: *W,INTOVF (lib/sram.v,49|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
-(`include file: lib/sram.v line 49, file: inst_mem.v line 2)
+(`include file: lib/sram.v line 49, `include file: inst_mem.v line 2, file: cpu.v line 9)
         1'h8 : hex = 1;
            |
 xmvlog: *W,INTOVF (lib/sram.v,50|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
-(`include file: lib/sram.v line 50, file: inst_mem.v line 2)
+(`include file: lib/sram.v line 50, `include file: inst_mem.v line 2, file: cpu.v line 9)
         1'h9 : hex = 1;
            |
 xmvlog: *W,INTOVF (lib/sram.v,51|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
-(`include file: lib/sram.v line 51, file: inst_mem.v line 2)
+(`include file: lib/sram.v line 51, `include file: inst_mem.v line 2, file: cpu.v line 9)
         1'ha : hex = 1;
            |
 xmvlog: *W,INTOVF (lib/sram.v,52|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
-(`include file: lib/sram.v line 52, file: inst_mem.v line 2)
+(`include file: lib/sram.v line 52, `include file: inst_mem.v line 2, file: cpu.v line 9)
         1'hb : hex = 1;
            |
 xmvlog: *W,INTOVF (lib/sram.v,53|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
-(`include file: lib/sram.v line 53, file: inst_mem.v line 2)
+(`include file: lib/sram.v line 53, `include file: inst_mem.v line 2, file: cpu.v line 9)
         1'hc : hex = 1;
            |
 xmvlog: *W,INTOVF (lib/sram.v,54|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
-(`include file: lib/sram.v line 54, file: inst_mem.v line 2)
+(`include file: lib/sram.v line 54, `include file: inst_mem.v line 2, file: cpu.v line 9)
         1'hd : hex = 1;
            |
 xmvlog: *W,INTOVF (lib/sram.v,55|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
-(`include file: lib/sram.v line 55, file: inst_mem.v line 2)
+(`include file: lib/sram.v line 55, `include file: inst_mem.v line 2, file: cpu.v line 9)
         1'he : hex = 1;
            |
 xmvlog: *W,INTOVF (lib/sram.v,56|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
-(`include file: lib/sram.v line 56, file: inst_mem.v line 2)
+(`include file: lib/sram.v line 56, `include file: inst_mem.v line 2, file: cpu.v line 9)
         1'hf : hex = 1;
            |
 xmvlog: *W,INTOVF (lib/sram.v,57|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
-(`include file: lib/sram.v line 57, file: inst_mem.v line 2)
+(`include file: lib/sram.v line 57, `include file: inst_mem.v line 2, file: cpu.v line 9)
         1'hA : hex = 1;
            |
 xmvlog: *W,INTOVF (lib/sram.v,58|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
-(`include file: lib/sram.v line 58, file: inst_mem.v line 2)
+(`include file: lib/sram.v line 58, `include file: inst_mem.v line 2, file: cpu.v line 9)
         1'hB : hex = 1;
            |
 xmvlog: *W,INTOVF (lib/sram.v,59|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
-(`include file: lib/sram.v line 59, file: inst_mem.v line 2)
+(`include file: lib/sram.v line 59, `include file: inst_mem.v line 2, file: cpu.v line 9)
         1'hC : hex = 1;
            |
 xmvlog: *W,INTOVF (lib/sram.v,60|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
-(`include file: lib/sram.v line 60, file: inst_mem.v line 2)
+(`include file: lib/sram.v line 60, `include file: inst_mem.v line 2, file: cpu.v line 9)
         1'hD : hex = 1;
            |
 xmvlog: *W,INTOVF (lib/sram.v,61|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
-(`include file: lib/sram.v line 61, file: inst_mem.v line 2)
+(`include file: lib/sram.v line 61, `include file: inst_mem.v line 2, file: cpu.v line 9)
         1'hE : hex = 1;
            |
 xmvlog: *W,INTOVF (lib/sram.v,62|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
-(`include file: lib/sram.v line 62, file: inst_mem.v line 2)
+(`include file: lib/sram.v line 62, `include file: inst_mem.v line 2, file: cpu.v line 9)
         1'hF : hex = 1;
            |
 xmvlog: *W,INTOVF (lib/sram.v,63|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
-(`include file: lib/sram.v line 63, file: inst_mem.v line 2)
+(`include file: lib/sram.v line 63, `include file: inst_mem.v line 2, file: cpu.v line 9)
         initiate();
                  |
 xmvlog: *W,TMTPAR (lib/sram.v,171|17): A task enable with no arguments must not include an empty set of parentheses [10.2.2 (IEEE Std 1364-2005)].  The compiler has ignored the parentheses.  Use 'xmhelp xmvlog TMTPAR'  for further information.
-(`include file: lib/sram.v line 171, file: inst_mem.v line 2)
+(`include file: lib/sram.v line 171, `include file: inst_mem.v line 2, file: cpu.v line 9)
         checkRAM();
                  |
 xmvlog: *W,TMTPAR (lib/sram.v,176|17): A task enable with no arguments must not include an empty set of parentheses [10.2.2 (IEEE Std 1364-2005)].  The compiler has ignored the parentheses.  Use 'xmhelp xmvlog TMTPAR'  for further information.
-(`include file: lib/sram.v line 176, file: inst_mem.v line 2)
-file: inst_tb.v
-	module worklib.inst_tb:v
+(`include file: lib/sram.v line 176, `include file: inst_mem.v line 2, file: cpu.v line 9)
+file: cpu_tb.v
+	module worklib.cpu_tb:v
 		errors: 0, warnings: 0
 		Caching library 'worklib' ....... Done
 	Elaborating the design hierarchy:
 		Caching library 'worklib' ....... Done
 	Top level design units:
 		pc_branch
-		inst_tb
+		read_0
+		cpu_tb
 xmelab: *W,DSEMEL: This SystemVerilog design will be simulated as per IEEE 1800-2009 SystemVerilog simulation semantics. Use -disable_sem2009 option for turning off SV 2009 simulation semantics.
+	fetch_inst instmem(.clk(clk), .imm16(EXImm16), .nPC_sel(nPC_sel), .inst(IFInst)); //probably has to change
+	                                           |
+xmelab: *W,CUVMPW (./cpu.v,25|44): port sizes differ in port connection (1/16).
+	registers datareg(.clk(clk), .RegWr(WRRegWr), .busW(WRbusW), .Rw(WrRw), .Ra(Rs), .Rb(Rt), .busA(IDbusA), .busB(IDbusB));
+	                                                                                      |
+xmelab: *W,CUVMPW (./cpu.v,53|87): port sizes differ in port connection (1/5).
+	extender immext(.in(EXImm16), .ext(EXExtOp), .out(Imm32));
+	                          |
+xmelab: *W,CUVMPW (./cpu.v,59|27): port sizes differ in port connection (1/16).
+	d_mem datamem(.clk(clk), .data_in(busB), .data_out(DataOut), .adr(ALUout), .WrEn(MemWr));
+	                                     |
+xmelab: *W,CUVMPW (./cpu.v,100|38): port sizes differ in port connection (1/32).
+	mux_32 datamux({31'b0, WrMemToReg}, WrALUout, WrDataOut, busW);
+	                                                            |
+xmelab: *W,CUVMPW (./cpu.v,102|61): port sizes differ in port connection (1/32).
 	Building instance overlay tables: .................... Done
 	Generating native compiled code:
-		worklib.inst_tb:v <0x4f001bc6>
-			streams:   2, words:   839
+		worklib.cpu_tb:v <0x3d1e30a9>
+			streams:   3, words:  1257
+		worklib.sram:v <0x0c63ee2f>
+			streams:  13, words: 15004
+		worklib.syncram:v <0x51b303a4>
+			streams:  13, words: 15081
 	Building instance specific data structures.
+	registers datareg(.clk(clk), .RegWr(WRRegWr), .busW(WRbusW), .Rw(WrRw), .Ra(Rs), .Rb(Rt), .busA(IDbusA), .busB(IDbusB));
+	                                                                                      |
+xmelab: *W,CSINFI (./cpu.v,53|87): implicit wire has no fanin (cpu_tb.cpu1.Rt).
+	registers datareg(.clk(clk), .RegWr(WRRegWr), .busW(WRbusW), .Rw(WrRw), .Ra(Rs), .Rb(Rt), .busA(IDbusA), .busB(IDbusB));
+	                                          |
+xmelab: *W,CSINFI (./cpu.v,53|43): implicit wire has no fanin (cpu_tb.cpu1.WRRegWr).
+	mux_32 muxb({31'b0, ALUSrc}, EXbusB, Imm32, ALUIn2);
+	                         |
+xmelab: *W,CSINFI (./cpu.v,66|26): implicit wire has no fanin (cpu_tb.cpu1.ALUSrc).
+	d_mem datamem(.clk(clk), .data_in(busB), .data_out(DataOut), .adr(ALUout), .WrEn(MemWr));
+	                                                                                     |
+xmelab: *W,CSINFI (./cpu.v,100|86): implicit wire has no fanin (cpu_tb.cpu1.MemWr).
+	d_mem datamem(.clk(clk), .data_in(busB), .data_out(DataOut), .adr(ALUout), .WrEn(MemWr));
+	                                     |
+xmelab: *W,CSINFI (./cpu.v,100|38): implicit wire has no fanin (cpu_tb.cpu1.busB).
+   or_gate orltorz(equal, sign, ltorz);
+                             |
+xmelab: *W,CSINFI (./cpu.v,326|29): implicit wire has no fanin (cpu_tb.cpu1.br.sign).
 	Loading native compiled code:     .................... Done
 	Design hierarchy summary:
-		              Instances  Unique
-		Modules:             11       9
-		Registers:           27      27
-		Scalar wires:        12       -
-		Expanded wires:      16       1
-		Vectored wires:      12       -
-		Always blocks:        4       4
-		Initial blocks:      10      10
-		Cont. assignments:    5       6
-		Pseudo assignments:   2       2
+		                Instances  Unique
+		Modules:             2550      41
+		Registers:           1206      79
+		Scalar wires:        2355       -
+		Expanded wires:      1336      57
+		Vectored wires:       141       -
+		Always blocks:       1136       9
+		Initial blocks:        17      17
+		Cont. assignments:     36      55
+		Pseudo assignments:    20      20
 	Writing initial simulation snapshot: worklib.pc_branch:v
 xmsim: *W,DSEM2009: This SystemVerilog design is simulated as per IEEE 1800-2009 SystemVerilog simulation semantics. Use -disable_sem2009 option for turning off SV 2009 simulation semantics.
 
@@ -134,146 +260,190 @@ xcelium>
 xcelium> source /vol/cadence2018/XCELIUM1809/tools/xcelium/files/xmsimrc
 xcelium> database -open waves -into waves.shm -default
 Created default SHM database waves
-xcelium> probe -create -shm inst_tb.clk_tb inst_tb.inst_tb
+xcelium> probe -create -shm cpu_tb.clk
 Created probe 1
 xcelium> run
 Now initializing sram
 Addr is written: 00400020
-Data is written: 20050001
+Data is written: 20030000
 Addr is written: 00400024
-Data is written: 20060064
+Data is written: 20000000
 Addr is written: 00400028
-Data is written: 20021000
+Data is written: 20000000
 Addr is written: 0040002c
-Data is written: 00421400
+Data is written: 20000000
 Addr is written: 00400030
-Data is written: 20470028
+Data is written: 20000000
 Addr is written: 00400034
-Data is written: 8c430000
+Data is written: 20010001
 Addr is written: 00400038
-Data is written: 00c3202a
+Data is written: 20000000
 Addr is written: 0040003c
-Data is written: 10850002
+Data is written: 20000000
 Addr is written: 00400040
-Data is written: 00c33022
+Data is written: 20000000
 Addr is written: 00400044
-Data is written: ac400000
+Data is written: 20000000
 Addr is written: 00400048
-Data is written: 20420004
+Data is written: ac610000
 Addr is written: 0040004c
-Data is written: 1447fff9
+Data is written: 20000000
 Addr is written: 00400050
-Data is written: ace60000
-Addr is written: 10000000
-Data is written: 0000000a
-Addr is written: 10000004
-Data is written: 00000009
-Addr is written: 10000008
-Data is written: 00000008
-Addr is written: 1000000c
-Data is written: 000002bc
-Addr is written: 10000010
-Data is written: 00000005
-Addr is written: 10000014
-Data is written: 00000006
-Addr is written: 10000018
-Data is written: 00000190
-Addr is written: 1000001c
-Data is written: 00000001
-Addr is written: 10000020
-Data is written: 00000002
-Addr is written: 10000024
-Data is written: 00000003
+Data is written: 20000000
+Addr is written: 00400054
+Data is written: 20000000
+Addr is written: 00400058
+Data is written: 20000000
+Addr is written: 0040005c
+Data is written: 20630020
+Addr is written: 00400060
+Data is written: 20000000
+Addr is written: 00400064
+Data is written: 20000000
+Addr is written: 00400068
+Data is written: 20000000
+Addr is written: 0040006c
+Data is written: 20000000
+Addr is written: 00400070
+Data is written: 20210001
+Addr is written: 00400074
+Data is written: 20000000
+Addr is written: 00400078
+Data is written: 20000000
+Addr is written: 0040007c
+Data is written: 20000000
+Addr is written: 00400080
+Data is written: 20000000
+Addr is written: 00400084
+Data is written: ac610000
+Addr is written: 00400088
+Data is written: 20000000
+Addr is written: 0040008c
+Data is written: 20000000
+Addr is written: 00400090
+Data is written: 20000000
+Addr is written: 00400094
+Data is written: 20000000
+Addr is written: 00400098
+Data is written: 20630020
+Addr is written: 0040009c
+Data is written: 20000000
+Addr is written: 004000a0
+Data is written: 20000000
+Addr is written: 004000a4
+Data is written: 20000000
+Addr is written: 004000a8
+Data is written: 20000000
+Addr is written: 004000ac
+Data is written: 20210001
+Addr is written: 004000b0
+Data is written: 20000000
+Addr is written: 004000b4
+Data is written: 20000000
+Addr is written: 004000b8
+Data is written: 20000000
+Addr is written: 004000bc
+Data is written: 20000000
+Addr is written: 004000c0
+Data is written: ac610000
+Addr is written: 004000c4
+Data is written: 20000000
+Addr is written: 004000c8
+Data is written: 20000000
+Addr is written: 004000cc
+Data is written: 20000000
+Addr is written: 004000d0
+Data is written: 20000000
 Addr is checking: 00400020
-Data is checking: 20050001
+Data is checking: 20030000
 Addr is checking: 00400024
-Data is checking: 20060064
+Data is checking: 20000000
 Addr is checking: 00400028
-Data is checking: 20021000
+Data is checking: 20000000
 Addr is checking: 0040002c
-Data is checking: 00421400
+Data is checking: 20000000
 Addr is checking: 00400030
-Data is checking: 20470028
+Data is checking: 20000000
 Addr is checking: 00400034
-Data is checking: 8c430000
+Data is checking: 20010001
 Addr is checking: 00400038
-Data is checking: 00c3202a
+Data is checking: 20000000
 Addr is checking: 0040003c
-Data is checking: 10850002
+Data is checking: 20000000
 Addr is checking: 00400040
-Data is checking: 00c33022
+Data is checking: 20000000
 Addr is checking: 00400044
-Data is checking: ac400000
+Data is checking: 20000000
 Addr is checking: 00400048
-Data is checking: 20420004
+Data is checking: ac610000
 Addr is checking: 0040004c
-Data is checking: 1447fff9
+Data is checking: 20000000
 Addr is checking: 00400050
-Data is checking: ace60000
-Addr is checking: 10000000
-Data is checking: 0000000a
-Addr is checking: 10000004
-Data is checking: 00000009
-Addr is checking: 10000008
-Data is checking: 00000008
-Addr is checking: 1000000c
-Data is checking: 000002bc
-Addr is checking: 10000010
-Data is checking: 00000005
-Addr is checking: 10000014
-Data is checking: 00000006
-Addr is checking: 10000018
-Data is checking: 00000190
-Addr is checking: 1000001c
-Data is checking: 00000001
-Addr is checking: 10000020
-Data is checking: 00000002
-Addr is checking: 10000024
-Data is checking: 00000003
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
+Data is checking: 20000000
+Addr is checking: 00400054
+Data is checking: 20000000
+Addr is checking: 00400058
+Data is checking: 20000000
+Addr is checking: 0040005c
+Data is checking: 20630020
+Addr is checking: 00400060
+Data is checking: 20000000
+Addr is checking: 00400064
+Data is checking: 20000000
+Addr is checking: 00400068
+Data is checking: 20000000
+Addr is checking: 0040006c
+Data is checking: 20000000
+Addr is checking: 00400070
+Data is checking: 20210001
+Addr is checking: 00400074
+Data is checking: 20000000
+Addr is checking: 00400078
+Data is checking: 20000000
+Addr is checking: 0040007c
+Data is checking: 20000000
+Addr is checking: 00400080
+Data is checking: 20000000
+Addr is checking: 00400084
+Data is checking: ac610000
+Addr is checking: 00400088
+Data is checking: 20000000
+Addr is checking: 0040008c
+Data is checking: 20000000
+Addr is checking: 00400090
+Data is checking: 20000000
+Addr is checking: 00400094
+Data is checking: 20000000
+Addr is checking: 00400098
+Data is checking: 20630020
+Addr is checking: 0040009c
+Data is checking: 20000000
+Addr is checking: 004000a0
+Data is checking: 20000000
+Addr is checking: 004000a4
+Data is checking: 20000000
+Addr is checking: 004000a8
+Data is checking: 20000000
+Addr is checking: 004000ac
+Data is checking: 20210001
+Addr is checking: 004000b0
+Data is checking: 20000000
+Addr is checking: 004000b4
+Data is checking: 20000000
+Addr is checking: 004000b8
+Data is checking: 20000000
+Addr is checking: 004000bc
+Data is checking: 20000000
+Addr is checking: 004000c0
+Data is checking: ac610000
+Addr is checking: 004000c4
+Data is checking: 20000000
+Addr is checking: 004000c8
+Data is checking: 20000000
+Addr is checking: 004000cc
+Data is checking: 20000000
+Addr is checking: 004000d0
+Data is checking: 20000000
 Addr is checking: xxxxxxxx
 Data is checking: xxxxxxxx
 Addr is checking: xxxxxxxx
@@ -284,27 +454,698 @@ Addr is checking: xxxxxxxx
 Data is checking: xxxxxxxx
 Writing to dout:          x
 READ Addr FOUND!: 00400020
-Writing to dout:  537198593
-READ Addr FOUND!: 00400024
-Writing to dout:  537264228
-READ Addr FOUND!: 00400028
-Writing to dout:  537006080
-READ Addr FOUND!: 0040002c
-Writing to dout:    4330496
-READ Addr FOUND!: 00400030
-Writing to dout:  541524008
-READ Addr FOUND!: 00400034
-Writing to dout: 2353201152
-READ Addr FOUND!: 00400038
-Writing to dout:   12787754
-READ Addr FOUND!: 0040003c
-Writing to dout:  277151746
-READ Addr FOUND!: 00400040
-Writing to dout:   12791842
-READ Addr FOUND!: 00400044
-Writing to dout: 2889875456
-Simulation complete via $finish(1) at time 100 NS + 0
-./inst_tb.v:13       #100 $finish;
+Writing to dout:  537067520
+Now initializing sram
+Addr is written: 00400020
+Data is written: 20030000
+Addr is written: 00400024
+Data is written: 20000000
+Addr is written: 00400028
+Data is written: 20000000
+Addr is written: 0040002c
+Data is written: 20000000
+Addr is written: 00400030
+Data is written: 20000000
+Addr is written: 00400034
+Data is written: 20010001
+Addr is written: 00400038
+Data is written: 20000000
+Addr is written: 0040003c
+Data is written: 20000000
+Addr is written: 00400040
+Data is written: 20000000
+Addr is written: 00400044
+Data is written: 20000000
+Addr is written: 00400048
+Data is written: ac610000
+Addr is written: 0040004c
+Data is written: 20000000
+Addr is written: 00400050
+Data is written: 20000000
+Addr is written: 00400054
+Data is written: 20000000
+Addr is written: 00400058
+Data is written: 20000000
+Addr is written: 0040005c
+Data is written: 20630020
+Addr is written: 00400060
+Data is written: 20000000
+Addr is written: 00400064
+Data is written: 20000000
+Addr is written: 00400068
+Data is written: 20000000
+Addr is written: 0040006c
+Data is written: 20000000
+Addr is written: 00400070
+Data is written: 20210001
+Addr is written: 00400074
+Data is written: 20000000
+Addr is written: 00400078
+Data is written: 20000000
+Addr is written: 0040007c
+Data is written: 20000000
+Addr is written: 00400080
+Data is written: 20000000
+Addr is written: 00400084
+Data is written: ac610000
+Addr is written: 00400088
+Data is written: 20000000
+Addr is written: 0040008c
+Data is written: 20000000
+Addr is written: 00400090
+Data is written: 20000000
+Addr is written: 00400094
+Data is written: 20000000
+Addr is written: 00400098
+Data is written: 20630020
+Addr is written: 0040009c
+Data is written: 20000000
+Addr is written: 004000a0
+Data is written: 20000000
+Addr is written: 004000a4
+Data is written: 20000000
+Addr is written: 004000a8
+Data is written: 20000000
+Addr is written: 004000ac
+Data is written: 20210001
+Addr is written: 004000b0
+Data is written: 20000000
+Addr is written: 004000b4
+Data is written: 20000000
+Addr is written: 004000b8
+Data is written: 20000000
+Addr is written: 004000bc
+Data is written: 20000000
+Addr is written: 004000c0
+Data is written: ac610000
+Addr is written: 004000c4
+Data is written: 20000000
+Addr is written: 004000c8
+Data is written: 20000000
+Addr is written: 004000cc
+Data is written: 20000000
+Addr is written: 004000d0
+Data is written: 20000000
+Addr is checking: 00400020
+Data is checking: 20030000
+Addr is checking: 00400024
+Data is checking: 20000000
+Addr is checking: 00400028
+Data is checking: 20000000
+Addr is checking: 0040002c
+Data is checking: 20000000
+Addr is checking: 00400030
+Data is checking: 20000000
+Addr is checking: 00400034
+Data is checking: 20010001
+Addr is checking: 00400038
+Data is checking: 20000000
+Addr is checking: 0040003c
+Data is checking: 20000000
+Addr is checking: 00400040
+Data is checking: 20000000
+Addr is checking: 00400044
+Data is checking: 20000000
+Addr is checking: 00400048
+Data is checking: ac610000
+Addr is checking: 0040004c
+Data is checking: 20000000
+Addr is checking: 00400050
+Data is checking: 20000000
+Addr is checking: 00400054
+Data is checking: 20000000
+Addr is checking: 00400058
+Data is checking: 20000000
+Addr is checking: 0040005c
+Data is checking: 20630020
+Addr is checking: 00400060
+Data is checking: 20000000
+Addr is checking: 00400064
+Data is checking: 20000000
+Addr is checking: 00400068
+Data is checking: 20000000
+Addr is checking: 0040006c
+Data is checking: 20000000
+Addr is checking: 00400070
+Data is checking: 20210001
+Addr is checking: 00400074
+Data is checking: 20000000
+Addr is checking: 00400078
+Data is checking: 20000000
+Addr is checking: 0040007c
+Data is checking: 20000000
+Addr is checking: 00400080
+Data is checking: 20000000
+Addr is checking: 00400084
+Data is checking: ac610000
+Addr is checking: 00400088
+Data is checking: 20000000
+Addr is checking: 0040008c
+Data is checking: 20000000
+Addr is checking: 00400090
+Data is checking: 20000000
+Addr is checking: 00400094
+Data is checking: 20000000
+Addr is checking: 00400098
+Data is checking: 20630020
+Addr is checking: 0040009c
+Data is checking: 20000000
+Addr is checking: 004000a0
+Data is checking: 20000000
+Addr is checking: 004000a4
+Data is checking: 20000000
+Addr is checking: 004000a8
+Data is checking: 20000000
+Addr is checking: 004000ac
+Data is checking: 20210001
+Addr is checking: 004000b0
+Data is checking: 20000000
+Addr is checking: 004000b4
+Data is checking: 20000000
+Addr is checking: 004000b8
+Data is checking: 20000000
+Addr is checking: 004000bc
+Data is checking: 20000000
+Addr is checking: 004000c0
+Data is checking: ac610000
+Addr is checking: 004000c4
+Data is checking: 20000000
+Addr is checking: 004000c8
+Data is checking: 20000000
+Addr is checking: 004000cc
+Data is checking: 20000000
+Addr is checking: 004000d0
+Data is checking: 20000000
+Addr is checking: xxxxxxxx
+Data is checking: xxxxxxxx
+Addr is checking: xxxxxxxx
+Data is checking: xxxxxxxx
+Addr is checking: xxxxxxxx
+Data is checking: xxxxxxxx
+Addr is checking: xxxxxxxx
+Data is checking: xxxxxxxx
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Simulation complete via $finish(1) at time 1 US + 0
+./cpu_tb.v:20 			$finish;
 xcelium> ^C
 xcelium> exit
-TOOL:	xrun(64)	18.09-s011: Exiting on Nov 17, 2021 at 22:03:23 CST  (total: 00:08:52)
+TOOL:	xrun(64)	18.09-s011: Exiting on Dec 05, 2021 at 19:31:17 CST  (total: 00:05:02)

@@ -1,10 +1,10 @@
 module cpu_tb();
 	reg clk;
 	
-	cpu cpu1(clk);
+	cpu cpu1(.clk(clk));
 	
-	defparam cpu1.instmem.sram_get.mem_file = "data/sort_corrected_branch.dat";
-	defparam cpu1.datamem.syncram_1.mem_file = "data/sort_corrected_branch.dat";
+	defparam cpu1.instmem.sram_get.mem_file = "inc_nops.dat";
+	defparam cpu1.datamem.syncram_1.mem_file = "inc_nops.dat";
 	
 	always
 	begin

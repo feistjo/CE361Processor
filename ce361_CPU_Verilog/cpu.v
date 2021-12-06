@@ -103,6 +103,7 @@ module cpu(clk);
 
 	always @(posedge clk)
 	begin
+		//Pipeline Data Registers 
 		//IF/ID Pipeline
 		//PC+4
 		IFIDInst = IFInst;
@@ -126,6 +127,8 @@ module cpu(clk);
 		MemWrRegRw = MemRegRw;
 		MemWrALUout = MemALUout;
 		MemWrDataOut = DataOut;
+
+		//Pipeline Control Registers
 	end
 
 endmodule

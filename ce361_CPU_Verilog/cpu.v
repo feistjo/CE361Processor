@@ -37,7 +37,11 @@ module cpu(clk);
 	assign MemMemWr = EXMemMemWr;
 	//Branch
 	//MemToReg
-	
+	wire IDMemToReg, EXMemToReg, MemMemToReg, WrMemToReg;
+	reg IDEXMemToReg, EXMemMemToReg, MemWrMemToReg;
+	assign EXMemToReg = IDEXMemToReg;
+	assign MemMemToReg = EXMemMemToReg;
+	assign WrMemToReg = MemWrMemToReg;
 	//RegWr
 	wire IDRegWr, EXRegWr, MemRegWr, WrRegWr;
 	reg IDEXRegWr, EXMemRegWr, MemWrRegWr;
@@ -45,8 +49,8 @@ module cpu(clk);
 	assign MemRegWr = EXMemRegWr;
 	assign WrRegWr = MemWrRegWr;
 	
-	wire zero, sign,  IDMemToReg, IDnPC_sel;
-	reg  IDEXMemToReg, IDEXnPC_sel;
+	wire zero, sign, IDnPC_sel;
+	reg  IDEXnPC_sel;
 	wire [15:0] IDImm16;
 	reg [15:0] IDEXImm16;
     wire [15:0] EXImm16;
@@ -78,11 +82,7 @@ module cpu(clk);
 	reg [31:0] IDEXbusA, IDEXbusB;
 	wire [4:0] EXRw, WrRw;
 	reg [4:0] EXMemRw;
-	wire EXMemToReg;
-	reg EXMemMemToReg;
 	mux_5 mux_rw(EXRegDst, EXRt, EXRd, EXRw);
-	assign EXMemToReg = IDEXMemToReg;
-	assign MemMemToReg = EXMemMemToReg;
 	registers datareg(.clk(clk), .RegWr(WrRegWr), .busW(WRbusW), .Rw(WrRw), .Ra(Rs), .Rb(Rt), .busA(IDbusA), .busB(IDbusB));
 	
 	assign EXImm16 = IDEXImm16;
@@ -118,9 +118,6 @@ module cpu(clk);
 	
 	wire [4:0] MemRegRw;
 	reg [4:0] MemWrRegRw;
-	reg MemWrMemToReg;
-	wire WrMemToReg;
-	assign WrMemToReg = MemWrMemToReg;
 	
 	//Data Memory DataIn=busB, WrEn=MemWr, adr=ALUout, clk=clk, dout=DataOut
 	wire [31:0] DataOut;

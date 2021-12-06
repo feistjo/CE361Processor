@@ -146,3 +146,11 @@ s145(06Dec2021:16:01:33):  xrun -64bit -gui -access r cpu.v cpu_tb.v
 s146(06Dec2021:16:04:10):  xrun -64bit -gui -access r cpu.v cpu_tb.v 
 s147(06Dec2021:16:04:53):  xrun -64bit -gui -access r cpu.v cpu_tb.v 
 s148(06Dec2021:16:08:25):  xrun -64bit -gui -access r cpu.v cpu_tb.v 
+s149(06Dec2021:16:29:23):  xrun -64bit -gui -access r cpu.v cpu_tb.v 
+s150(06Dec2021:16:48:32):  xrun -64bit -gui -access r cpu.v cpu_tb.v 
+s151(06Dec2021:16:50:10):  xrun -64bit -gui -access r cpu_lance.v cpu_tb.v 
+s152(06Dec2021:16:51:18):  xrun -64bit -gui -access r cpu_lance.v cpu_tb.v 
+s153(06Dec2021:16:52:44):  xrun -64bit -gui -access r cpu.v cpu_tb.v 
+s154(06Dec2021:16:53:01):  xrun -64bit -gui -access r cpu.v cpu_tb.v 
+s155(06Dec2021:16:55:06):  xrun -64bit -gui -access r cpu_lance.v cpu_tb.v 
+s156(06Dec2021:16:56:18):  xrun -64bit -gui -access r cpu_lance.v cpu_tb.v 

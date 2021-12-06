@@ -22,7 +22,7 @@ module cpu(clk);
 	assign EXExtOp = IDEXExtOp;
 	
 	wire zero, sign, IDRegWr, IDRegDst, IDALUSrc, IDMemWr, IDMemToReg, IDnPC_sel;
-	reg IDEXRegWr, IDEXALUSrc, IDEXMemWr, IDEXMemToReg, IDEXnPC_sel; //IDEXRegDst
+	reg IDEXRegWr, IDEXRegDst, IDEXALUSrc, IDEXMemWr, IDEXMemToReg, IDEXnPC_sel;
 	wire [15:0] IDImm16;
 	reg [15:0] IDEXImm16;
         wire [15:0] EXImm16;
@@ -50,6 +50,7 @@ module cpu(clk);
 	assign EXRt = IDEXRt;
 	assign EXRd = IDEXRd;
 	wire [31:0] WRbusW, IDbusA, IDbusB;
+	assign WrbusW = MemWrRegD
 	reg [31:0] IDEXbusA, IDEXbusB;
 	wire [4:0] EXRw, WrRw;
 	reg [4:0] EXMemRw;
@@ -147,7 +148,7 @@ module cpu(clk);
 		//ALUOp
 		IDEXALUctr <= IDALUctr;
 		//RegDst
-		//IDEXRegDst <= IDRegDst;
+		IDEXRegDst <= IDRegDst;
 		//MemWr
 		IDEXMemWr <= IDMemWr;
 		EXMemMemWr <= EXMemWr;

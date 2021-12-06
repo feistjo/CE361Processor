@@ -1,5 +1,5 @@
 xrun(64): 18.09-s011: (c) Copyright 1995-2019 Cadence Design Systems, Inc.
-TOOL:	xrun(64)	18.09-s011: Started on Dec 05, 2021 at 20:25:17 CST
+TOOL:	xrun(64)	18.09-s011: Started on Dec 05, 2021 at 20:46:23 CST
 xrun
 	-64bit
 	-gui
@@ -190,6 +190,7 @@ xmvlog: *W,TMTPAR (lib/sram.v,176|17): A task enable with no arguments must not 
 	Top level design units:
 		pc_branch
 		read_0
+		hazard_detected
 		cpu_tb
 xmelab: *W,DSEMEL: This SystemVerilog design will be simulated as per IEEE 1800-2009 SystemVerilog simulation semantics. Use -disable_sem2009 option for turning off SV 2009 simulation semantics.
 	fetch_inst instmem(.clk(clk), .imm16(EXImm16), .nPC_sel(nPC_sel), .inst(IFInst)); //probably has to change
@@ -230,7 +231,7 @@ xmelab: *W,CSINFI (./cpu.v,326|29): implicit wire has no fanin (cpu_tb.cpu1.br.s
 	Loading native compiled code:     .................... Done
 	Design hierarchy summary:
 		                Instances  Unique
-		Modules:             2550      41
+		Modules:             2551      42
 		Registers:           1206      79
 		Scalar wires:        2355       -
 		Expanded wires:      1336      57
@@ -248,7 +249,7 @@ xcelium>
 xcelium> source /vol/cadence2018/XCELIUM1809/tools/xcelium/files/xmsimrc
 xcelium> database -open waves -into waves.shm -default
 Created default SHM database waves
-xcelium> probe -create -shm cpu_tb.clk
+xcelium> probe -create -shm cpu_tb.clk cpu_tb.cpu1.instmem.rpc.clk cpu_tb.cpu1.instmem.rpc.imm16 cpu_tb.cpu1.instmem.rpc.imm16ext cpu_tb.cpu1.instmem.rpc.nPC_sel cpu_tb.cpu1.instmem.rpc.pc_fin cpu_tb.cpu1.instmem.rpc.prev_pc cpu_tb.cpu1.instmem.rpc.read_val cpu_tb.cpu1.instmem.rpc.temp_pc
 Created probe 1
 xcelium> run
 Now initializing sram
@@ -262,6 +263,26 @@ Addr is written: 0040002c
 Data is written: 20050001
 Addr is written: 00400030
 Data is written: 20060001
+Addr is written: 10000000
+Data is written: 0000000a
+Addr is written: 10000004
+Data is written: 00000009
+Addr is written: 10000008
+Data is written: 00000008
+Addr is written: 1000000c
+Data is written: 000002bc
+Addr is written: 10000010
+Data is written: 00000005
+Addr is written: 10000014
+Data is written: 00000006
+Addr is written: 10000018
+Data is written: 00000190
+Addr is written: 1000001c
+Data is written: 00000001
+Addr is written: 10000020
+Data is written: 00000002
+Addr is written: 10000024
+Data is written: 00000003
 Addr is checking: 00400020
 Data is checking: 20020001
 Addr is checking: 00400024
@@ -272,26 +293,26 @@ Addr is checking: 0040002c
 Data is checking: 20050001
 Addr is checking: 00400030
 Data is checking: 20060001
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
+Addr is checking: 10000000
+Data is checking: 0000000a
+Addr is checking: 10000004
+Data is checking: 00000009
+Addr is checking: 10000008
+Data is checking: 00000008
+Addr is checking: 1000000c
+Data is checking: 000002bc
+Addr is checking: 10000010
+Data is checking: 00000005
+Addr is checking: 10000014
+Data is checking: 00000006
+Addr is checking: 10000018
+Data is checking: 00000190
+Addr is checking: 1000001c
+Data is checking: 00000001
+Addr is checking: 10000020
+Data is checking: 00000002
+Addr is checking: 10000024
+Data is checking: 00000003
 Addr is checking: xxxxxxxx
 Data is checking: xxxxxxxx
 Addr is checking: xxxxxxxx
@@ -374,6 +395,26 @@ Addr is written: 0040002c
 Data is written: 20050001
 Addr is written: 00400030
 Data is written: 20060001
+Addr is written: 10000000
+Data is written: 0000000a
+Addr is written: 10000004
+Data is written: 00000009
+Addr is written: 10000008
+Data is written: 00000008
+Addr is written: 1000000c
+Data is written: 000002bc
+Addr is written: 10000010
+Data is written: 00000005
+Addr is written: 10000014
+Data is written: 00000006
+Addr is written: 10000018
+Data is written: 00000190
+Addr is written: 1000001c
+Data is written: 00000001
+Addr is written: 10000020
+Data is written: 00000002
+Addr is written: 10000024
+Data is written: 00000003
 Addr is checking: 00400020
 Data is checking: 20020001
 Addr is checking: 00400024
@@ -384,26 +425,26 @@ Addr is checking: 0040002c
 Data is checking: 20050001
 Addr is checking: 00400030
 Data is checking: 20060001
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
+Addr is checking: 10000000
+Data is checking: 0000000a
+Addr is checking: 10000004
+Data is checking: 00000009
+Addr is checking: 10000008
+Data is checking: 00000008
+Addr is checking: 1000000c
+Data is checking: 000002bc
+Addr is checking: 10000010
+Data is checking: 00000005
+Addr is checking: 10000014
+Data is checking: 00000006
+Addr is checking: 10000018
+Data is checking: 00000190
+Addr is checking: 1000001c
+Data is checking: 00000001
+Addr is checking: 10000020
+Data is checking: 00000002
+Addr is checking: 10000024
+Data is checking: 00000003
 Addr is checking: xxxxxxxx
 Data is checking: xxxxxxxx
 Addr is checking: xxxxxxxx
@@ -976,4 +1017,4 @@ Simulation complete via $finish(1) at time 1 US + 0
 ./cpu_tb.v:20 			$finish;
 xcelium> ^C
 xcelium> exit
-TOOL:	xrun(64)	18.09-s011: Exiting on Dec 05, 2021 at 20:26:15 CST  (total: 00:00:58)
+TOOL:	xrun(64)	18.09-s011: Exiting on Dec 05, 2021 at 20:49:39 CST  (total: 00:03:16)

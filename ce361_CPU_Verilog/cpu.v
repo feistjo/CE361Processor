@@ -106,7 +106,7 @@ module cpu(clk);
 		//Pipeline Data Registers 
 		//IF/ID Pipeline
 		//PC+4
-		IFIDInst = IFInst;
+		IFIDInst <= IFInst;
 		
 		//ID/EX Pipeline
 		//PC+4
@@ -340,3 +340,12 @@ module get_branched(func, equal, nPC_sel);
    or_gate branchor2(branch_or1, bgtz_t, nPC_sel);
 
 endmodule // get_branched
+
+
+module hazard_detected(hazard);
+   output hazard;
+   
+
+   
+endmodule // hazard_detected
+

@@ -77,13 +77,20 @@ module cpu(clk);
 	wire [4:0] EXRt, EXRd;
 	assign EXRt = IDEXRt;
 	assign EXRd = IDEXRd;
-	wire [31:0] WRbusW, IDbusA, IDbusB;
-	assign WrbusW = MemWrRegD;
+	wire [31:0] WrbusW, IDbusA, IDbusB;
 	reg [31:0] IDEXbusA, IDEXbusB;
 	wire [4:0] EXRw, WrRw;
 	reg [4:0] EXMemRw;
 	mux_5 mux_rw(EXRegDst, EXRt, EXRd, EXRw);
-	registers datareg(.clk(clk), .RegWr(WrRegWr), .busW(WRbusW), .Rw(WrRw), .Ra(Rs), .Rb(Rt), .busA(IDbusA), .busB(IDbusB));
+	
+		reg [31:0] EXMemALUout;
+	wire [31:0] MemALUout;
+	assign MemALUout = EXMemALUout;
+	reg [31:0] MemWrALUout;
+	wire [31:0] WrALUout;
+	assign WrALUout = MemWrALUout;
+	
+	registers datareg(.clk(clk), .RegWr(WrRegWr), .busW(WrALUout), .Rw(WrRw), .Ra(Rs), .Rb(Rt), .busA(IDbusA), .busB(IDbusB));
 	
 	assign EXImm16 = IDEXImm16;
 	wire [31:0] Imm32;
@@ -108,13 +115,6 @@ module cpu(clk);
     get_branched br(.func(EXfunc), .equal(EXzero), .nPC_sel(IDnPC_sel));
 
 	assign sign = ALUout[31];
-	
-	reg [31:0] EXMemALUout;
-	wire [31:0] MemALUout;
-	assign MemALUout = EXMemALUout;
-	reg [31:0] MemWrALUout;
-	wire [31:0] WrALUout;
-	assign WrALUout = MemWrALUout;
 	
 	wire [4:0] MemRegRw;
 	reg [4:0] MemWrRegRw;

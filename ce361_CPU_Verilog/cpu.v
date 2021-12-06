@@ -16,13 +16,14 @@ module cpu(clk);
 	wire [31:0] IDInst;
 	assign IDInst = IFIDInst;
 	
-	wire zero, sign, IDRegWr, IDRegDst, IDExtOp, IDALUSrc, IDMemWr, IDMemToReg;
+	wire zero, sign, IDRegWr, IDRegDst, IDExtOp, IDALUSrc, IDMemWr, IDMemToReg, IDnPC_sel;
 	reg IDEXRegWr, IDEXRegDst, IDEXExtOp, IDEXALUSrc, IDEXMemWr, IDEXMemToReg, IDEXnPC_sel;
 	wire [15:0] IDImm16;
 	reg [15:0] IDEXImm16;
-        //wire [15:0] EXImm16;
-        //wire nPC_sel;
-	fetch_inst instmem(.clk(clk), .imm16(EXImm16), .nPC_sel(nPC_sel), .inst(IFInst)); //probably has to change
+        wire [15:0] EXImm16;
+        wire EXnPC_sel;
+        assign EXnPC_sel = IDEXnPC_sel;
+	fetch_inst instmem(.clk(clk), .imm16(EXImm16), .nPC_sel(EXnPC_sel), .inst(IFInst)); //probably has to change
 	wire [2:0] IDALUctr;
 	reg [2:0] IDEXALUctr;
 	wire [4:0] Rs, IDRt, IDRd;
@@ -73,7 +74,7 @@ module cpu(clk);
 	wire ovf, cout;
 	ALU alu1(.ctrl(EXALUctr), .A(EXbusA), .B(ALUIn2), .shamt(EXshamt), .cout(cout), .ovf(ovf), .ze(EXzero), .R(ALUout));
    
-        get_branched br(.func(EXfunc), .equal(EXzero), .nPC_sel(nPC_sel));
+        get_branched br(.func(EXfunc), .equal(EXzero), .nPC_sel(IDnPC_sel));
 
         
 	assign sign = ALUout[31];
@@ -101,7 +102,7 @@ module cpu(clk);
 	
 	mux_32 datamux({31'b0, WrMemToReg}, WrALUout, WrDataOut, busW);
 
-	always @(posedge clk)
+	always @(negedge clk)
 	begin
 		//Pipeline Data Registers 
 		//IF/ID Pipeline
@@ -115,7 +116,9 @@ module cpu(clk);
 		IDEXbusB <= IDbusB;
 		IDEXRt <= IDRt;
 		IDEXRd <= IDRd;
-
+	        IDEXnPC_sel <= IDnPC_sel;
+	        IDEXfunc <= IDfunc;
+	  	   
 		//EX/MEM Pipeline 
 		//PC+4
 		EXMemzero <= EXzero;
@@ -124,12 +127,11 @@ module cpu(clk);
 		EXMemBusB <= EXbusB;
 
 		//MEM/WR Pipeline 
-		MemWrRegRw = MemRegRw;
-		MemWrALUout = MemALUout;
-		MemWrDataOut = DataOut;
+		MemWrRegRw <= MemRegRw;
+		MemWrALUout <= MemALUout;
+		MemWrDataOut <= DataOut;
 
 		//Pipeline Control Registers
-
 	end
 
 endmodule

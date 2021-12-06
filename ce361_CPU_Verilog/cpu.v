@@ -83,7 +83,7 @@ module cpu(clk);
 	reg [4:0] EXMemRw;
 	mux_5 mux_rw(EXRegDst, EXRt, EXRd, EXRw);
 	
-		reg [31:0] EXMemALUout;
+	reg [31:0] EXMemALUout;
 	wire [31:0] MemALUout;
 	assign MemALUout = EXMemALUout;
 	reg [31:0] MemWrALUout;

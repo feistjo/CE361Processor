@@ -129,6 +129,7 @@ module cpu(clk);
 		MemWrDataOut = DataOut;
 
 		//Pipeline Control Registers
+
 	end
 
 endmodule

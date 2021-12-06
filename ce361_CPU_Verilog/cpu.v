@@ -124,17 +124,11 @@ module cpu(clk);
 		EXMemBusB <= EXbusB;
 
 		//MEM/WR Pipeline 
-<<<<<<< HEAD
 		MemWrRegRw = MemRegRw;
 		MemWrALUout = MemALUout;
 		MemWrDataOut = DataOut;
 
 		//Pipeline Control Registers
-=======
-		MemWrRegRw <= MemRegRw;
-		MemWrALUout <= MemALUout;
-		MemWrDataOut <= DataOut;
->>>>>>> 00e0929ec874b4921d0125cf931cf2c2a8a3e230
 	end
 
 endmodule

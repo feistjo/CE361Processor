@@ -197,10 +197,8 @@ module cpu(clk);
 
 		/* ~~~~~~~~~~ Pipeline Data Registers ~~~~~~~~~~ */
 		//Instruction
-		if (IFstall)
+		if (IFstall) begin
 			IFIDInst <= IFInst;
-		else
-			IFIDInst <= IFIDInst;
 		end
 
 		if (IDstall) 

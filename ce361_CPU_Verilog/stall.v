@@ -14,7 +14,21 @@ module stall (IDfunc, EXfunc, IDRegWr, MemRegWr, EXRegWr, WrRegWr, EXrw, Memrw, 
 	or_gate or_IFstall (.x(branch_mid), .y(bgtz), .z(IFstall));
 	
 	//IDstall if EX or Wr will write needed value
-	wire 
+	wire [3:0] dhaz;//[RsEX, RsWr, RtEX, RtWr]
+	set_if_eq eqRsEX (.x(Rs), .y(EXrw), .z(dhaz[3]));
+	set_if_eq eqRsWr (.x(Rs), .y(Wrrw), .z(dhaz[2]));
+	set_if_eq eqRtEX (.x(IDRt), .y(EXrw), .z(dhaz[1]));
+	set_if_eq eqRtWr (.x(IDRt), .y(Wrrw), .z(dhaz[0]));
+	wire [3:0] dhaz2;
+	and_gate and1 (.x(dhaz[3]), .y(EXRegWr), .z(dhaz2[3]));
+	and_gate and2 (.x(dhaz[2]), .y(WrRegWr), .z(dhaz2[2]));
+	and_gate and3 (.x(dhaz[1]), .y(EXRegWr), .z(dhaz2[1]));
+	and_gate and4 (.x(dhaz[0]), .y(WrRegWr), .z(dhaz2[0]));
+	
+	wire [1:0] IDstallOr;
+	or_gate or1 (.x(dhaz2[3]), .y(dhaz2[2]), .z(IDstallOr[1]));
+	or_gate or2 (.x(dhaz2[1]), .y(dhaz2[0]), .z(IDstallOr[0]));
+	or_gate orIDstall (.x(IDstallOr[1]), .y(IDstallOr[0]), .z(IDstall));
 endmodule
 
 module set_if_eq(x, y, z);

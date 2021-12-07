@@ -82,10 +82,10 @@ module cpu(clk);
 
 	always @(negedge(clk)) begin
 		if(counter >= 4'h5) begin
-			//inc_pc <= 1'b1;
+			inc_pc <= 1'b1;
 			counter = 0;
 		end else begin 
-			//inc_pc <= 1'b0;
+			inc_pc <= 1'b0;
 			counter = counter + 1;
 		end
 	end

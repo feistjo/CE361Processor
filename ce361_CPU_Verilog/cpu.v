@@ -72,7 +72,21 @@ module cpu(clk);
 	/* ~~~~~~~~~~ Logic Implementation ~~~~~~~~~~ */
 	
 	wire zero, sign;
-	fetch_inst instmem(.clk(clk), .imm16(EXImm16), .nPC_sel(EXnPC_sel), .inst(IFInst)); //probably has to change
+	reg inc_pc = 1'b0; //bool saying if we should increment the PC
+	reg inc_pc_counter = 4'h0; //integer tracking the current PC
+
+	always @(posedge(clk)) begin
+		inc_pc_counter <= inc_pc_counter + 1;
+		if(inc_pc_counter >= 4'h5) begin
+			inc_pc <= 1'b1;
+			inc_pc_counter <= 4'h0;
+		end else begin 
+			inc_pc <= 1'b0;
+		end
+	end
+
+	fetch_inst instmem(.clk(clk), .imm16(EXImm16), .nPC_sel(EXnPC_sel), .inst(IFInst), .steve(inc_pc)); //probably has to change
+	//Steve is an input that tells the instruction memory if it should increment the PC or not
 	wire [4:0] Rs, IDRt, IDRd;
 	reg [4:0] IDEXRt = 5'b0, IDEXRd = 5'b0;
 	assign IDRt = IDInst[20:16];

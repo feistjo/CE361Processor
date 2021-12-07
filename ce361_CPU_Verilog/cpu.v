@@ -81,7 +81,8 @@ module cpu(clk);
 	reg [14:0] IDEXfunc;
 	assign EXfunc = IDEXfunc;
    
-	control controls(.Op(IDInst[31:26]), .Fun(IDInst[5:0]), .equal(zero), .sign(sign), .RegWr(IDRegWr), .RegDst(IDRegDst), .ExtOp(IDExtOp), .ALUSrc(IDALUSrc), .ALUctr(IDALUctr), .MemWr(IDMemWr), .MemtoReg(MemToReg), .func(IDfunc));
+	control controls(.Op(IDInst[31:26]), .Fun(IDInst[5:0]), .equal(zero), .sign(sign), .RegWr(IDRegWr), .RegDst(IDRegDst), 
+		.ExtOp(IDExtOp), .ALUSrc(IDALUSrc), .ALUctr(IDALUctr), .MemWr(IDMemWr), .MemtoReg(MemToReg), .func(IDfunc));
 
 	wire [4:0] EXRt, EXRd;
 	assign EXRt = IDEXRt;
@@ -136,22 +137,81 @@ module cpu(clk);
 	d_mem datamem(.clk(clk), .data_in(busB), .data_out(DataOut), .adr(ALUout), .WrEn(MemMemWr));
 	
 	mux_32 datamux({31'b0, WrMemToReg}, WrALUout, WrDataOut, busW);
-	stall st (.IDfunc(IDfunc), .EXfunc(EXfunc), .IDRegWr(IDRegWr), .MemRegWr(MemRegWr), .EXRegWr(EXRegWr), .WrRegWr(WrRegWr), .EXrw(EXRw), .Memrw(MemRw), .Wrrw(WrRw), .Rs(Rs), .IDRt(IDRt), .IFstall(IFstall), .IDstall(IDstall));
+	stall st (.IDfunc(IDfunc), .EXfunc(EXfunc), .IDRegWr(IDRegWr), .MemRegWr(MemRegWr), .EXRegWr(EXRegWr), 
+	.WrRegWr(WrRegWr), .EXrw(EXRw), .Memrw(MemRw), .Wrrw(WrRw), .Rs(Rs), .IDRt(IDRt), .IFstall(IFstall), .IDstall(IDstall));
+
+	initial begin
+		IFIDInst <= 0;
+
+			//Imm16
+			IDEXImm16 <= 0;
+			//ALUctr
+			IDEXALUctr <= 0;
+		
+			IDEXbusA <= 0;
+			IDEXbusB <= 0;
+			IDEXRt <= 0;
+		IDEXRd <= 0;
+	// IDStall
+	    
+	  	   
+		//EX/MEM Pipeline 
+		//PC+4
+		EXMemzero <= 0;
+		EXMemALUout <= 0;
+		EXMemRw <= 0;
+		EXMemBusB <= 0;
+
+		//MEM/WR Pipeline 
+		MemWrRegRw <= 0;
+		MemWrRw <= 0;
+		MemWrALUout <= 0;
+		MemWrDataOut <= 0;
+
+		/* ~~~~~~~~~~ Pipeline Control Registers ~~~~~~~~~~ */
+		//ExtOp
+		IDEXExtOp <= 0;
+		//ALUSrc
+		IDEXALUSrc <= 0;
+		//ALUOp - NOT USED
+		//RegDst
+		IDEXRegDst <= 0;
+		//MemWr
+		IDEXMemWr <= 0;
+		EXMemMemWr <= 0;
+		//Branch
+		IDEXnPC_sel <= 0;
+	    IDEXfunc <= 0;
+		//MemtoReg
+		IDEXMemToReg <= 0;
+		EXMemMemToReg <= 0;
+		MemWrMemToReg <= 0;
+		//RegWr
+		IDEXRegWr <= 0;
+		EXMemRegWr <= 0;
+		MemWrRegWr <= 0;
+	end
 
 	always @(negedge clk)
 	begin
+
 		/* ~~~~~~~~~~ Pipeline Data Registers ~~~~~~~~~~ */
 		//Instruction
+		//if (IFstall) 
 		IFIDInst <= IFInst;
-		//Imm16
-		IDEXImm16 <= IDImm16;
-		//ALUctr
-		IDEXALUctr <= IDALUctr;
+
+		//if (IDstall) 
+		//begin
+			//Imm16
+			IDEXImm16 <= IDImm16;
+			//ALUctr
+			IDEXALUctr <= IDALUctr;
 		
-		IDEXbusA <= IDbusA;
-		IDEXbusB <= IDbusB;
-		IDEXRt <= IDRt;
-		IDEXRd <= IDRd;
+			IDEXbusA <= IDbusA;
+			IDEXbusB <= IDbusB;
+			IDEXRt <= IDRt;
+			IDEXRd <= IDRd;
+		//end // IDStall
 	    
 	  	   
 		//EX/MEM Pipeline 

@@ -141,55 +141,55 @@ module cpu(clk);
 	.WrRegWr(WrRegWr), .EXrw(EXRw), .Memrw(MemRw), .Wrrw(WrRw), .Rs(Rs), .IDRt(IDRt), .IFstall(IFstall), .IDstall(IDstall));
 
 	initial begin
-		IFIDInst <= 0;
+		IFIDInst <= 15'b0;
 
-			//Imm16
-			IDEXImm16 <= 0;
-			//ALUctr
-			IDEXALUctr <= 0;
+		//Imm16
+		IDEXImm16 <= 16'b0;
+		//ALUctr
+		IDEXALUctr <= 3'b0;
 		
-			IDEXbusA <= 0;
-			IDEXbusB <= 0;
-			IDEXRt <= 0;
-		IDEXRd <= 0;
-	// IDStall
+		IDEXbusA <= 32'b0;
+		IDEXbusB <= 32'b0;
+		IDEXRt <= 5'b0;
+		IDEXRd <= 5'b0;
+		// IDStall
 	    
 	  	   
 		//EX/MEM Pipeline 
 		//PC+4
-		EXMemzero <= 0;
-		EXMemALUout <= 0;
-		EXMemRw <= 0;
-		EXMemBusB <= 0;
+		EXMemzero <= 1'b0;
+		EXMemALUout <= 32'b0;
+		EXMemRw <= 5'b0;
+		EXMemBusB <= 32'b0;
 
 		//MEM/WR Pipeline 
-		MemWrRegRw <= 0;
-		MemWrRw <= 0;
-		MemWrALUout <= 0;
-		MemWrDataOut <= 0;
+		MemWrRegRw <= 5'b0;
+		MemWrRw <= 5'b0;
+		MemWrALUout <= 32'b0;
+		MemWrDataOut <= 32'b0;
 
 		/* ~~~~~~~~~~ Pipeline Control Registers ~~~~~~~~~~ */
 		//ExtOp
-		IDEXExtOp <= 0;
+		IDEXExtOp <= 1'b0;
 		//ALUSrc
-		IDEXALUSrc <= 0;
+		IDEXALUSrc <= 1'b0;
 		//ALUOp - NOT USED
 		//RegDst
-		IDEXRegDst <= 0;
+		IDEXRegDst <= 1'b0;
 		//MemWr
-		IDEXMemWr <= 0;
-		EXMemMemWr <= 0;
+		IDEXMemWr <= 1'b0;
+		EXMemMemWr <= 1'b0;
 		//Branch
-		IDEXnPC_sel <= 0;
-	    IDEXfunc <= 0;
+		IDEXnPC_sel <= 1'b0;
+	    IDEXfunc <= 15'b0;
 		//MemtoReg
-		IDEXMemToReg <= 0;
-		EXMemMemToReg <= 0;
-		MemWrMemToReg <= 0;
+		IDEXMemToReg <= 1'b0;
+		EXMemMemToReg <= 1'b0;
+		MemWrMemToReg <= 1'b0;
 		//RegWr
-		IDEXRegWr <= 0;
-		EXMemRegWr <= 0;
-		MemWrRegWr <= 0;
+		IDEXRegWr <= 1'b0;
+		EXMemRegWr <= 1'b0;
+		MemWrRegWr <= 1'b0;
 	end
 
 	always @(negedge clk)
@@ -197,11 +197,14 @@ module cpu(clk);
 
 		/* ~~~~~~~~~~ Pipeline Data Registers ~~~~~~~~~~ */
 		//Instruction
-		//if (IFstall) 
-		IFIDInst <= IFInst;
+		if (IFstall)
+			IFIDInst <= IFInst;
+		else
+			IFIDInst <= IFIDInst;
+		end
 
-		//if (IDstall) 
-		//begin
+		if (IDstall) 
+		begin
 			//Imm16
 			IDEXImm16 <= IDImm16;
 			//ALUctr
@@ -211,7 +214,7 @@ module cpu(clk);
 			IDEXbusB <= IDbusB;
 			IDEXRt <= IDRt;
 			IDEXRd <= IDRd;
-		//end // IDStall
+		end // IDStall
 	    
 	  	   
 		//EX/MEM Pipeline 

@@ -24,6 +24,7 @@ module cpu(clk);
 	wire [2:0] IDALUctr, EXALUctr;
 	reg [2:0] IDEXALUctr;
 	assign EXALUctr = IDEXALUctr;
+	//
 
 	/* ~~~~~~~~~~ pipeline control registers ~~~~~~~~~~ */
 	//ExtOp

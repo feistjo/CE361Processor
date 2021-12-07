@@ -146,7 +146,7 @@ module cpu(clk);
 	wire ovf, cout;
 	ALU alu1(.ctrl(EXALUctr), .A(EXbusA), .B(ALUIn2), .shamt(EXshamt), .cout(cout), .ovf(ovf), .ze(EXzero), .R(ALUout));
    
-    get_branched br(.func(EXfunc), .equal(zero), .nPC_sel(IDnPC_sel));
+    get_branched br(.func(EXfunc), .equal(EXzero), .nPC_sel(IDnPC_sel));
 
 	assign sign = ALUout[31];
 	

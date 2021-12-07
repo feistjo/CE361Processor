@@ -72,7 +72,7 @@ module cpu(clk);
 	/* ~~~~~~~~~~ Logic Implementation ~~~~~~~~~~ */
 	
 	wire zero, sign;
-	reg inc_pc = 1'b0; //bool saying if we should increment the PC
+	reg inc_pc = 1'b1; //bool saying if we should increment the PC
 	reg [3:0] counter = 4'h0; //integer tracking the current PC
 	reg [3:0] counter_next = 4'b0;
 

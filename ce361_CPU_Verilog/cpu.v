@@ -10,13 +10,20 @@
 
 module cpu(clk);
 	input clk;
-	//get instruction Inst
 
 	/* ~~~~~~~~~~ pipeline data registers ~~~~~~~~~~ */
 	//Instruction 
 	wire [31:0] IFInst, IDInst;
 	reg [31:0] IFIDInst;
 	assign IDInst = IFIDInst;
+	//Imm16
+	wire [15:0] IDImm16, EXImm16;
+	reg [15:0] IDEXImm16;
+	assign EXImm16 = IDEXImm16;
+	//ALUctr
+	wire [2:0] IDALUctr, EXALUctr;
+	reg [2:0] IDEXALUctr;
+	assign EXALUctr = IDEXALUctr;
 
 	/* ~~~~~~~~~~ pipeline control registers ~~~~~~~~~~ */
 	//ExtOp
@@ -57,12 +64,7 @@ module cpu(clk);
 	/* ~~~~~~~~~~ Logic Implementation ~~~~~~~~~~ */
 	
 	wire zero, sign;
-	wire [15:0] IDImm16;
-	reg [15:0] IDEXImm16;
-    wire [15:0] EXImm16;
 	fetch_inst instmem(.clk(clk), .imm16(EXImm16), .nPC_sel(EXnPC_sel), .inst(IFInst)); //probably has to change
-	wire [2:0] IDALUctr;
-	reg [2:0] IDEXALUctr;
 	wire [4:0] Rs, IDRt, IDRd;
 	reg [4:0] IDEXRt, IDEXRd;
 	assign IDRt = IDInst[20:16];
@@ -96,7 +98,6 @@ module cpu(clk);
 	
 	registers datareg(.clk(clk), .RegWr(WrRegWr), .busW(WrALUout), .Rw(WrRw), .Ra(Rs), .Rb(Rt), .busA(IDbusA), .busB(IDbusB));
 	
-	assign EXImm16 = IDEXImm16;
 	wire [31:0] Imm32;
 	extender immext(.in(EXImm16), .ext(EXExtOp), .out(Imm32));
 	
@@ -107,8 +108,6 @@ module cpu(clk);
 	wire [31:0] ALUIn2;
 	mux_32 muxb({31'b0, EXALUSrc}, EXbusB, Imm32, ALUIn2);
 	
-	wire [2:0] EXALUctr;
-	assign EXALUctr = IDEXALUctr;
 	wire [31:0] ALUout;
 	wire [4:0] EXshamt;
 	wire EXzero;
@@ -136,18 +135,18 @@ module cpu(clk);
 	always @(negedge clk)
 	begin
 		/* ~~~~~~~~~~ Pipeline Data Registers ~~~~~~~~~~ */
-		//IF/ID Pipeline
-		//PC+4
+		//Instruction
 		IFIDInst <= IFInst;
-		
-		//ID/EX Pipeline
-		//PC+4
+		//Imm16
 		IDEXImm16 <= IDImm16;
+		//ALUctr
+		IDEXALUctr <= IDALUctr;
+		
 		IDEXbusA <= IDbusA;
 		IDEXbusB <= IDbusB;
 		IDEXRt <= IDRt;
 		IDEXRd <= IDRd;
-	    IDEXALUctr <= IDALUctr;
+	    
 	  	   
 		//EX/MEM Pipeline 
 		//PC+4

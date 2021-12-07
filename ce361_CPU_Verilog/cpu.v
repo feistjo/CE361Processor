@@ -5,12 +5,14 @@
 //`include "registers.v"
 //`include "extend.v"
 `include  "d_mem.v"
+`include "stall.v"
 
 `include "inst_mem.v"
 
 module cpu(clk);
 	input clk;
 
+	wire IFstall, IDstall;
 	/* ~~~~~~~~~~ pipeline data registers ~~~~~~~~~~ */
 	//Instruction 
 	wire [31:0] IFInst, IDInst;
@@ -132,6 +134,7 @@ module cpu(clk);
 	d_mem datamem(.clk(clk), .data_in(busB), .data_out(DataOut), .adr(ALUout), .WrEn(MemMemWr));
 	
 	mux_32 datamux({31'b0, WrMemToReg}, WrALUout, WrDataOut, busW);
+	stall st (.IDfunc(IDfunc), .EXfunc(EXfunc), .IDRegWr(IDRegWr), .MemRegWr(MemRegWr), .EXRegWr(EXRegWr), .WrRegWr(WrRegWr), .EXrw(EXrw), .Memrw(Memrw), .Wrrw(WrRw), .Rs(Rs), .IDRt(IDRt), .IFstall(IFstall), .IDstall(IDstall));
 
 	always @(negedge clk)
 	begin

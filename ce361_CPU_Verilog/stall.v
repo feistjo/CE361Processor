@@ -10,7 +10,7 @@ module stall (IDfunc, EXfunc, IDRegWr, MemRegWr, EXRegWr, WrRegWr, EXrw, Memrw, 
 	or_gate orbne (.x(IDfunc[3]), .y(EXfunc[3]), .z(bne));
 	or_gate orbgtz (.x(IDfunc[2]), .y(EXfunc[2]), .z(bgtz));
 	wire branch_mid;
-	or_gate or_branch_mid (.x(beq), .y(bne) .z(branch_mid));
+	or_gate or_branch_mid (.x(beq), .y(bne), .z(branch_mid));
 	or_gate or_IFstall (.x(branch_mid), .y(bgtz), .z(IFstall));
 	
 	//IDstall if EX or Wr will write needed value

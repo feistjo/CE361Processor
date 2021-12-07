@@ -141,32 +141,32 @@ module cpu(clk);
 	.WrRegWr(WrRegWr), .EXrw(EXRw), .Memrw(MemRw), .Wrrw(WrRw), .Rs(Rs), .IDRt(IDRt), .IFstall(IFstall), .IDstall(IDstall));
 
 	initial begin
-		IFIDInst <= 0;
+		IFIDInst <= 15'b0;
 
-			//Imm16
-			IDEXImm16 <= 0;
-			//ALUctr
-			IDEXALUctr <= 0;
+		//Imm16
+		IDEXImm16 <= 16'b0;
+		//ALUctr
+		IDEXALUctr <= 3'b0;
 		
-			IDEXbusA <= 0;
-			IDEXbusB <= 0;
-			IDEXRt <= 0;
-		IDEXRd <= 0;
-	// IDStall
+		IDEXbusA <= 32'b0;
+		IDEXbusB <= 32'b0;
+		IDEXRt <= 5'b0;
+		IDEXRd <= 5'b0;
+		// IDStall
 	    
 	  	   
 		//EX/MEM Pipeline 
 		//PC+4
 		EXMemzero <= 0;
-		EXMemALUout <= 0;
-		EXMemRw <= 0;
-		EXMemBusB <= 0;
+		EXMemALUout <= 32'b0;
+		EXMemRw <= 5'b0;
+		EXMemBusB <= 32'b0;
 
 		//MEM/WR Pipeline 
-		MemWrRegRw <= 0;
-		MemWrRw <= 0;
-		MemWrALUout <= 0;
-		MemWrDataOut <= 0;
+		MemWrRegRw <= 5'b0;
+		MemWrRw <= 5'b0;
+		MemWrALUout <= 32'b0;
+		MemWrDataOut <= 32'b0;
 
 		/* ~~~~~~~~~~ Pipeline Control Registers ~~~~~~~~~~ */
 		//ExtOp
@@ -181,7 +181,7 @@ module cpu(clk);
 		EXMemMemWr <= 0;
 		//Branch
 		IDEXnPC_sel <= 0;
-	    IDEXfunc <= 0;
+	    IDEXfunc <= 15'b0;
 		//MemtoReg
 		IDEXMemToReg <= 0;
 		EXMemMemToReg <= 0;

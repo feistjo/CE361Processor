@@ -11,12 +11,14 @@
 module cpu(clk);
 	input clk;
 	//get instruction Inst
-	wire [31:0] IFInst;
+
+	/* ~~~~~~~~~~ pipeline data registers ~~~~~~~~~~ */
+	//Instruction 
+	wire [31:0] IFInst, IDInst;
 	reg [31:0] IFIDInst;
-	wire [31:0] IDInst;
 	assign IDInst = IFIDInst;
 
-	//pipeline control registers
+	/* ~~~~~~~~~~ pipeline control registers ~~~~~~~~~~ */
 	//ExtOp
 	wire IDExtOp, EXExtOp;
 	reg IDEXExtOp;
@@ -36,6 +38,9 @@ module cpu(clk);
 	assign EXMemWr = IDEXMemWr;
 	assign MemMemWr = EXMemMemWr;
 	//Branch
+	wire IDnPC_sel, EXnPC_sel;
+	reg IDEXnPC_sel;
+	assign EXnPC_sel = IDEXnPC_sel;
 	//MemToReg
 	wire IDMemToReg, EXMemToReg, MemMemToReg, WrMemToReg;
 	reg IDEXMemToReg, EXMemMemToReg, MemWrMemToReg;
@@ -48,14 +53,13 @@ module cpu(clk);
 	assign EXRegWr = IDEXRegWr;
 	assign MemRegWr = EXMemRegWr;
 	assign WrRegWr = MemWrRegWr;
+
+	/* ~~~~~~~~~~ Logic Implementation ~~~~~~~~~~ */
 	
-	wire zero, sign, IDnPC_sel;
-	reg  IDEXnPC_sel;
+	wire zero, sign;
 	wire [15:0] IDImm16;
 	reg [15:0] IDEXImm16;
     wire [15:0] EXImm16;
-    wire EXnPC_sel;
-    assign EXnPC_sel = IDEXnPC_sel;
 	fetch_inst instmem(.clk(clk), .imm16(EXImm16), .nPC_sel(EXnPC_sel), .inst(IFInst)); //probably has to change
 	wire [2:0] IDALUctr;
 	reg [2:0] IDEXALUctr;
@@ -131,7 +135,7 @@ module cpu(clk);
 
 	always @(negedge clk)
 	begin
-		//Pipeline Data Registers 
+		/* ~~~~~~~~~~ Pipeline Data Registers ~~~~~~~~~~ */
 		//IF/ID Pipeline
 		//PC+4
 		IFIDInst <= IFInst;
@@ -157,8 +161,7 @@ module cpu(clk);
 		MemWrALUout <= MemALUout;
 		MemWrDataOut <= DataOut;
 
-		//Pipeline Control Registers
-		//Control Logic
+		/* ~~~~~~~~~~ Pipeline Control Registers ~~~~~~~~~~ */
 		//ExtOp
 		IDEXExtOp <= IDExtOp;
 		//ALUSrc

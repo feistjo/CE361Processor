@@ -1,14 +1,12 @@
 xrun(64): 18.09-s011: (c) Copyright 1995-2019 Cadence Design Systems, Inc.
-TOOL:	xrun(64)	18.09-s011: Started on Dec 06, 2021 at 23:18:49 CST
+TOOL:	xrun(64)	18.09-s011: Started on Dec 06, 2021 at 23:33:51 CST
 xrun
 	-64bit
 	-gui
 	-access r
 	cpu.v
 	cpu_tb.v
-Recompiling... reason: file './cpu.v' is newer than expected.
-	expected: Mon Dec  6 23:14:32 2021
-	actual:   Mon Dec  6 23:18:18 2021
+Recompiling... reason: unable to stat '/.//home/lcg3895/ce361/CE361SingleCycleProcessor/ce361_CPU_Verilog/ece361_alu_verilog/ALU.v'.
 file: cpu.v
         1'h2 : hex = 1;
            |
@@ -188,11 +186,9 @@ xmvlog: *W,TMTPAR (lib/sram.v,171|17): A task enable with no arguments must not 
                  |
 xmvlog: *W,TMTPAR (lib/sram.v,176|17): A task enable with no arguments must not include an empty set of parentheses [10.2.2 (IEEE Std 1364-2005)].  The compiler has ignored the parentheses.  Use 'xmhelp xmvlog TMTPAR'  for further information.
 (`include file: lib/sram.v line 176, `include file: inst_mem.v line 2, file: cpu.v line 10)
-	module worklib.cpu:v
-		errors: 0, warnings: 0
 module set_if_eq(x, y, z);
                |
-xmvlog: *W,RECOME (cpu.v,434|15): recompiling design unit worklib.set_if_eq:v.
+xmvlog: *W,RECOME (cpu.v,439|15): recompiling design unit worklib.set_if_eq:v.
 	First compiled from line 34 of stall.v.
 	module worklib.set_if_eq:v
 		errors: 0, warnings: 1
@@ -211,79 +207,76 @@ xmvlog: *W,RECOME (cpu.v,434|15): recompiling design unit worklib.set_if_eq:v.
 xmelab: *W,DSEMEL: This SystemVerilog design will be simulated as per IEEE 1800-2009 SystemVerilog simulation semantics. Use -disable_sem2009 option for turning off SV 2009 simulation semantics.
 	d_mem datamem(.clk(clk), .data_in(busB), .data_out(DataOut), .adr(ALUout), .WrEn(MemMemWr));
 	                                     |
-xmelab: *W,CUVMPW (./cpu.v,156|38): port sizes differ in port connection (1/32).
+xmelab: *W,CUVMPW (./cpu.v,161|38): port sizes differ in port connection (1/32).
 	mux_32 datamux({31'b0, WrMemToReg}, WrALUout, WrDataOut, busW);
 	                                                            |
-xmelab: *W,CUVMPW (./cpu.v,158|61): port sizes differ in port connection (1/32).
+xmelab: *W,CUVMPW (./cpu.v,163|61): port sizes differ in port connection (1/32).
 	d_mem datamem(.clk(clk), .data_in(busB), .data_out(DataOut), .adr(ALUout), .WrEn(MemMemWr));
 	                                     |
-xmelab: *W,CUVMPW (./cpu.v,156|38): port sizes differ in port connection (1/32).
+xmelab: *W,CUVMPW (./cpu.v,161|38): port sizes differ in port connection (1/32).
 	mux_32 datamux({31'b0, WrMemToReg}, WrALUout, WrDataOut, busW);
 	                                                            |
-xmelab: *W,CUVMPW (./cpu.v,158|61): port sizes differ in port connection (1/32).
+xmelab: *W,CUVMPW (./cpu.v,163|61): port sizes differ in port connection (1/32).
 	d_mem datamem(.clk(clk), .data_in(busB), .data_out(DataOut), .adr(ALUout), .WrEn(MemMemWr));
 	                                     |
-xmelab: *W,CUVMPW (./cpu.v,156|38): port sizes differ in port connection (1/32).
+xmelab: *W,CUVMPW (./cpu.v,161|38): port sizes differ in port connection (1/32).
 	mux_32 datamux({31'b0, WrMemToReg}, WrALUout, WrDataOut, busW);
 	                                                            |
-xmelab: *W,CUVMPW (./cpu.v,158|61): port sizes differ in port connection (1/32).
+xmelab: *W,CUVMPW (./cpu.v,163|61): port sizes differ in port connection (1/32).
 	d_mem datamem(.clk(clk), .data_in(busB), .data_out(DataOut), .adr(ALUout), .WrEn(MemMemWr));
 	                                     |
-xmelab: *W,CUVMPW (./cpu.v,156|38): port sizes differ in port connection (1/32).
+xmelab: *W,CUVMPW (./cpu.v,161|38): port sizes differ in port connection (1/32).
 	mux_32 datamux({31'b0, WrMemToReg}, WrALUout, WrDataOut, busW);
 	                                                            |
-xmelab: *W,CUVMPW (./cpu.v,158|61): port sizes differ in port connection (1/32).
+xmelab: *W,CUVMPW (./cpu.v,163|61): port sizes differ in port connection (1/32).
 	d_mem datamem(.clk(clk), .data_in(busB), .data_out(DataOut), .adr(ALUout), .WrEn(MemMemWr));
 	                                     |
-xmelab: *W,CUVMPW (./cpu.v,156|38): port sizes differ in port connection (1/32).
+xmelab: *W,CUVMPW (./cpu.v,161|38): port sizes differ in port connection (1/32).
 	mux_32 datamux({31'b0, WrMemToReg}, WrALUout, WrDataOut, busW);
 	                                                            |
-xmelab: *W,CUVMPW (./cpu.v,158|61): port sizes differ in port connection (1/32).
+xmelab: *W,CUVMPW (./cpu.v,163|61): port sizes differ in port connection (1/32).
 	Building instance overlay tables: .................... Done
-	Generating native compiled code:
-		worklib.cpu:v <0x7e334f36>
-			streams:  44, words: 22700
 	Building instance specific data structures.
 	d_mem datamem(.clk(clk), .data_in(busB), .data_out(DataOut), .adr(ALUout), .WrEn(MemMemWr));
 	                                     |
-xmelab: *W,CSINFI (./cpu.v,156|38): implicit wire has no fanin (unsigned_sum_tb.cpu1.busB).
+xmelab: *W,CSINFI (./cpu.v,161|38): implicit wire has no fanin (unsigned_sum_tb.cpu1.busB).
    or_gate orltorz(equal, sign, ltorz);
                              |
-xmelab: *W,CSINFI (./cpu.v,470|29): implicit wire has no fanin (unsigned_sum_tb.cpu1.br.sign).
+xmelab: *W,CSINFI (./cpu.v,475|29): implicit wire has no fanin (unsigned_sum_tb.cpu1.br.sign).
 	d_mem datamem(.clk(clk), .data_in(busB), .data_out(DataOut), .adr(ALUout), .WrEn(MemMemWr));
 	                                     |
-xmelab: *W,CSINFI (./cpu.v,156|38): implicit wire has no fanin (sort_correct_branch_tb.cpu1.busB).
+xmelab: *W,CSINFI (./cpu.v,161|38): implicit wire has no fanin (sort_correct_branch_tb.cpu1.busB).
    or_gate orltorz(equal, sign, ltorz);
                              |
-xmelab: *W,CSINFI (./cpu.v,470|29): implicit wire has no fanin (sort_correct_branch_tb.cpu1.br.sign).
+xmelab: *W,CSINFI (./cpu.v,475|29): implicit wire has no fanin (sort_correct_branch_tb.cpu1.br.sign).
 	d_mem datamem(.clk(clk), .data_in(busB), .data_out(DataOut), .adr(ALUout), .WrEn(MemMemWr));
 	                                     |
-xmelab: *W,CSINFI (./cpu.v,156|38): implicit wire has no fanin (bills_branch_tb.cpu1.busB).
+xmelab: *W,CSINFI (./cpu.v,161|38): implicit wire has no fanin (bills_branch_tb.cpu1.busB).
    or_gate orltorz(equal, sign, ltorz);
                              |
-xmelab: *W,CSINFI (./cpu.v,470|29): implicit wire has no fanin (bills_branch_tb.cpu1.br.sign).
+xmelab: *W,CSINFI (./cpu.v,475|29): implicit wire has no fanin (bills_branch_tb.cpu1.br.sign).
 	d_mem datamem(.clk(clk), .data_in(busB), .data_out(DataOut), .adr(ALUout), .WrEn(MemMemWr));
 	                                     |
-xmelab: *W,CSINFI (./cpu.v,156|38): implicit wire has no fanin (nostalls_tb.cpu1.busB).
+xmelab: *W,CSINFI (./cpu.v,161|38): implicit wire has no fanin (nostalls_tb.cpu1.busB).
    or_gate orltorz(equal, sign, ltorz);
                              |
-xmelab: *W,CSINFI (./cpu.v,470|29): implicit wire has no fanin (nostalls_tb.cpu1.br.sign).
+xmelab: *W,CSINFI (./cpu.v,475|29): implicit wire has no fanin (nostalls_tb.cpu1.br.sign).
 	d_mem datamem(.clk(clk), .data_in(busB), .data_out(DataOut), .adr(ALUout), .WrEn(MemMemWr));
 	                                     |
-xmelab: *W,CSINFI (./cpu.v,156|38): implicit wire has no fanin (onestall_tb.cpu1.busB).
+xmelab: *W,CSINFI (./cpu.v,161|38): implicit wire has no fanin (onestall_tb.cpu1.busB).
    or_gate orltorz(equal, sign, ltorz);
                              |
-xmelab: *W,CSINFI (./cpu.v,470|29): implicit wire has no fanin (onestall_tb.cpu1.br.sign).
+xmelab: *W,CSINFI (./cpu.v,475|29): implicit wire has no fanin (onestall_tb.cpu1.br.sign).
 	Loading native compiled code:     .................... Done
 	Design hierarchy summary:
 		                 Instances  Unique
 		Modules:             13056      47
-		Registers:            6051      88
+		Registers:            6056      89
 		Scalar wires:        12105       -
 		Expanded wires:       6850     310
 		Vectored wires:        826       -
-		Always blocks:        5681      14
-		Initial blocks:        240      52
+		Always blocks:        5686      15
+		Initial blocks:        245      53
 		Cont. assignments:     159      69
 		Pseudo assignments:    125      24
 	Writing initial simulation snapshot: worklib.pc_branch:v
@@ -295,7 +288,7 @@ xcelium>
 xcelium> source /vol/cadence2018/XCELIUM1809/tools/xcelium/files/xmsimrc
 xcelium> database -open waves -into waves.shm -default
 Created default SHM database waves
-xcelium> probe -create -shm onestall_tb.clk onestall_tb.cpu1.datareg.Ra onestall_tb.cpu1.datareg.Rb onestall_tb.cpu1.datareg.RegWr onestall_tb.cpu1.datareg.Rw onestall_tb.cpu1.datareg.busA onestall_tb.cpu1.datareg.busB onestall_tb.cpu1.datareg.busW onestall_tb.cpu1.datareg.clk onestall_tb.cpu1.datareg.decoder_out onestall_tb.cpu1.datareg.mem_in onestall_tb.cpu1.datareg.mem_out onestall_tb.cpu1.datareg.reg_wr_en
+xcelium> probe -create -shm onestall_tb.clk onestall_tb.cpu1.datareg.Ra onestall_tb.cpu1.datareg.Rb onestall_tb.cpu1.datareg.RegWr onestall_tb.cpu1.datareg.Rw onestall_tb.cpu1.datareg.busA onestall_tb.cpu1.datareg.busB onestall_tb.cpu1.datareg.busW onestall_tb.cpu1.datareg.clk onestall_tb.cpu1.datareg.decoder_out onestall_tb.cpu1.datareg.mem_in onestall_tb.cpu1.datareg.mem_out onestall_tb.cpu1.datareg.reg_wr_en onestall_tb.cpu1.instmem.rpc.pc.clk onestall_tb.cpu1.instmem.rpc.pc.imm16 onestall_tb.cpu1.instmem.rpc.pc.in onestall_tb.cpu1.instmem.rpc.pc.nPC_sel onestall_tb.cpu1.instmem.rpc.pc.out onestall_tb.cpu1.instmem.rpc.pc.pc onestall_tb.cpu1.instmem.rpc.pc.steve
 Created probe 1
 xcelium> reset
 xmsim: *W,DSEM2009: This SystemVerilog design is simulated as per IEEE 1800-2009 SystemVerilog simulation semantics. Use -disable_sem2009 option for turning off SV 2009 simulation semantics.
@@ -1005,16 +998,16 @@ Data is checking: xxxxxxxx
 Addr is checking: xxxxxxxx
 Data is checking: xxxxxxxx
 Writing to dout:          x
-READ Addr FOUND!: 00400024
-Writing to dout:  537333760
-READ Addr FOUND!: 00400024
-Writing to dout:    4330496
-READ Addr FOUND!: 00400024
-Writing to dout:  537264228
-READ Addr FOUND!: 00400024
-Writing to dout:  537067521
-READ Addr FOUND!: 00400024
-Writing to dout:  537067521
+READ Addr FOUND!: 00400020
+Writing to dout:      10272
+READ Addr FOUND!: 00400020
+Writing to dout:  537006080
+READ Addr FOUND!: 00400020
+Writing to dout:  537198593
+READ Addr FOUND!: 00400020
+Writing to dout:  537001985
+READ Addr FOUND!: 00400020
+Writing to dout:  537001985
 Now initializing sram
 Addr is written: 00400020
 Data is written: 20020001
@@ -1719,6 +1712,21 @@ Data is checking: xxxxxxxx
 Addr is checking: xxxxxxxx
 Data is checking: xxxxxxxx
 Writing to dout:          x
+READ Addr FOUND!: 00400024
+Writing to dout:  537067521
+READ Addr FOUND!: 00400024
+Writing to dout:  537067521
+READ Addr FOUND!: 00400024
+Writing to dout:  537264228
+READ Addr FOUND!: 00400024
+Writing to dout:    4330496
+READ Addr FOUND!: 00400024
+Writing to dout:  537333760
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
 READ Addr FOUND!: 00400028
 Writing to dout:  537133057
 READ Addr FOUND!: 00400028
@@ -1734,6 +1742,11 @@ Writing to dout:          x
 Writing to dout:          x
 Writing to dout:          x
 Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
 READ Addr FOUND!: 0040002c
 Writing to dout:  537198593
 READ Addr FOUND!: 0040002c
@@ -1744,11 +1757,6 @@ READ Addr FOUND!: 0040002c
 Writing to dout:  541392936
 READ Addr FOUND!: 0040002c
 Writing to dout:   14692384
-Writing to dout:          x
-Writing to dout:          x
-Writing to dout:          x
-Writing to dout:          x
-Writing to dout:          x
 Writing to dout:          x
 Writing to dout:          x
 Writing to dout:          x
@@ -6251,17 +6259,8 @@ Writing to dout:          x
 Writing to dout:          x
 Writing to dout:          x
 Writing to dout:          x
-Writing to dout:  537395201
-Writing to dout:  537264129
-Writing to dout: 2900754432
-Writing to dout: 2900688896
-Writing to dout:          x
-Writing to dout:          x
-Writing to dout:          x
-Writing to dout:          x
-Writing to dout:          x
 Simulation complete via $finish(1) at time 1 US + 0
 ./cpu_tb.v:20 			$finish;
 xcelium> ^C
 xcelium> exit
-TOOL:	xrun(64)	18.09-s011: Exiting on Dec 06, 2021 at 23:20:12 CST  (total: 00:01:23)
+TOOL:	xrun(64)	18.09-s011: Exiting on Dec 06, 2021 at 23:34:38 CST  (total: 00:00:47)

@@ -192,3 +192,7 @@ s191(06Dec2021:22:35:42):  xrun -64bit -gui -access r cpu.v cpu_tb.v
 s192(06Dec2021:22:36:56):  xrun -64bit -gui -access r cpu.v cpu_tb.v 
 s193(06Dec2021:22:38:04):  xrun -64bit -gui -access r cpu.v cpu_tb.v 
 s194(06Dec2021:22:56:09):  xrun -64bit -gui -access r cpu.v cpu_tb.v 
+s195(06Dec2021:23:15:27):  xrun -64bit -gui -access r cpu.v cpu_tb.v 
+s196(06Dec2021:23:15:46):  xrun -64bit -gui -access r cpu.v cpu_tb.v 
+s197(06Dec2021:23:17:33):  xrun -64bit -gui -access r cpu.v cpu_tb.v 
+s198(06Dec2021:23:18:49):  xrun -64bit -gui -access r cpu.v cpu_tb.v 

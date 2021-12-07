@@ -21,7 +21,7 @@ module pc_clk(clk, nPC_sel, imm16, pc_fin, steve, read_val);
    pc_register pc(.in(prev_pc),
 		  .clk(clk),
 		  .nPC_sel(nPC_sel),
-        .steve(steve)
+        .steve(steve),
 		  .imm16(imm16ext),
 		  .out(temp_pc));
 
@@ -81,7 +81,6 @@ module pc_register(in, clk, nPC_sel, steve, imm16, out);
         else if (steve)
         begin
           out <= pc; 
-        end
         end
      end // always @ (negedge clk)
    

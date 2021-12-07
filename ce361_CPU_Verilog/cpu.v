@@ -218,12 +218,12 @@ module cpu(clk);
 
 		/* ~~~~~~~~~~ Pipeline Data Registers ~~~~~~~~~~ */
 		//Instruction
-		if (!IFstall) begin
+		//if (!IFstall) begin
 			IFIDInst <= IFInst;
-		end
+		//end
 
-		if (!IDstall) 
-		begin
+		//if (!IDstall) 
+		//begin
 			//Imm16
 			IDEXImm16 <= IDImm16;
 			//ALUctr
@@ -233,7 +233,7 @@ module cpu(clk);
 			IDEXbusB <= IDbusB;
 			IDEXRt <= IDRt;
 			IDEXRd <= IDRd;
-		end // IDStall
+		//end // IDStall
 	    
 	  	   
 		//EX/MEM Pipeline 

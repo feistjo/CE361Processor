@@ -126,6 +126,7 @@ module cpu(clk);
 	reg [31:0] MemWrALUout = 32'b0;
 	wire [31:0] WrALUout;
 	assign WrALUout = MemWrALUout;
+	wire [31:0] ALUout;
 	
 	registers datareg(.clk(clk), .RegWr(WrRegWr), .busW(ALUout), .Rw(WrRw), .Ra(Rs), .Rb(IDRt), .busA(IDbusA), .busB(IDbusB));
 	
@@ -139,7 +140,7 @@ module cpu(clk);
 	wire [31:0] ALUIn2;
 	mux_32 muxb({31'b0, EXALUSrc}, EXbusB, Imm32, ALUIn2);
 	
-	wire [31:0] ALUout;
+	
 	wire [4:0] EXshamt;
 	wire EXzero;
 	reg EXMemzero = 1'b0;

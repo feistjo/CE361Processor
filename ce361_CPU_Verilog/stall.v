@@ -1,7 +1,7 @@
 module stall (IDfunc, EXfunc, IDRegWr, MemRegWr, EXRegWr, WrRegWr, EXrw, Memrw, Wrrw, Rs, IDRt, IFstall, IDstall);
 	input [14:0] IDfunc, EXfunc;
-	input IDRegWr, MemRegWr, EXRegWr, WrRegWr, Rs, IDRt;
-	input [4:0] EXrw, Memrw, Wrrw;
+	input IDRegWr, MemRegWr, EXRegWr, WrRegWr;
+	input [4:0] EXrw, Memrw, Wrrw, Rs, IDRt;
 	output IFstall, IDstall;
 	
 	//IFstall if branch

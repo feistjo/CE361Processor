@@ -15,10 +15,10 @@ module stall (IDfunc, EXfunc, IDRegWr, MemRegWr, EXRegWr, WrRegWr, EXrw, Memrw, 
 	
 	//IDstall if EX or Wr will write needed value
 	wire [3:0] dhaz;//[RsEX, RsWr, RtEX, RtWr]
-	set_if_eq eqRsEX (.x(Rs), .y(EXrw), .z(dhaz[3]));
-	set_if_eq eqRsWr (.x(Rs), .y(Wrrw), .z(dhaz[2]));
-	set_if_eq eqRtEX (.x(IDRt), .y(EXrw), .z(dhaz[1]));
-	set_if_eq eqRtWr (.x(IDRt), .y(Wrrw), .z(dhaz[0]));
+	set_if_eq eqRsEX (.x({0,Rs}), .y({0,EXrw}), .z(dhaz[3]));
+	set_if_eq eqRsWr (.x({0,Rs}), .y({0,Wrrw}), .z(dhaz[2]));
+	set_if_eq eqRtEX (.x({0,IDRt}), .y({0,EXrw}), .z(dhaz[1]));
+	set_if_eq eqRtWr (.x({0,IDRt}), .y({0,Wrrw}), .z(dhaz[0]));
 	wire [3:0] dhaz2;
 	and_gate and1 (.x(dhaz[3]), .y(EXRegWr), .z(dhaz2[3]));
 	and_gate and2 (.x(dhaz[2]), .y(WrRegWr), .z(dhaz2[2]));

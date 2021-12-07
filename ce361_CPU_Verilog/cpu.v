@@ -75,7 +75,7 @@ module cpu(clk);
 	reg inc_pc = 1'b0; //bool saying if we should increment the PC
 	reg inc_pc_counter = 4'h0; //integer tracking the current PC
 
-	always @(posedge(clk)) begin
+	always @(negedge(clk)) begin
 		inc_pc_counter <= inc_pc_counter + 1;
 		if(inc_pc_counter >= 4'h5) begin
 			inc_pc <= 1'b1;

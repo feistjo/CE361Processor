@@ -104,9 +104,10 @@ module cpu(clk);
 	wire [14:0] IDfunc, EXfunc;
 	reg [14:0] IDEXfunc = 15'b0;
 	assign EXfunc = IDEXfunc;
+	assign IDMemWr = IDfunc[5];
    
 	control controls(.Op(IDInst[31:26]), .Fun(IDInst[5:0]), .equal(zero), .sign(sign), .RegWr(IDRegWr), .RegDst(IDRegDst), 
-		.ExtOp(IDExtOp), .ALUSrc(IDALUSrc), .ALUctr(IDALUctr), .MemWr(IDMemWr), .MemtoReg(MemToReg), .func(IDfunc));
+		.ExtOp(IDExtOp), .ALUSrc(IDALUSrc), .ALUctr(IDALUctr), .MemWr(), .MemtoReg(MemToReg), .func(IDfunc));
 
 	wire [4:0] EXRt, EXRd;
 	assign EXRt = IDEXRt;

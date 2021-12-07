@@ -197,11 +197,11 @@ module cpu(clk);
 
 		/* ~~~~~~~~~~ Pipeline Data Registers ~~~~~~~~~~ */
 		//Instruction
-		if (IFstall) begin
+		if (!IFstall) begin
 			IFIDInst <= IFInst;
 		end
 
-		if (IDstall) 
+		if (!IDstall) 
 		begin
 			//Imm16
 			IDEXImm16 <= IDImm16;
@@ -229,6 +229,8 @@ module cpu(clk);
 		MemWrDataOut <= DataOut;
 
 		/* ~~~~~~~~~~ Pipeline Control Registers ~~~~~~~~~~ */
+
+		
 		//ExtOp
 		IDEXExtOp <= IDExtOp;
 		//ALUSrc

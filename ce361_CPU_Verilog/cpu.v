@@ -144,7 +144,7 @@ module cpu(clk);
 	wire EXzero;
 	reg EXMemzero = 1'b0;
 	wire ovf, cout;
-	ALU alu1(.ctrl(EXALUctr), .A(EXbusA), .B(ALUIn2), .shamt(EXshamt), .cout(cout), .ovf(ovf), .ze(EXzero), .R(ALUout));
+	ALU alu1(.ctrl(EXALUctr), .A(IDbusA), .B(ALUIn2), .shamt(EXshamt), .cout(cout), .ovf(ovf), .ze(EXzero), .R(ALUout));
    
     get_branched br(.func(EXfunc), .equal(EXzero), .nPC_sel(IDnPC_sel));
 

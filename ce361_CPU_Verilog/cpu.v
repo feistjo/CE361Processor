@@ -96,7 +96,7 @@ module cpu(clk);
 	wire [31:0] WrALUout;
 	assign WrALUout = MemWrALUout;
 	
-	registers datareg(.clk(clk), .RegWr(WrRegWr), .busW(WrALUout), .Rw(WrRw), .Ra(Rs), .Rb(Rt), .busA(IDbusA), .busB(IDbusB));
+	registers datareg(.clk(clk), .RegWr(WrRegWr), .busW(WrALUout), .Rw(WrRw), .Ra(Rs), .Rb(IDRt), .busA(IDbusA), .busB(IDbusB));
 	
 	wire [31:0] Imm32;
 	extender immext(.in(EXImm16), .ext(EXExtOp), .out(Imm32));

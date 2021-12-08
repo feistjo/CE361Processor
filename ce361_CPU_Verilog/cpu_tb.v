@@ -1,5 +1,4 @@
 
-
 module sort_corrected_branch_tb();
 	reg clk;
 	
@@ -18,7 +17,7 @@ module sort_corrected_branch_tb();
 	
 	initial
 		begin
-			#5000
+			#1000
 			$finish;
 	end
 endmodule

@@ -65,22 +65,25 @@ module pc_register(in, clk, nPC_sel, steve, imm16, out);
    
    always @(negedge clk)
      begin
-        if (steve) begin
-            if (nPC_sel == 0) begin
+        if (steve) 
+        begin
+            if (nPC_sel == 0) 
+            begin
 	            pc <= pc + 4;
 	            out <= pc + 4;
 	         end
-	      else begin
+            
 	         if (nPC_sel == 1) begin
 	            pc <= pc + 4 + imm16;
 	            out <= pc + 4 + imm16;
-	         end	 
-         end  
+	         end 
 	   end
+      
       else if (!steve)
       begin
          out <= pc;
       end
+      
    end // always @ (negedge clk)
    
 endmodule // pc_register

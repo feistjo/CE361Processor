@@ -19,7 +19,7 @@ module cpu(clk);
 	reg do_we_increment_the_pc = 1'b0;
 	reg do_we_write_to_regs = 1'b0;
 	wire actual_RegWr;
-	or_gate fixregwr(.x(RegWr), .y(do_we_write_to_regs), .z(actual_RegWr));
+	// or_gate fixregwr(.x(RegWr), .y(do_we_write_to_regs), .z(actual_RegWr));
 
 	//Artificially insert x stalls 
 	integer counter_for_incrementing_the_pc = 4'h0; //integer tracking the current PC

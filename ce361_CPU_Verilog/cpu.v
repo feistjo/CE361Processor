@@ -4,6 +4,7 @@
 //`include "ece361_alu_verilog/ALU.v"
 //`include "registers.v"
 //`include "extend.v"
+// what happens?
 
 module cpu(clk);
 	input clk;

@@ -104,9 +104,10 @@ module cpu(clk);
 	wire [14:0] IDfunc, EXfunc;
 	reg [14:0] IDEXfunc = 15'b0;
 	assign EXfunc = IDEXfunc;
+	assign IDMemWr = IDfunc[5];
    
 	control controls(.Op(IDInst[31:26]), .Fun(IDInst[5:0]), .equal(zero), .sign(sign), .RegWr(IDRegWr), .RegDst(IDRegDst), 
-		.ExtOp(IDExtOp), .ALUSrc(IDALUSrc), .ALUctr(IDALUctr), .MemWr(IDMemWr), .MemtoReg(MemToReg), .func(IDfunc));
+		.ExtOp(IDExtOp), .ALUSrc(IDALUSrc), .ALUctr(IDALUctr), .MemWr(), .MemtoReg(MemToReg), .func(IDfunc));
 
 	wire [4:0] EXRt, EXRd;
 	assign EXRt = IDEXRt;
@@ -125,8 +126,9 @@ module cpu(clk);
 	reg [31:0] MemWrALUout = 32'b0;
 	wire [31:0] WrALUout;
 	assign WrALUout = MemWrALUout;
+	wire [31:0] ALUout;
 	
-	registers datareg(.clk(clk), .RegWr(WrRegWr), .busW(WrALUout), .Rw(WrRw), .Ra(Rs), .Rb(IDRt), .busA(IDbusA), .busB(IDbusB));
+	registers datareg(.clk(clk), .RegWr(WrRegWr), .busW(ALUout), .Rw(WrRw), .Ra(Rs), .Rb(IDRt), .busA(IDbusA), .busB(IDbusB));
 	
 	wire [31:0] Imm32;
 	extender immext(.in(EXImm16), .ext(EXExtOp), .out(Imm32));
@@ -138,12 +140,12 @@ module cpu(clk);
 	wire [31:0] ALUIn2;
 	mux_32 muxb({31'b0, EXALUSrc}, EXbusB, Imm32, ALUIn2);
 	
-	wire [31:0] ALUout;
+	
 	wire [4:0] EXshamt;
 	wire EXzero;
 	reg EXMemzero = 1'b0;
 	wire ovf, cout;
-	ALU alu1(.ctrl(EXALUctr), .A(EXbusA), .B(ALUIn2), .shamt(EXshamt), .cout(cout), .ovf(ovf), .ze(EXzero), .R(ALUout));
+	ALU alu1(.ctrl(EXALUctr), .A(IDbusA), .B(ALUIn2), .shamt(EXshamt), .cout(cout), .ovf(ovf), .ze(EXzero), .R(ALUout));
    
     get_branched br(.func(EXfunc), .equal(EXzero), .nPC_sel(IDnPC_sel));
 

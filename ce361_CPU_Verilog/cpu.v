@@ -16,8 +16,8 @@ module cpu(clk);
 
 	/* ~~~~~~~~~~ Implement Artificial Stalls ~~~~~~~~~~ */
 	//1 = yes, 0 = no
-	reg do_we_increment_the_pc;
-	reg do_we_write_to_regs;
+	reg do_we_increment_the_pc = 1'b0;
+	reg do_we_write_to_regs = 1'b0;
 	wire actual_RegWr;
 	or_gate fixregwr(.x(RegWr), .y(do_we_write_to_regs), .z(actual_RegWr));
 

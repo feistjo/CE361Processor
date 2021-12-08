@@ -41,7 +41,7 @@ module unsigned_sum_tb();
 	
 	initial
 		begin
-			#5000
+			#1000
 			$finish;
 	end
 endmodule

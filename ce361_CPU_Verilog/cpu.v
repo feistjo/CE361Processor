@@ -16,12 +16,12 @@ module cpu(clk);
 
 	/* ~~~~~~~~~~ Implement Artificial Stalls ~~~~~~~~~~ */
 	//1 = yes, 0 = no
-	reg do_we_increment_the_pc = 1'b0; 
-	reg do_we_write_to_regs = 1'b0;
+	reg do_we_increment_the_pc;
+	reg do_we_write_to_regs;
 	wire actual_RegWr;
+
+	stall_handler sh(.clk(clk), .do_we_increment_the_pc(do_we_increment_the_pc), do_we_write_to_regs(do_we_write_to_regs));
 	or_gate fixregwr(.x(RegWr), .y(do_we_write_to_regs), .z(actual_RegWr));
-	//Artificially insert x stalls 
-	integer counter_for_incrementing_the_pc = 4'h0; //integer tracking the current PC
 
 	fetch_inst instmem(.clk(clk), .imm16(Imm16), .nPC_sel(nPC_sel), .inst(Inst), .steve(do_we_increment_the_pc));
 	//".steve" is the port which passes if we should be incrementing the PC or stalling 
@@ -57,21 +57,6 @@ module cpu(clk);
 	d_mem datamem(.clk(clk), .data_in(busB), .data_out(DataOut), .adr(ALUout), .WrEn(MemWr));
 	
 	mux_32 datamux({31'b0, MemToReg}, ALUout, DataOut, busW);
-
-	always @(negedge(clk)) begin
-		if(counter_for_incrementing_the_pc >= 4'h5) begin
-			do_we_increment_the_pc <= 1'b1;
-			counter_for_incrementing_the_pc = 0;
-		end else begin 
-			do_we_increment_the_pc <= 1'b0;
-			counter_for_incrementing_the_pc = counter_for_incrementing_the_pc + 1;
-		end
-		if(counter_for_incrementing_the_pc == 4'h4) begin
-			do_we_write_to_regs <= 1'b1;
-		end else begin
-			do_we_write_to_regs <= 1'b0;
-		end
-	end
 	
 endmodule
 
@@ -267,4 +252,34 @@ module set_if_eq(x, y, z);
 	or_gate or5(ored[2], ored[3], ored[4]);
 	
 	not_gate not1(ored[4], z);
+endmodule
+
+module stall_handler(
+	clk,
+	do_we_increment_the_pc,
+	do_we_write_to_regs
+	);
+
+	input clk;
+	output do_we_increment_the_pc;
+	output do_we_write_to_regs;
+
+	//Artificially insert x stalls 
+	integer counter_for_incrementing_the_pc = 4'h0; //integer tracking the current PC
+
+	always @(negedge(clk)) begin
+		if(counter_for_incrementing_the_pc >= 4'h5) begin
+			do_we_increment_the_pc <= 1'b1;
+			counter_for_incrementing_the_pc = 0;
+		end else begin 
+			do_we_increment_the_pc <= 1'b0;
+			counter_for_incrementing_the_pc = counter_for_incrementing_the_pc + 1;
+		end
+		if(counter_for_incrementing_the_pc == 4'h4) begin
+			do_we_write_to_regs <= 1'b1;
+		end else begin
+			do_we_write_to_regs <= 1'b0;
+		end
+	end
+
 endmodule

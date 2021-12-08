@@ -1,0 +1,14 @@
+inst_mem.v
+/home/lcg3895/ce361/pipe/CE361Processor/ce361_CPU_Verilog/inst_mem.v
+branch_pc.v
+/home/lcg3895/ce361/pipe/CE361Processor/ce361_CPU_Verilog/branch_pc.v
+extend.v
+/home/lcg3895/ce361/pipe/CE361Processor/ce361_CPU_Verilog/extend.v
+lib/mux_32.v
+/home/lcg3895/ce361/pipe/CE361Processor/ce361_CPU_Verilog/lib/mux_32.v
+lib/sram.v
+/home/lcg3895/ce361/pipe/CE361Processor/ce361_CPU_Verilog/lib/sram.v
+d_mem.v
+/home/lcg3895/ce361/pipe/CE361Processor/ce361_CPU_Verilog/d_mem.v
+lib/syncram.v
+/home/lcg3895/ce361/pipe/CE361Processor/ce361_CPU_Verilog/lib/syncram.v

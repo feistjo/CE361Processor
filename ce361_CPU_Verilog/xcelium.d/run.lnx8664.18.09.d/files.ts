@@ -8,5 +8,5 @@
 1637186594 /home/lcg3895/ce361/CE361SingleCycleProcessor/ce361_CPU_Verilog/registers_tb.v
 1638853997 /home/lcg3895/ce361/CE361SingleCycleProcessor/ce361_CPU_Verilog/inst_mem.v
 1637207662 /home/lcg3895/ce361/CE361SingleCycleProcessor/ce361_CPU_Verilog/inst_tb.v
-1638935864 /home/lcg3895/ce361/pipe/CE361Processor/ce361_CPU_Verilog/cpu.v
+1638936238 /home/lcg3895/ce361/pipe/CE361Processor/ce361_CPU_Verilog/cpu.v
 1638935864 /home/lcg3895/ce361/pipe/CE361Processor/ce361_CPU_Verilog/cpu_tb.v

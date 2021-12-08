@@ -5,7 +5,8 @@
 //`include "registers.v"
 //`include "extend.v"
 // what happens?
-
+`include "inst_mem.v"
+`include "d_mem.v"
 module cpu(clk);
 	input clk;
 	//get instruction Inst

@@ -57,10 +57,10 @@ module pc_register(in, clk, nPC_sel, steve, imm16, out);
    input 	clk;
    input steve;
    output reg [31:0] out;
-   reg [31:0] pc = 32'h00400020;
+   reg [31:0] pc = 32'h0040001c;
      
    initial begin
-      out <= 32'h00400020;
+      out <= 32'h0040001c;
    end
    
    always @(negedge clk)

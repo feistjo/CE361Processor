@@ -76,10 +76,12 @@ module cpu(clk);
 	
 endmodule
 
+/*
 module read_0(dout);
 	output [31:0] dout;
 	assign dout = 31'b0;
 endmodule
+*/
 
 module mux_5(sel, src0, src1, z);
 	input sel;

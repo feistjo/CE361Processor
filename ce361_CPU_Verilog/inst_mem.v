@@ -1,5 +1,5 @@
-`include "branch_pc.v"
-`include "lib/sram.v"
+//`include "branch_pc.v"
+//`include "lib/sram.v"
 
 module fetch_inst(clk, imm16, steve, nPC_sel, inst);
    input clk;

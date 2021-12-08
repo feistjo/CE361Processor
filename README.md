@@ -7,5 +7,7 @@ Navigate to the main project folder (that has cpu.v)
 
 ##### Testbenches to Run: 
 <code> xrun -64bit -gui -access r cpu.v sort_corrected_branch_tb.v </code>
+<br />
 <code> xrun -64bit -gui -access r cpu.v unsigned_sum_tb.v </code>
+<br />
 <code> xrun -64bit -gui -access r cpu.v bills_branch_tb.v </code>

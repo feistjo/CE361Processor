@@ -13,7 +13,25 @@ module cpu(clk);
 	wire [31:0] Inst;
 	wire equal, sign, nPC_sel, RegWr, RegDst, ExtOp, ALUSrc, MemWr, MemToReg;
 	wire [15:0] Imm16;
-	fetch_inst instmem(.clk(clk), .imm16(Imm16), .nPC_sel(nPC_sel), .inst(Inst));
+
+	/* ~~~~~~~~~~ Implement Artificial Stalls ~~~~~~~~~~ */
+	//1 = yes, 0 = no
+	reg do_we_increment_the_pc = 1'b0; 
+	//Artificially insert x stalls 
+	integer counter_for_incrementing_the_pc = 4'h0; //integer tracking the current PC
+
+	always @(negedge(clk)) begin
+		if(counter_for_incrementing_the_pc >= 4'h5) begin
+			do_we_increment_the_pc <= 1'b1;
+			counter_for_incrementing_the_pc = 0;
+		end else begin 
+			do_we_increment_the_pc <= 1'b0;
+			counter_for_incrementing_the_pc = counter_for_incrementing_the_pc + 1;
+		end
+	end
+
+	fetch_inst instmem(.clk(clk), .imm16(Imm16), .nPC_sel(nPC_sel), .inst(Inst), .steve(do_we_increment_the_pc));
+	//".steve" is the port which passes if we should be incrementing the PC or stalling 
 	wire [2:0] ALUctr;
 	wire [4:0] Rs, Rt, Rd;
 	assign Rt = Inst[20:16];

@@ -19,24 +19,9 @@ module cpu(clk);
 	reg do_we_increment_the_pc = 1'b0; 
 	reg do_we_write_to_regs = 1'b0;
 	wire actual_RegWr;
-	or_gate fixregrw(.x(RegWr), .y(do_we_write_to_regs), .z(actual_RegWr));
+	or_gate fixregwr(.x(RegWr), .y(do_we_write_to_regs), .z(actual_RegWr));
 	//Artificially insert x stalls 
 	integer counter_for_incrementing_the_pc = 4'h0; //integer tracking the current PC
-
-	always @(negedge(clk)) begin
-		if(counter_for_incrementing_the_pc >= 4'h5) begin
-			do_we_increment_the_pc <= 1'b1;
-			counter_for_incrementing_the_pc = 0;
-		end else begin 
-			do_we_increment_the_pc <= 1'b0;
-			counter_for_incrementing_the_pc = counter_for_incrementing_the_pc + 1;
-		end
-		if(counter_for_incrementing_the_pc == 4'h4) begin
-			do_we_write_to_regs <= 1'b1;
-		end else begin
-			do_we_write_to_regs <= 1'b0;
-		end
-	end
 
 	fetch_inst instmem(.clk(clk), .imm16(Imm16), .nPC_sel(nPC_sel), .inst(Inst), .steve(do_we_increment_the_pc));
 	//".steve" is the port which passes if we should be incrementing the PC or stalling 
@@ -72,6 +57,22 @@ module cpu(clk);
 	d_mem datamem(.clk(clk), .data_in(busB), .data_out(DataOut), .adr(ALUout), .WrEn(MemWr));
 	
 	mux_32 datamux({31'b0, MemToReg}, ALUout, DataOut, busW);
+
+	always @(negedge(clk)) begin
+		if(counter_for_incrementing_the_pc >= 4'h5) begin
+			do_we_increment_the_pc <= 1'b1;
+			counter_for_incrementing_the_pc = 0;
+		end else begin 
+			do_we_increment_the_pc <= 1'b0;
+			counter_for_incrementing_the_pc = counter_for_incrementing_the_pc + 1;
+		end
+		if(counter_for_incrementing_the_pc == 4'h4) begin
+			do_we_write_to_regs <= 1'b1;
+		end else begin
+			do_we_write_to_regs <= 1'b0;
+		end
+	end
+	
 endmodule
 
 module read_0(dout);

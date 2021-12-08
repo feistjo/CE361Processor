@@ -3,9 +3,10 @@
 `include "extend.v"
 `include "lib/mux_32.v"
 
-module pc_clk(clk, nPC_sel, imm16, pc_fin, read_val);
+module pc_clk(clk, nPC_sel, imm16, steve, pc_fin, read_val);
    input clk;
    input nPC_sel;
+   input steve;
    input [15:0] imm16;
    output [31:0] pc_fin;
    output [31:0] read_val; // also for debug
@@ -20,6 +21,7 @@ module pc_clk(clk, nPC_sel, imm16, pc_fin, read_val);
    pc_register pc(.in(prev_pc),
 		  .clk(clk),
 		  .nPC_sel(nPC_sel),
+        .steve(steve),
 		  .imm16(imm16ext),
 		  .out(temp_pc));
 
@@ -48,9 +50,10 @@ module extender18(in, ext, out);
 endmodule // extender
 
 // register for the pc. if rw = 0 read, if rw = 1 write
-module pc_register(in, clk, nPC_sel, imm16, out);
+module pc_register(in, clk, nPC_sel, steve, imm16, out);
    input [31:0] in;
    input 	nPC_sel;
+   input    steve;
    input [31:0] imm16;
    input 	clk;
    output reg [31:0] out;
@@ -62,17 +65,23 @@ module pc_register(in, clk, nPC_sel, imm16, out);
    
    always @(negedge clk)
      begin
-        if (nPC_sel == 0) begin
-	   pc <= pc + 4;
-	   out <= pc + 4;
-	end
-	else begin
-	  if (nPC_sel == 1) begin
-	     pc <= pc + 4 + imm16;
-	     out <= pc + 4 + imm16;
-	  end	   
-	end
-     end // always @ (negedge clk)
+        if (steve) begin
+            if (nPC_sel == 0) begin
+	            pc <= pc + 4;
+	            out <= pc + 4;
+	         end
+	      else begin
+	         if (nPC_sel == 1) begin
+	            pc <= pc + 4 + imm16;
+	            out <= pc + 4 + imm16;
+	         end	 
+         end  
+	   end
+      else if (!steve)
+      begin
+         out <= pc;
+      end
+   end // always @ (negedge clk)
    
 endmodule // pc_register
 

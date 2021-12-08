@@ -16,7 +16,7 @@ module sort_corrected_branch_tb();
 	
 	initial
 		begin
-			#1000
+			#5000
 			$finish;
 	end
 endmodule
@@ -39,7 +39,7 @@ module unsigned_sum_tb();
 	
 	initial
 		begin
-			#1000
+			#5000
 			$finish;
 	end
 endmodule
@@ -62,7 +62,7 @@ module bills_branch_tb();
 	
 	initial
 		begin
-			#1000
+			#5000
 			$finish;
 	end
 endmodule
@@ -85,7 +85,7 @@ module one_stall_tb();
 	
 	initial
 		begin
-			#1000
+			#5000
 			$finish;
 	end
 endmodule

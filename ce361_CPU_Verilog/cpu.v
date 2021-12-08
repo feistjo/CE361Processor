@@ -26,7 +26,12 @@ module cpu(clk);
 	wire [2:0] IDALUctr, EXALUctr;
 	reg [2:0] IDEXALUctr = 3'b0;
 	assign EXALUctr = IDEXALUctr;
-	//
+	//Rt
+	wire [4:0] IDRt;
+	reg [4:0] IDEXRt = 5'b0; 
+	//Rd
+	wire [4:0] IDRd;
+	reg [4:0] IDEXRd = 5'b0;
 
 	/* ~~~~~~~~~~ pipeline control registers ~~~~~~~~~~ */
 	//ExtOp
@@ -92,8 +97,7 @@ module cpu(clk);
 
 	fetch_inst instmem(.clk(clk), .imm16(EXImm16), .nPC_sel(EXnPC_sel), .inst(IFInst), .steve(inc_pc)); //probably has to change
 	//Steve is an input that tells the instruction memory if it should increment the PC or not
-	wire [4:0] Rs, IDRt, IDRd;
-	reg [4:0] IDEXRt = 5'b0, IDEXRd = 5'b0;
+	wire [4:0] Rs;
 	assign IDRt = IDInst[20:16];
 	assign Rs = IDInst[25:21];
 	assign IDRd = IDInst[15:11];

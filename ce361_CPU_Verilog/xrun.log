@@ -1,11 +1,16 @@
 xrun(64): 18.09-s011: (c) Copyright 1995-2019 Cadence Design Systems, Inc.
+<<<<<<< HEAD
 TOOL:	xrun(64)	18.09-s011: Started on Dec 07, 2021 at 21:25:20 CST
+=======
+TOOL:	xrun(64)	18.09-s011: Started on Dec 07, 2021 at 23:40:19 CST
+>>>>>>> pipeline
 xrun
 	-64bit
 	-gui
 	-access r
 	cpu.v
 	cpu_tb.v
+<<<<<<< HEAD
 Recompiling... reason: unable to stat '/.//home/lcg3895/ce361/CE361SingleCycleProcessor/ce361_CPU_Verilog/ece361_alu_verilog/ALU.v'.
 file: cpu.v
         1'h2 : hex = 1;
@@ -192,10 +197,107 @@ xmvlog: *W,RECOME (cpu.v,445|15): recompiling design unit worklib.set_if_eq:v.
 	First compiled from line 34 of stall.v.
 	module worklib.set_if_eq:v
 		errors: 0, warnings: 1
+=======
+Recompiling... reason: file '/home/lcg3895/ce361/CE361SingleCycleProcessor/ce361_CPU_Verilog/cpu.v' is newer than expected.
+	expected: Mon Nov 15 17:42:33 2021
+	actual:   Tue Dec  7 21:32:26 2021
+file: cpu.v
+        1'h2 : hex = 1;
+           |
+xmvlog: *W,INTOVF (lib/syncram.v,45|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
+(`include file: lib/syncram.v line 45, `include file: d_mem.v line 2, file: cpu.v line 9)
+        1'h3 : hex = 1;
+           |
+xmvlog: *W,INTOVF (lib/syncram.v,46|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
+(`include file: lib/syncram.v line 46, `include file: d_mem.v line 2, file: cpu.v line 9)
+        1'h4 : hex = 1;
+           |
+xmvlog: *W,INTOVF (lib/syncram.v,47|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
+(`include file: lib/syncram.v line 47, `include file: d_mem.v line 2, file: cpu.v line 9)
+        1'h5 : hex = 1;
+           |
+xmvlog: *W,INTOVF (lib/syncram.v,48|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
+(`include file: lib/syncram.v line 48, `include file: d_mem.v line 2, file: cpu.v line 9)
+        1'h6 : hex = 1;
+           |
+xmvlog: *W,INTOVF (lib/syncram.v,49|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
+(`include file: lib/syncram.v line 49, `include file: d_mem.v line 2, file: cpu.v line 9)
+        1'h7 : hex = 1;
+           |
+xmvlog: *W,INTOVF (lib/syncram.v,50|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
+(`include file: lib/syncram.v line 50, `include file: d_mem.v line 2, file: cpu.v line 9)
+        1'h8 : hex = 1;
+           |
+xmvlog: *W,INTOVF (lib/syncram.v,51|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
+(`include file: lib/syncram.v line 51, `include file: d_mem.v line 2, file: cpu.v line 9)
+        1'h9 : hex = 1;
+           |
+xmvlog: *W,INTOVF (lib/syncram.v,52|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
+(`include file: lib/syncram.v line 52, `include file: d_mem.v line 2, file: cpu.v line 9)
+        1'ha : hex = 1;
+           |
+xmvlog: *W,INTOVF (lib/syncram.v,53|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
+(`include file: lib/syncram.v line 53, `include file: d_mem.v line 2, file: cpu.v line 9)
+        1'hb : hex = 1;
+           |
+xmvlog: *W,INTOVF (lib/syncram.v,54|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
+(`include file: lib/syncram.v line 54, `include file: d_mem.v line 2, file: cpu.v line 9)
+        1'hc : hex = 1;
+           |
+xmvlog: *W,INTOVF (lib/syncram.v,55|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
+(`include file: lib/syncram.v line 55, `include file: d_mem.v line 2, file: cpu.v line 9)
+        1'hd : hex = 1;
+           |
+xmvlog: *W,INTOVF (lib/syncram.v,56|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
+(`include file: lib/syncram.v line 56, `include file: d_mem.v line 2, file: cpu.v line 9)
+        1'he : hex = 1;
+           |
+xmvlog: *W,INTOVF (lib/syncram.v,57|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
+(`include file: lib/syncram.v line 57, `include file: d_mem.v line 2, file: cpu.v line 9)
+        1'hf : hex = 1;
+           |
+xmvlog: *W,INTOVF (lib/syncram.v,58|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
+(`include file: lib/syncram.v line 58, `include file: d_mem.v line 2, file: cpu.v line 9)
+        1'hA : hex = 1;
+           |
+xmvlog: *W,INTOVF (lib/syncram.v,59|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
+(`include file: lib/syncram.v line 59, `include file: d_mem.v line 2, file: cpu.v line 9)
+        1'hB : hex = 1;
+           |
+xmvlog: *W,INTOVF (lib/syncram.v,60|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
+(`include file: lib/syncram.v line 60, `include file: d_mem.v line 2, file: cpu.v line 9)
+        1'hC : hex = 1;
+           |
+xmvlog: *W,INTOVF (lib/syncram.v,61|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
+(`include file: lib/syncram.v line 61, `include file: d_mem.v line 2, file: cpu.v line 9)
+        1'hD : hex = 1;
+           |
+xmvlog: *W,INTOVF (lib/syncram.v,62|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
+(`include file: lib/syncram.v line 62, `include file: d_mem.v line 2, file: cpu.v line 9)
+        1'hE : hex = 1;
+           |
+xmvlog: *W,INTOVF (lib/syncram.v,63|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
+(`include file: lib/syncram.v line 63, `include file: d_mem.v line 2, file: cpu.v line 9)
+        1'hF : hex = 1;
+           |
+xmvlog: *W,INTOVF (lib/syncram.v,64|11): bit overflow during conversion from text [2.5(IEEE)] (1 bits).
+(`include file: lib/syncram.v line 64, `include file: d_mem.v line 2, file: cpu.v line 9)
+        initiate();
+                 |
+xmvlog: *W,TMTPAR (lib/syncram.v,172|17): A task enable with no arguments must not include an empty set of parentheses [10.2.2 (IEEE Std 1364-2005)].  The compiler has ignored the parentheses.  Use 'xmhelp xmvlog TMTPAR'  for further information.
+(`include file: lib/syncram.v line 172, `include file: d_mem.v line 2, file: cpu.v line 9)
+        checkRAM();
+                 |
+xmvlog: *W,TMTPAR (lib/syncram.v,177|17): A task enable with no arguments must not include an empty set of parentheses [10.2.2 (IEEE Std 1364-2005)].  The compiler has ignored the parentheses.  Use 'xmhelp xmvlog TMTPAR'  for further information.
+(`include file: lib/syncram.v line 177, `include file: d_mem.v line 2, file: cpu.v line 9)
+	module worklib.cpu:v
+		errors: 0, warnings: 0
+>>>>>>> pipeline
 		Caching library 'worklib' ....... Done
 	Elaborating the design hierarchy:
 		Caching library 'worklib' ....... Done
 	Top level design units:
+<<<<<<< HEAD
 		stall
 		pc_branch
 		read_0
@@ -205,6 +307,9 @@ xmvlog: *W,RECOME (cpu.v,445|15): recompiling design unit worklib.set_if_eq:v.
 		bills_branch_tb
 		nostalls_tb
 		onestall_tb
+=======
+		sort_corrected_branch_tb
+>>>>>>> pipeline
 xmelab: *W,DSEMEL: This SystemVerilog design will be simulated as per IEEE 1800-2009 SystemVerilog simulation semantics. Use -disable_sem2009 option for turning off SV 2009 simulation semantics.
 	d_mem datamem(.clk(clk), .data_in(busB), .data_out(DataOut), .adr(ALUout), .WrEn(MemMemWr));
 	                                     |
@@ -237,6 +342,12 @@ xmelab: *W,CUVMPW (./cpu.v,167|38): port sizes differ in port connection (1/32).
 	                                                            |
 xmelab: *W,CUVMPW (./cpu.v,169|61): port sizes differ in port connection (1/32).
 	Building instance overlay tables: .................... Done
+<<<<<<< HEAD
+=======
+	Generating native compiled code:
+		worklib.cpu:v <0x5f523be2>
+			streams:  12, words:  3611
+>>>>>>> pipeline
 	Building instance specific data structures.
 	d_mem datamem(.clk(clk), .data_in(busB), .data_out(DataOut), .adr(ALUout), .WrEn(MemMemWr));
 	                                     |
@@ -270,6 +381,7 @@ xmelab: *W,CSINFI (./cpu.v,167|38): implicit wire has no fanin (onestall_tb.cpu1
 xmelab: *W,CSINFI (./cpu.v,481|29): implicit wire has no fanin (onestall_tb.cpu1.br.sign).
 	Loading native compiled code:     .................... Done
 	Design hierarchy summary:
+<<<<<<< HEAD
 		                 Instances  Unique
 		Modules:             12796      47
 		Registers:            6051      88
@@ -281,12 +393,26 @@ xmelab: *W,CSINFI (./cpu.v,481|29): implicit wire has no fanin (onestall_tb.cpu1
 		Cont. assignments:     154      70
 		Pseudo assignments:    125      29
 	Writing initial simulation snapshot: worklib.stall:v
+=======
+		                Instances  Unique
+		Modules:             2545      38
+		Registers:           1182      56
+		Scalar wires:        2353       -
+		Expanded wires:      1305      56
+		Vectored wires:       123       -
+		Always blocks:       1135       9
+		Initial blocks:        20      20
+		Cont. assignments:     29      41
+		Pseudo assignments:    20      20
+	Writing initial simulation snapshot: worklib.sort_corrected_branch_tb:v
+>>>>>>> pipeline
 xmsim: *W,DSEM2009: This SystemVerilog design is simulated as per IEEE 1800-2009 SystemVerilog simulation semantics. Use -disable_sem2009 option for turning off SV 2009 simulation semantics.
 
 -------------------------------------
 Relinquished control to SimVision...
 xcelium> 
 xcelium> source /vol/cadence2018/XCELIUM1809/tools/xcelium/files/xmsimrc
+<<<<<<< HEAD
 xcelium> database -open waves -into waves.shm -default
 Created default SHM database waves
 xcelium> probe -create -shm unsigned_sum_tb.clk unsigned_sum_tb.cpu1.datareg.Ra unsigned_sum_tb.cpu1.datareg.Rb unsigned_sum_tb.cpu1.datareg.RegWr unsigned_sum_tb.cpu1.datareg.Rw unsigned_sum_tb.cpu1.datareg.busA unsigned_sum_tb.cpu1.datareg.busB unsigned_sum_tb.cpu1.datareg.busW unsigned_sum_tb.cpu1.datareg.clk unsigned_sum_tb.cpu1.datareg.decoder_out unsigned_sum_tb.cpu1.datareg.mem_in unsigned_sum_tb.cpu1.datareg.mem_out unsigned_sum_tb.cpu1.datareg.reg_wr_en
@@ -310,20 +436,59 @@ Addr is written: 00400034
 Data is written: 20c70001
 Addr is written: 00400038
 Data is written: 20080001
+=======
+xcelium> reset
+xmsim: *W,DSEM2009: This SystemVerilog design is simulated as per IEEE 1800-2009 SystemVerilog simulation semantics. Use -disable_sem2009 option for turning off SV 2009 simulation semantics.
+Loaded snapshot worklib.sort_corrected_branch_tb:v
+xcelium> run
+Now initializing sram
+Addr is written: 00400020
+Data is written: 20021000
+Addr is written: 00400024
+Data is written: 00421400
+Addr is written: 00400028
+Data is written: 20440024
+Addr is written: 0040002c
+Data is written: 20450028
+Addr is written: 00400030
+Data is written: 8c470000
+Addr is written: 00400034
+Data is written: 20430004
+Addr is written: 00400038
+Data is written: 8c610000
+Addr is written: 0040003c
+Data is written: 00e1302a
+Addr is written: 00400040
+Data is written: 1cc00003
+Addr is written: 00400044
+Data is written: ac410000
+Addr is written: 00400048
+Data is written: ac670000
+Addr is written: 0040004c
+Data is written: 00203820
+Addr is written: 00400050
+Data is written: 20630004
+Addr is written: 00400054
+Data is written: 1465fff8
+Addr is written: 00400058
+Data is written: 20420004
+Addr is written: 0040005c
+Data is written: 1444fff4
+>>>>>>> pipeline
 Addr is written: 10000000
-Data is written: 0000000a
-Addr is written: 10000004
 Data is written: 00000009
+Addr is written: 10000004
+Data is written: 0000000a
 Addr is written: 10000008
 Data is written: 00000008
 Addr is written: 1000000c
-Data is written: 000002bc
+Data is written: 00000007
 Addr is written: 10000010
 Data is written: 00000005
 Addr is written: 10000014
 Data is written: 00000006
 Addr is written: 10000018
-Data is written: 00000190
+Data is written: 00000004
 Addr is written: 1000001c
 Data is written: 00000001
 Addr is written: 10000020
@@ -331,6 +496,7 @@ Data is written: 00000002
 Addr is written: 10000024
 Data is written: 00000003
 Addr is checking: 00400020
+<<<<<<< HEAD
 Data is checking: 20020001
 Addr is checking: 00400024
 Data is checking: 20030001
@@ -344,20 +510,207 @@ Addr is checking: 00400034
 Data is checking: 20c70001
 Addr is checking: 00400038
 Data is checking: 20080001
+=======
+Data is checking: 20021000
+Addr is checking: 00400024
+Data is checking: 00421400
+Addr is checking: 00400028
+Data is checking: 20440024
+Addr is checking: 0040002c
+Data is checking: 20450028
+Addr is checking: 00400030
+Data is checking: 8c470000
+Addr is checking: 00400034
+Data is checking: 20430004
+Addr is checking: 00400038
+Data is checking: 8c610000
+Addr is checking: 0040003c
+Data is checking: 00e1302a
+Addr is checking: 00400040
+Data is checking: 1cc00003
+Addr is checking: 00400044
+Data is checking: ac410000
+Addr is checking: 00400048
+Data is checking: ac670000
+Addr is checking: 0040004c
+Data is checking: 00203820
+Addr is checking: 00400050
+Data is checking: 20630004
+Addr is checking: 00400054
+Data is checking: 1465fff8
+Addr is checking: 00400058
+Data is checking: 20420004
+Addr is checking: 0040005c
+Data is checking: 1444fff4
+>>>>>>> pipeline
 Addr is checking: 10000000
-Data is checking: 0000000a
-Addr is checking: 10000004
 Data is checking: 00000009
+Addr is checking: 10000004
+Data is checking: 0000000a
 Addr is checking: 10000008
 Data is checking: 00000008
 Addr is checking: 1000000c
-Data is checking: 000002bc
+Data is checking: 00000007
 Addr is checking: 10000010
 Data is checking: 00000005
 Addr is checking: 10000014
 Data is checking: 00000006
 Addr is checking: 10000018
-Data is checking: 00000190
+Data is checking: 00000004
+Addr is checking: 1000001c
+Data is checking: 00000001
+Addr is checking: 10000020
+Data is checking: 00000002
+Addr is checking: 10000024
+Data is checking: 00000003
+Addr is checking: xxxxxxxx
+Data is checking: xxxxxxxx
+Addr is checking: xxxxxxxx
+Data is checking: xxxxxxxx
+Addr is checking: xxxxxxxx
+Data is checking: xxxxxxxx
+Addr is checking: xxxxxxxx
+Data is checking: xxxxxxxx
+Addr is checking: xxxxxxxx
+Data is checking: xxxxxxxx
+Addr is checking: xxxxxxxx
+Data is checking: xxxxxxxx
+Addr is checking: xxxxxxxx
+Data is checking: xxxxxxxx
+Addr is checking: xxxxxxxx
+Data is checking: xxxxxxxx
+Addr is checking: xxxxxxxx
+Data is checking: xxxxxxxx
+Addr is checking: xxxxxxxx
+Data is checking: xxxxxxxx
+Addr is checking: xxxxxxxx
+Data is checking: xxxxxxxx
+Addr is checking: xxxxxxxx
+Data is checking: xxxxxxxx
+Addr is checking: xxxxxxxx
+Data is checking: xxxxxxxx
+Addr is checking: xxxxxxxx
+Data is checking: xxxxxxxx
+Addr is checking: xxxxxxxx
+Data is checking: xxxxxxxx
+Addr is checking: xxxxxxxx
+Data is checking: xxxxxxxx
+Addr is checking: xxxxxxxx
+Data is checking: xxxxxxxx
+Addr is checking: xxxxxxxx
+Data is checking: xxxxxxxx
+Addr is checking: xxxxxxxx
+Data is checking: xxxxxxxx
+Addr is checking: xxxxxxxx
+Data is checking: xxxxxxxx
+Addr is checking: xxxxxxxx
+Data is checking: xxxxxxxx
+Addr is checking: xxxxxxxx
+Data is checking: xxxxxxxx
+Addr is checking: xxxxxxxx
+Data is checking: xxxxxxxx
+Writing to dout:          x
+READ Addr FOUND!: 00400020
+Writing to dout:  537006080
+Now initializing sram
+Addr is written: 00400020
+Data is written: 20021000
+Addr is written: 00400024
+Data is written: 00421400
+Addr is written: 00400028
+Data is written: 20440024
+Addr is written: 0040002c
+Data is written: 20450028
+Addr is written: 00400030
+Data is written: 8c470000
+Addr is written: 00400034
+Data is written: 20430004
+Addr is written: 00400038
+Data is written: 8c610000
+Addr is written: 0040003c
+Data is written: 00e1302a
+Addr is written: 00400040
+Data is written: 1cc00003
+Addr is written: 00400044
+Data is written: ac410000
+Addr is written: 00400048
+Data is written: ac670000
+Addr is written: 0040004c
+Data is written: 00203820
+Addr is written: 00400050
+Data is written: 20630004
+Addr is written: 00400054
+Data is written: 1465fff8
+Addr is written: 00400058
+Data is written: 20420004
+Addr is written: 0040005c
+Data is written: 1444fff4
+Addr is written: 10000000
+Data is written: 00000009
+Addr is written: 10000004
+Data is written: 0000000a
+Addr is written: 10000008
+Data is written: 00000008
+Addr is written: 1000000c
+Data is written: 00000007
+Addr is written: 10000010
+Data is written: 00000005
+Addr is written: 10000014
+Data is written: 00000006
+Addr is written: 10000018
+Data is written: 00000004
+Addr is written: 1000001c
+Data is written: 00000001
+Addr is written: 10000020
+Data is written: 00000002
+Addr is written: 10000024
+Data is written: 00000003
+Addr is checking: 00400020
+Data is checking: 20021000
+Addr is checking: 00400024
+Data is checking: 00421400
+Addr is checking: 00400028
+Data is checking: 20440024
+Addr is checking: 0040002c
+Data is checking: 20450028
+Addr is checking: 00400030
+Data is checking: 8c470000
+Addr is checking: 00400034
+Data is checking: 20430004
+Addr is checking: 00400038
+Data is checking: 8c610000
+Addr is checking: 0040003c
+Data is checking: 00e1302a
+Addr is checking: 00400040
+Data is checking: 1cc00003
+Addr is checking: 00400044
+Data is checking: ac410000
+Addr is checking: 00400048
+Data is checking: ac670000
+Addr is checking: 0040004c
+Data is checking: 00203820
+Addr is checking: 00400050
+Data is checking: 20630004
+Addr is checking: 00400054
+Data is checking: 1465fff8
+Addr is checking: 00400058
+Data is checking: 20420004
+Addr is checking: 0040005c
+Data is checking: 1444fff4
+Addr is checking: 10000000
+Data is checking: 00000009
+Addr is checking: 10000004
+Data is checking: 0000000a
+Addr is checking: 10000008
+Data is checking: 00000008
+Addr is checking: 1000000c
+Data is checking: 00000007
+Addr is checking: 10000010
+Data is checking: 00000005
+Addr is checking: 10000014
+Data is checking: 00000006
+Addr is checking: 10000018
+Data is checking: 00000004
 Addr is checking: 1000001c
 Data is checking: 00000001
 Addr is checking: 10000020
@@ -422,13 +775,8 @@ Addr is checking: xxxxxxxx
 Data is checking: xxxxxxxx
 Addr is checking: xxxxxxxx
 Data is checking: xxxxxxxx
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
-Addr is checking: xxxxxxxx
-Data is checking: xxxxxxxx
 Writing to dout:          x
+<<<<<<< HEAD
 Now initializing sram
 Addr is written: 00400020
 Data is written: 20020001
@@ -4443,3 +4791,1001 @@ Simulation complete via $finish(1) at time 1 US + 0
 xcelium> ^C
 xcelium> exit
 TOOL:	xrun(64)	18.09-s011: Exiting on Dec 07, 2021 at 21:25:49 CST  (total: 00:00:29)
+=======
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+Writing to dout:          x
+READ Addr FOUND!: 00400024
+Writing to dout:    4330496
+READ Addr FOUND!: 10000000
+Writing to dout:          9
+READ Addr FOUND!: 10000000
+Writing to dout:          9
+READ Addr FOUND!: 10000000
+Writing to dout:          9
+READ Addr FOUND!: 10000000
+Writing to dout:          9
+Writing to dout:          9
+Writing to dout:          9
+READ Addr FOUND!: 00400028
+Writing to dout:  541327396
+READ Addr FOUND!: 10000024
+Writing to dout:          3
+READ Addr FOUND!: 10000024
+Writing to dout:          3
+READ Addr FOUND!: 10000024
+Writing to dout:          3
+READ Addr FOUND!: 10000024
+Writing to dout:          3
+READ Addr FOUND!: 10000024
+Writing to dout:          3
+READ Addr FOUND!: 10000024
+Writing to dout:          3
+READ Addr FOUND!: 0040002c
+Writing to dout:  541392936
+Writing to dout:          3
+Writing to dout:          3
+Writing to dout:          3
+Writing to dout:          3
+Writing to dout:          3
+Writing to dout:          3
+READ Addr FOUND!: 00400030
+Writing to dout: 2353463296
+READ Addr FOUND!: 10000000
+Writing to dout:          9
+READ Addr FOUND!: 10000000
+Writing to dout:          9
+READ Addr FOUND!: 10000000
+Writing to dout:          9
+READ Addr FOUND!: 10000000
+Writing to dout:          9
+READ Addr FOUND!: 10000000
+Writing to dout:          9
+READ Addr FOUND!: 10000000
+Writing to dout:          9
+READ Addr FOUND!: 00400034
+Writing to dout:  541261828
+READ Addr FOUND!: 10000004
+Writing to dout:         10
+READ Addr FOUND!: 10000004
+Writing to dout:         10
+READ Addr FOUND!: 10000004
+Writing to dout:         10
+READ Addr FOUND!: 10000004
+Writing to dout:         10
+READ Addr FOUND!: 10000004
+Writing to dout:         10
+READ Addr FOUND!: 10000004
+Writing to dout:         10
+READ Addr FOUND!: 00400038
+Writing to dout: 2355167232
+READ Addr FOUND!: 10000004
+Writing to dout:         10
+READ Addr FOUND!: 10000004
+Writing to dout:         10
+READ Addr FOUND!: 10000004
+Writing to dout:         10
+READ Addr FOUND!: 10000004
+Writing to dout:         10
+READ Addr FOUND!: 10000004
+Writing to dout:         10
+READ Addr FOUND!: 10000004
+Writing to dout:         10
+READ Addr FOUND!: 0040003c
+Writing to dout:   14757930
+Writing to dout:         10
+Writing to dout:         10
+Writing to dout:         10
+Writing to dout:         10
+Writing to dout:         10
+Writing to dout:         10
+READ Addr FOUND!: 00400040
+Writing to dout:  482344963
+Writing to dout:         10
+Writing to dout:         10
+Writing to dout:         10
+Writing to dout:         10
+Writing to dout:         10
+Writing to dout:         10
+READ Addr FOUND!: 00400050
+Writing to dout:  543358980
+READ Addr FOUND!: 10000008
+Writing to dout:          8
+READ Addr FOUND!: 10000008
+Writing to dout:          8
+READ Addr FOUND!: 10000008
+Writing to dout:          8
+READ Addr FOUND!: 10000008
+Writing to dout:          8
+READ Addr FOUND!: 1000000c
+Writing to dout:          7
+READ Addr FOUND!: 1000000c
+Writing to dout:          7
+READ Addr FOUND!: 00400054
+Writing to dout:  342228984
+Writing to dout:          7
+Writing to dout:          7
+Writing to dout:          7
+Writing to dout:          7
+Writing to dout:          7
+Writing to dout:          7
+READ Addr FOUND!: 00400038
+Writing to dout: 2355167232
+READ Addr FOUND!: 10000008
+Writing to dout:          8
+READ Addr FOUND!: 10000008
+Writing to dout:          8
+READ Addr FOUND!: 10000008
+Writing to dout:          8
+READ Addr FOUND!: 10000008
+Writing to dout:          8
+READ Addr FOUND!: 10000008
+Writing to dout:          8
+READ Addr FOUND!: 10000008
+Writing to dout:          8
+READ Addr FOUND!: 0040003c
+Writing to dout:   14757930
+Writing to dout:          8
+Writing to dout:          8
+Writing to dout:          8
+Writing to dout:          8
+Writing to dout:          8
+Writing to dout:          8
+READ Addr FOUND!: 00400040
+Writing to dout:  482344963
+Writing to dout:          8
+Writing to dout:          8
+Writing to dout:          8
+Writing to dout:          8
+Writing to dout:          8
+Writing to dout:          8
+READ Addr FOUND!: 00400044
+Writing to dout: 2889940992
+WRITE Addr FOUND!: 10000000
+READ Addr FOUND!: 10000000
+Writing to dout:          8
+WRITE Addr FOUND!: 10000000
+READ Addr FOUND!: 10000000
+Writing to dout:          8
+WRITE Addr FOUND!: 10000000
+READ Addr FOUND!: 10000000
+Writing to dout:          8
+WRITE Addr FOUND!: 10000000
+READ Addr FOUND!: 10000000
+Writing to dout:          8
+WRITE Addr FOUND!: 10000000
+READ Addr FOUND!: 10000000
+Writing to dout:          8
+WRITE Addr FOUND!: 10000000
+READ Addr FOUND!: 10000000
+Writing to dout:          8
+READ Addr FOUND!: 00400048
+Writing to dout: 2892431360
+WRITE Addr FOUND!: 10000008
+READ Addr FOUND!: 10000008
+Writing to dout:          9
+WRITE Addr FOUND!: 10000008
+READ Addr FOUND!: 10000008
+Writing to dout:          9
+WRITE Addr FOUND!: 10000008
+READ Addr FOUND!: 10000008
+Writing to dout:          9
+WRITE Addr FOUND!: 10000008
+READ Addr FOUND!: 10000008
+Writing to dout:          9
+WRITE Addr FOUND!: 10000008
+READ Addr FOUND!: 10000008
+Writing to dout:          9
+WRITE Addr FOUND!: 10000008
+READ Addr FOUND!: 10000008
+Writing to dout:          9
+READ Addr FOUND!: 0040004c
+Writing to dout:    2111520
+Writing to dout:          9
+Writing to dout:          9
+Writing to dout:          9
+Writing to dout:          9
+Writing to dout:          9
+Writing to dout:          9
+READ Addr FOUND!: 00400050
+Writing to dout:  543358980
+READ Addr FOUND!: 1000000c
+Writing to dout:          7
+READ Addr FOUND!: 1000000c
+Writing to dout:          7
+READ Addr FOUND!: 1000000c
+Writing to dout:          7
+READ Addr FOUND!: 1000000c
+Writing to dout:          7
+READ Addr FOUND!: 10000010
+Writing to dout:          5
+READ Addr FOUND!: 10000010
+Writing to dout:          5
+READ Addr FOUND!: 00400054
+Writing to dout:  342228984
+Writing to dout:          5
+Writing to dout:          5
+Writing to dout:          5
+Writing to dout:          5
+Writing to dout:          5
+Writing to dout:          5
+READ Addr FOUND!: 00400038
+Writing to dout: 2355167232
+READ Addr FOUND!: 1000000c
+Writing to dout:          7
+READ Addr FOUND!: 1000000c
+Writing to dout:          7
+READ Addr FOUND!: 1000000c
+Writing to dout:          7
+READ Addr FOUND!: 1000000c
+Writing to dout:          7
+READ Addr FOUND!: 1000000c
+Writing to dout:          7
+READ Addr FOUND!: 1000000c
+Writing to dout:          7
+READ Addr FOUND!: 0040003c
+Writing to dout:   14757930
+Writing to dout:          7
+Writing to dout:          7
+Writing to dout:          7
+Writing to dout:          7
+Writing to dout:          7
+Writing to dout:          7
+READ Addr FOUND!: 00400040
+Writing to dout:  482344963
+Writing to dout:          7
+Writing to dout:          7
+Writing to dout:          7
+Writing to dout:          7
+Writing to dout:          7
+Writing to dout:          7
+READ Addr FOUND!: 00400044
+Writing to dout: 2889940992
+WRITE Addr FOUND!: 10000000
+READ Addr FOUND!: 10000000
+Writing to dout:          7
+WRITE Addr FOUND!: 10000000
+READ Addr FOUND!: 10000000
+Writing to dout:          7
+WRITE Addr FOUND!: 10000000
+READ Addr FOUND!: 10000000
+Writing to dout:          7
+WRITE Addr FOUND!: 10000000
+READ Addr FOUND!: 10000000
+Writing to dout:          7
+WRITE Addr FOUND!: 10000000
+READ Addr FOUND!: 10000000
+Writing to dout:          7
+WRITE Addr FOUND!: 10000000
+READ Addr FOUND!: 10000000
+Writing to dout:          7
+READ Addr FOUND!: 00400048
+Writing to dout: 2892431360
+WRITE Addr FOUND!: 1000000c
+READ Addr FOUND!: 1000000c
+Writing to dout:          8
+WRITE Addr FOUND!: 1000000c
+READ Addr FOUND!: 1000000c
+Writing to dout:          8
+WRITE Addr FOUND!: 1000000c
+READ Addr FOUND!: 1000000c
+Writing to dout:          8
+WRITE Addr FOUND!: 1000000c
+READ Addr FOUND!: 1000000c
+Writing to dout:          8
+WRITE Addr FOUND!: 1000000c
+READ Addr FOUND!: 1000000c
+Writing to dout:          8
+WRITE Addr FOUND!: 1000000c
+READ Addr FOUND!: 1000000c
+Writing to dout:          8
+READ Addr FOUND!: 0040004c
+Writing to dout:    2111520
+Writing to dout:          8
+Writing to dout:          8
+Writing to dout:          8
+Writing to dout:          8
+Writing to dout:          8
+Writing to dout:          8
+READ Addr FOUND!: 00400050
+Writing to dout:  543358980
+READ Addr FOUND!: 10000010
+Writing to dout:          5
+READ Addr FOUND!: 10000010
+Writing to dout:          5
+READ Addr FOUND!: 10000010
+Writing to dout:          5
+READ Addr FOUND!: 10000010
+Writing to dout:          5
+READ Addr FOUND!: 10000014
+Writing to dout:          6
+READ Addr FOUND!: 10000014
+Writing to dout:          6
+READ Addr FOUND!: 00400054
+Writing to dout:  342228984
+Writing to dout:          6
+Writing to dout:          6
+Writing to dout:          6
+Writing to dout:          6
+Writing to dout:          6
+Writing to dout:          6
+READ Addr FOUND!: 00400038
+Writing to dout: 2355167232
+READ Addr FOUND!: 10000010
+Writing to dout:          5
+READ Addr FOUND!: 10000010
+Writing to dout:          5
+READ Addr FOUND!: 10000010
+Writing to dout:          5
+READ Addr FOUND!: 10000010
+Writing to dout:          5
+READ Addr FOUND!: 10000010
+Writing to dout:          5
+READ Addr FOUND!: 10000010
+Writing to dout:          5
+READ Addr FOUND!: 0040003c
+Writing to dout:   14757930
+Writing to dout:          5
+Writing to dout:          5
+Writing to dout:          5
+Writing to dout:          5
+Writing to dout:          5
+Writing to dout:          5
+READ Addr FOUND!: 00400040
+Writing to dout:  482344963
+Writing to dout:          5
+Writing to dout:          5
+Writing to dout:          5
+Writing to dout:          5
+Writing to dout:          5
+Writing to dout:          5
+READ Addr FOUND!: 00400044
+Writing to dout: 2889940992
+WRITE Addr FOUND!: 10000000
+READ Addr FOUND!: 10000000
+Writing to dout:          5
+WRITE Addr FOUND!: 10000000
+READ Addr FOUND!: 10000000
+Writing to dout:          5
+WRITE Addr FOUND!: 10000000
+READ Addr FOUND!: 10000000
+Writing to dout:          5
+WRITE Addr FOUND!: 10000000
+READ Addr FOUND!: 10000000
+Writing to dout:          5
+WRITE Addr FOUND!: 10000000
+READ Addr FOUND!: 10000000
+Writing to dout:          5
+WRITE Addr FOUND!: 10000000
+READ Addr FOUND!: 10000000
+Writing to dout:          5
+READ Addr FOUND!: 00400048
+Writing to dout: 2892431360
+WRITE Addr FOUND!: 10000010
+READ Addr FOUND!: 10000010
+Writing to dout:          7
+WRITE Addr FOUND!: 10000010
+READ Addr FOUND!: 10000010
+Writing to dout:          7
+WRITE Addr FOUND!: 10000010
+READ Addr FOUND!: 10000010
+Writing to dout:          7
+WRITE Addr FOUND!: 10000010
+READ Addr FOUND!: 10000010
+Writing to dout:          7
+WRITE Addr FOUND!: 10000010
+READ Addr FOUND!: 10000010
+Writing to dout:          7
+WRITE Addr FOUND!: 10000010
+READ Addr FOUND!: 10000010
+Writing to dout:          7
+READ Addr FOUND!: 0040004c
+Writing to dout:    2111520
+Writing to dout:          7
+Writing to dout:          7
+Writing to dout:          7
+Writing to dout:          7
+Writing to dout:          7
+Writing to dout:          7
+READ Addr FOUND!: 00400050
+Writing to dout:  543358980
+READ Addr FOUND!: 10000014
+Writing to dout:          6
+READ Addr FOUND!: 10000014
+Writing to dout:          6
+READ Addr FOUND!: 10000014
+Writing to dout:          6
+READ Addr FOUND!: 10000014
+Writing to dout:          6
+READ Addr FOUND!: 10000018
+Writing to dout:          4
+READ Addr FOUND!: 10000018
+Writing to dout:          4
+READ Addr FOUND!: 00400054
+Writing to dout:  342228984
+Writing to dout:          4
+Writing to dout:          4
+Writing to dout:          4
+Writing to dout:          4
+Writing to dout:          4
+Writing to dout:          4
+READ Addr FOUND!: 00400038
+Writing to dout: 2355167232
+READ Addr FOUND!: 10000014
+Writing to dout:          6
+READ Addr FOUND!: 10000014
+Writing to dout:          6
+READ Addr FOUND!: 10000014
+Writing to dout:          6
+READ Addr FOUND!: 10000014
+Writing to dout:          6
+READ Addr FOUND!: 10000014
+Writing to dout:          6
+READ Addr FOUND!: 10000014
+Writing to dout:          6
+READ Addr FOUND!: 0040003c
+Writing to dout:   14757930
+Writing to dout:          6
+Writing to dout:          6
+Writing to dout:          6
+Writing to dout:          6
+Writing to dout:          6
+Writing to dout:          6
+READ Addr FOUND!: 00400040
+Writing to dout:  482344963
+Writing to dout:          6
+Writing to dout:          6
+Writing to dout:          6
+Writing to dout:          6
+Writing to dout:          6
+Writing to dout:          6
+READ Addr FOUND!: 00400050
+Writing to dout:  543358980
+READ Addr FOUND!: 10000018
+Writing to dout:          4
+READ Addr FOUND!: 10000018
+Writing to dout:          4
+READ Addr FOUND!: 10000018
+Writing to dout:          4
+READ Addr FOUND!: 10000018
+Writing to dout:          4
+READ Addr FOUND!: 1000001c
+Writing to dout:          1
+READ Addr FOUND!: 1000001c
+Writing to dout:          1
+READ Addr FOUND!: 00400054
+Writing to dout:  342228984
+Writing to dout:          1
+Writing to dout:          1
+Writing to dout:          1
+Writing to dout:          1
+Writing to dout:          1
+Writing to dout:          1
+READ Addr FOUND!: 00400038
+Writing to dout: 2355167232
+READ Addr FOUND!: 10000018
+Writing to dout:          4
+READ Addr FOUND!: 10000018
+Writing to dout:          4
+READ Addr FOUND!: 10000018
+Writing to dout:          4
+READ Addr FOUND!: 10000018
+Writing to dout:          4
+READ Addr FOUND!: 10000018
+Writing to dout:          4
+READ Addr FOUND!: 10000018
+Writing to dout:          4
+READ Addr FOUND!: 0040003c
+Writing to dout:   14757930
+Writing to dout:          4
+Writing to dout:          4
+Writing to dout:          4
+Writing to dout:          4
+Writing to dout:          4
+Writing to dout:          4
+READ Addr FOUND!: 00400040
+Writing to dout:  482344963
+Writing to dout:          4
+Writing to dout:          4
+Writing to dout:          4
+Writing to dout:          4
+Writing to dout:          4
+Writing to dout:          4
+READ Addr FOUND!: 00400044
+Writing to dout: 2889940992
+WRITE Addr FOUND!: 10000000
+READ Addr FOUND!: 10000000
+Writing to dout:          4
+WRITE Addr FOUND!: 10000000
+READ Addr FOUND!: 10000000
+Writing to dout:          4
+WRITE Addr FOUND!: 10000000
+READ Addr FOUND!: 10000000
+Writing to dout:          4
+WRITE Addr FOUND!: 10000000
+READ Addr FOUND!: 10000000
+Writing to dout:          4
+WRITE Addr FOUND!: 10000000
+READ Addr FOUND!: 10000000
+Writing to dout:          4
+WRITE Addr FOUND!: 10000000
+READ Addr FOUND!: 10000000
+Writing to dout:          4
+READ Addr FOUND!: 00400048
+Writing to dout: 2892431360
+WRITE Addr FOUND!: 10000018
+READ Addr FOUND!: 10000018
+Writing to dout:          5
+WRITE Addr FOUND!: 10000018
+READ Addr FOUND!: 10000018
+Writing to dout:          5
+WRITE Addr FOUND!: 10000018
+READ Addr FOUND!: 10000018
+Writing to dout:          5
+WRITE Addr FOUND!: 10000018
+READ Addr FOUND!: 10000018
+Writing to dout:          5
+WRITE Addr FOUND!: 10000018
+READ Addr FOUND!: 10000018
+Writing to dout:          5
+WRITE Addr FOUND!: 10000018
+READ Addr FOUND!: 10000018
+Writing to dout:          5
+READ Addr FOUND!: 0040004c
+Writing to dout:    2111520
+Writing to dout:          5
+Writing to dout:          5
+Writing to dout:          5
+Writing to dout:          5
+Writing to dout:          5
+Writing to dout:          5
+READ Addr FOUND!: 00400050
+Writing to dout:  543358980
+READ Addr FOUND!: 1000001c
+Writing to dout:          1
+READ Addr FOUND!: 1000001c
+Writing to dout:          1
+READ Addr FOUND!: 1000001c
+Writing to dout:          1
+READ Addr FOUND!: 1000001c
+Writing to dout:          1
+READ Addr FOUND!: 10000020
+Writing to dout:          2
+READ Addr FOUND!: 10000020
+Writing to dout:          2
+READ Addr FOUND!: 00400054
+Writing to dout:  342228984
+Writing to dout:          2
+Writing to dout:          2
+Writing to dout:          2
+Writing to dout:          2
+Writing to dout:          2
+Writing to dout:          2
+READ Addr FOUND!: 00400038
+Writing to dout: 2355167232
+READ Addr FOUND!: 1000001c
+Writing to dout:          1
+READ Addr FOUND!: 1000001c
+Writing to dout:          1
+READ Addr FOUND!: 1000001c
+Writing to dout:          1
+READ Addr FOUND!: 1000001c
+Writing to dout:          1
+READ Addr FOUND!: 1000001c
+Writing to dout:          1
+READ Addr FOUND!: 1000001c
+Writing to dout:          1
+READ Addr FOUND!: 0040003c
+Writing to dout:   14757930
+Writing to dout:          1
+Writing to dout:          1
+Writing to dout:          1
+Writing to dout:          1
+Writing to dout:          1
+Writing to dout:          1
+READ Addr FOUND!: 00400040
+Writing to dout:  482344963
+Writing to dout:          1
+Writing to dout:          1
+Writing to dout:          1
+Writing to dout:          1
+Writing to dout:          1
+Writing to dout:          1
+READ Addr FOUND!: 00400044
+Writing to dout: 2889940992
+WRITE Addr FOUND!: 10000000
+READ Addr FOUND!: 10000000
+Writing to dout:          1
+WRITE Addr FOUND!: 10000000
+READ Addr FOUND!: 10000000
+Writing to dout:          1
+WRITE Addr FOUND!: 10000000
+READ Addr FOUND!: 10000000
+Writing to dout:          1
+WRITE Addr FOUND!: 10000000
+READ Addr FOUND!: 10000000
+Writing to dout:          1
+WRITE Addr FOUND!: 10000000
+READ Addr FOUND!: 10000000
+Writing to dout:          1
+WRITE Addr FOUND!: 10000000
+READ Addr FOUND!: 10000000
+Writing to dout:          1
+READ Addr FOUND!: 00400048
+Writing to dout: 2892431360
+WRITE Addr FOUND!: 1000001c
+READ Addr FOUND!: 1000001c
+Writing to dout:          4
+WRITE Addr FOUND!: 1000001c
+READ Addr FOUND!: 1000001c
+Writing to dout:          4
+WRITE Addr FOUND!: 1000001c
+READ Addr FOUND!: 1000001c
+Writing to dout:          4
+WRITE Addr FOUND!: 1000001c
+READ Addr FOUND!: 1000001c
+Writing to dout:          4
+WRITE Addr FOUND!: 1000001c
+READ Addr FOUND!: 1000001c
+Writing to dout:          4
+WRITE Addr FOUND!: 1000001c
+READ Addr FOUND!: 1000001c
+Writing to dout:          4
+READ Addr FOUND!: 0040004c
+Writing to dout:    2111520
+Writing to dout:          4
+Writing to dout:          4
+Writing to dout:          4
+Writing to dout:          4
+Writing to dout:          4
+Writing to dout:          4
+READ Addr FOUND!: 00400050
+Writing to dout:  543358980
+READ Addr FOUND!: 10000020
+Writing to dout:          2
+READ Addr FOUND!: 10000020
+Writing to dout:          2
+READ Addr FOUND!: 10000020
+Writing to dout:          2
+READ Addr FOUND!: 10000020
+Writing to dout:          2
+READ Addr FOUND!: 10000024
+Writing to dout:          3
+READ Addr FOUND!: 10000024
+Writing to dout:          3
+READ Addr FOUND!: 00400054
+Writing to dout:  342228984
+Writing to dout:          3
+Writing to dout:          3
+Writing to dout:          3
+Writing to dout:          3
+Writing to dout:          3
+Writing to dout:          3
+READ Addr FOUND!: 00400038
+Writing to dout: 2355167232
+READ Addr FOUND!: 10000020
+Writing to dout:          2
+READ Addr FOUND!: 10000020
+Writing to dout:          2
+READ Addr FOUND!: 10000020
+Writing to dout:          2
+READ Addr FOUND!: 10000020
+Writing to dout:          2
+READ Addr FOUND!: 10000020
+Writing to dout:          2
+READ Addr FOUND!: 10000020
+Writing to dout:          2
+READ Addr FOUND!: 0040003c
+Writing to dout:   14757930
+Writing to dout:          2
+Writing to dout:          2
+Writing to dout:          2
+Writing to dout:          2
+Writing to dout:          2
+Writing to dout:          2
+READ Addr FOUND!: 00400040
+Writing to dout:  482344963
+Writing to dout:          2
+Writing to dout:          2
+Writing to dout:          2
+Writing to dout:          2
+Writing to dout:          2
+Writing to dout:          2
+READ Addr FOUND!: 00400050
+Writing to dout:  543358980
+READ Addr FOUND!: 10000024
+Writing to dout:          3
+READ Addr FOUND!: 10000024
+Writing to dout:          3
+READ Addr FOUND!: 10000024
+Writing to dout:          3
+READ Addr FOUND!: 10000024
+Writing to dout:          3
+Writing to dout:          3
+Writing to dout:          3
+READ Addr FOUND!: 00400054
+Writing to dout:  342228984
+Writing to dout:          3
+Writing to dout:          3
+Writing to dout:          3
+Writing to dout:          3
+Writing to dout:          3
+Writing to dout:          3
+READ Addr FOUND!: 00400038
+Writing to dout: 2355167232
+READ Addr FOUND!: 10000024
+Writing to dout:          3
+READ Addr FOUND!: 10000024
+Writing to dout:          3
+READ Addr FOUND!: 10000024
+Writing to dout:          3
+READ Addr FOUND!: 10000024
+Writing to dout:          3
+READ Addr FOUND!: 10000024
+Writing to dout:          3
+READ Addr FOUND!: 10000024
+Writing to dout:          3
+READ Addr FOUND!: 0040003c
+Writing to dout:   14757930
+Writing to dout:          3
+Writing to dout:          3
+Writing to dout:          3
+Writing to dout:          3
+Writing to dout:          3
+Writing to dout:          3
+READ Addr FOUND!: 00400040
+Writing to dout:  482344963
+Writing to dout:          3
+Writing to dout:          3
+Writing to dout:          3
+Writing to dout:          3
+Writing to dout:          3
+Writing to dout:          3
+READ Addr FOUND!: 00400050
+Writing to dout:  543358980
+Writing to dout:          3
+Writing to dout:          3
+Writing to dout:          3
+Writing to dout:          3
+Writing to dout:          3
+Writing to dout:          3
+READ Addr FOUND!: 00400054
+Writing to dout:  342228984
+Writing to dout:          3
+Writing to dout:          3
+Writing to dout:          3
+Writing to dout:          3
+Writing to dout:          3
+Writing to dout:          3
+READ Addr FOUND!: 00400058
+Writing to dout:  541196292
+READ Addr FOUND!: 10000004
+Writing to dout:         10
+READ Addr FOUND!: 10000004
+Writing to dout:         10
+READ Addr FOUND!: 10000004
+Writing to dout:         10
+READ Addr FOUND!: 10000004
+Writing to dout:         10
+READ Addr FOUND!: 10000008
+Writing to dout:          9
+READ Addr FOUND!: 10000008
+Writing to dout:          9
+READ Addr FOUND!: 0040005c
+Writing to dout:  340066292
+Writing to dout:          9
+Writing to dout:          9
+Writing to dout:          9
+Writing to dout:          9
+Writing to dout:          9
+Writing to dout:          9
+READ Addr FOUND!: 00400030
+Writing to dout: 2353463296
+READ Addr FOUND!: 10000004
+Writing to dout:         10
+READ Addr FOUND!: 10000004
+Writing to dout:         10
+READ Addr FOUND!: 10000004
+Writing to dout:         10
+READ Addr FOUND!: 10000004
+Writing to dout:         10
+READ Addr FOUND!: 10000004
+Writing to dout:         10
+READ Addr FOUND!: 10000004
+Writing to dout:         10
+READ Addr FOUND!: 00400034
+Writing to dout:  541261828
+READ Addr FOUND!: 10000008
+Writing to dout:          9
+READ Addr FOUND!: 10000008
+Writing to dout:          9
+READ Addr FOUND!: 10000008
+Writing to dout:          9
+READ Addr FOUND!: 10000008
+Writing to dout:          9
+READ Addr FOUND!: 10000008
+Writing to dout:          9
+READ Addr FOUND!: 10000008
+Writing to dout:          9
+READ Addr FOUND!: 00400038
+Writing to dout: 2355167232
+READ Addr FOUND!: 10000008
+Writing to dout:          9
+READ Addr FOUND!: 10000008
+Writing to dout:          9
+READ Addr FOUND!: 10000008
+Writing to dout:          9
+READ Addr FOUND!: 10000008
+Writing to dout:          9
+READ Addr FOUND!: 10000008
+Writing to dout:          9
+READ Addr FOUND!: 10000008
+Writing to dout:          9
+READ Addr FOUND!: 0040003c
+Writing to dout:   14757930
+Writing to dout:          9
+Writing to dout:          9
+Writing to dout:          9
+Writing to dout:          9
+Writing to dout:          9
+Writing to dout:          9
+READ Addr FOUND!: 00400040
+Writing to dout:  482344963
+Writing to dout:          9
+Writing to dout:          9
+Writing to dout:          9
+Writing to dout:          9
+Writing to dout:          9
+Writing to dout:          9
+READ Addr FOUND!: 00400044
+Writing to dout: 2889940992
+WRITE Addr FOUND!: 10000004
+READ Addr FOUND!: 10000004
+Writing to dout:          9
+WRITE Addr FOUND!: 10000004
+READ Addr FOUND!: 10000004
+Writing to dout:          9
+WRITE Addr FOUND!: 10000004
+READ Addr FOUND!: 10000004
+Writing to dout:          9
+WRITE Addr FOUND!: 10000004
+READ Addr FOUND!: 10000004
+Writing to dout:          9
+WRITE Addr FOUND!: 10000004
+READ Addr FOUND!: 10000004
+Writing to dout:          9
+WRITE Addr FOUND!: 10000004
+READ Addr FOUND!: 10000004
+Writing to dout:          9
+READ Addr FOUND!: 00400048
+Writing to dout: 2892431360
+WRITE Addr FOUND!: 10000008
+READ Addr FOUND!: 10000008
+Writing to dout:         10
+WRITE Addr FOUND!: 10000008
+READ Addr FOUND!: 10000008
+Writing to dout:         10
+WRITE Addr FOUND!: 10000008
+READ Addr FOUND!: 10000008
+Writing to dout:         10
+WRITE Addr FOUND!: 10000008
+READ Addr FOUND!: 10000008
+Writing to dout:         10
+WRITE Addr FOUND!: 10000008
+READ Addr FOUND!: 10000008
+Writing to dout:         10
+WRITE Addr FOUND!: 10000008
+READ Addr FOUND!: 10000008
+Writing to dout:         10
+READ Addr FOUND!: 0040004c
+Writing to dout:    2111520
+Writing to dout:         10
+Writing to dout:         10
+Writing to dout:         10
+Writing to dout:         10
+Writing to dout:         10
+Writing to dout:         10
+READ Addr FOUND!: 00400050
+Writing to dout:  543358980
+READ Addr FOUND!: 1000000c
+Writing to dout:          8
+READ Addr FOUND!: 1000000c
+Writing to dout:          8
+READ Addr FOUND!: 1000000c
+Writing to dout:          8
+READ Addr FOUND!: 1000000c
+Writing to dout:          8
+READ Addr FOUND!: 10000010
+Writing to dout:          7
+READ Addr FOUND!: 10000010
+Writing to dout:          7
+READ Addr FOUND!: 00400054
+Writing to dout:  342228984
+Writing to dout:          7
+Writing to dout:          7
+Writing to dout:          7
+Writing to dout:          7
+Writing to dout:          7
+Writing to dout:          7
+READ Addr FOUND!: 00400038
+Writing to dout: 2355167232
+READ Addr FOUND!: 1000000c
+Writing to dout:          8
+READ Addr FOUND!: 1000000c
+Writing to dout:          8
+READ Addr FOUND!: 1000000c
+Writing to dout:          8
+READ Addr FOUND!: 1000000c
+Writing to dout:          8
+READ Addr FOUND!: 1000000c
+Writing to dout:          8
+READ Addr FOUND!: 1000000c
+Writing to dout:          8
+READ Addr FOUND!: 0040003c
+Writing to dout:   14757930
+Writing to dout:          8
+Writing to dout:          8
+Writing to dout:          8
+Writing to dout:          8
+Writing to dout:          8
+Writing to dout:          8
+READ Addr FOUND!: 00400040
+Writing to dout:  482344963
+Writing to dout:          8
+Writing to dout:          8
+Writing to dout:          8
+Writing to dout:          8
+Writing to dout:          8
+Writing to dout:          8
+READ Addr FOUND!: 00400044
+Writing to dout: 2889940992
+WRITE Addr FOUND!: 10000004
+READ Addr FOUND!: 10000004
+Writing to dout:          8
+WRITE Addr FOUND!: 10000004
+READ Addr FOUND!: 10000004
+Writing to dout:          8
+WRITE Addr FOUND!: 10000004
+READ Addr FOUND!: 10000004
+Writing to dout:          8
+WRITE Addr FOUND!: 10000004
+READ Addr FOUND!: 10000004
+Writing to dout:          8
+WRITE Addr FOUND!: 10000004
+READ Addr FOUND!: 10000004
+Writing to dout:          8
+WRITE Addr FOUND!: 10000004
+READ Addr FOUND!: 10000004
+Writing to dout:          8
+READ Addr FOUND!: 00400048
+Writing to dout: 2892431360
+WRITE Addr FOUND!: 1000000c
+READ Addr FOUND!: 1000000c
+Writing to dout:          9
+WRITE Addr FOUND!: 1000000c
+READ Addr FOUND!: 1000000c
+Writing to dout:          9
+WRITE Addr FOUND!: 1000000c
+READ Addr FOUND!: 1000000c
+Writing to dout:          9
+WRITE Addr FOUND!: 1000000c
+READ Addr FOUND!: 1000000c
+Writing to dout:          9
+WRITE Addr FOUND!: 1000000c
+READ Addr FOUND!: 1000000c
+Writing to dout:          9
+WRITE Addr FOUND!: 1000000c
+READ Addr FOUND!: 1000000c
+Writing to dout:          9
+READ Addr FOUND!: 0040004c
+Writing to dout:    2111520
+Writing to dout:          9
+Writing to dout:          9
+Simulation complete via $finish(1) at time 1 US + 0
+./cpu_tb.v:21 			$finish;
+xcelium> ^C
+xcelium> exit
+TOOL:	xrun(64)	18.09-s011: Exiting on Dec 07, 2021 at 23:41:12 CST  (total: 00:00:53)
+>>>>>>> pipeline

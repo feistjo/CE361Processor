@@ -3,9 +3,14 @@
 `include "extend.v"
 `include "lib/mux_32.v"
 
+<<<<<<< HEAD
 module pc_clk(clk, nPC_sel, imm16, pc_fin, steve, read_val);
+=======
+module pc_clk(clk, nPC_sel, imm16, steve, pc_fin, read_val);
+>>>>>>> pipeline
    input clk;
    input nPC_sel;
+   input steve;
    input [15:0] imm16;
    input         steve;
    output [31:0] pc_fin;
@@ -53,6 +58,7 @@ endmodule // extender
 module pc_register(in, clk, nPC_sel, steve, imm16, out);
    input [31:0] in;
    input 	nPC_sel;
+   input    steve;
    input [31:0] imm16;
    input 	clk;
    input steve;
@@ -64,6 +70,7 @@ module pc_register(in, clk, nPC_sel, steve, imm16, out);
    end
    
    always @(negedge clk)
+<<<<<<< HEAD
      begin  
         if (steve) 
         begin
@@ -83,6 +90,29 @@ module pc_register(in, clk, nPC_sel, steve, imm16, out);
           out <= pc; 
         end
      end // always @ (negedge clk)
+=======
+     begin
+        if (steve) 
+        begin
+            if (nPC_sel == 0) 
+            begin
+	            pc <= pc + 4;
+	            out <= pc + 4;
+	         end
+            
+	         if (nPC_sel == 1) begin
+	            pc <= pc + 4 + imm16;
+	            out <= pc + 4 + imm16;
+	         end 
+	   end
+      
+      else if (!steve)
+      begin
+         out <= pc;
+      end
+      
+   end // always @ (negedge clk)
+>>>>>>> pipeline
    
 endmodule // pc_register
 

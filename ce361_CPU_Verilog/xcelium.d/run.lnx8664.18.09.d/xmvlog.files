@@ -2,5 +2,10 @@
 // File created by:  xrun
 // Do not modify this file
 //
+<<<<<<< HEAD
 /home/lcg3895/ce361/CE361SingleCycleProcessor/ce361_CPU_Verilog/cpu.v
 /home/lcg3895/ce361/CE361SingleCycleProcessor/ce361_CPU_Verilog/cpu_tb.v
+=======
+/home/lcg3895/ce361/pipe/CE361Processor/ce361_CPU_Verilog/cpu.v
+/home/lcg3895/ce361/pipe/CE361Processor/ce361_CPU_Verilog/cpu_tb.v
+>>>>>>> pipeline

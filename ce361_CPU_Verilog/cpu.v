@@ -4,6 +4,7 @@
 //`include "ece361_alu_verilog/ALU.v"
 //`include "registers.v"
 //`include "extend.v"
+<<<<<<< HEAD
 `include  "d_mem.v"
 `include "stall.v"
 
@@ -133,6 +134,59 @@ module cpu(clk);
 	wire [31:0] ALUout;
 	
 	registers datareg(.clk(clk), .RegWr(WrRegWr), .busW(ALUout), .Rw(WrRw), .Ra(Rs), .Rb(IDRt), .busA(IDbusA), .busB(IDbusB));
+=======
+// what happens?
+`include "inst_mem.v"
+`include "d_mem.v"
+module cpu(clk);
+	input clk;
+	//get instruction Inst
+	wire [31:0] Inst;
+	wire equal, sign, nPC_sel, RegWr, RegDst, ExtOp, ALUSrc, MemWr, MemToReg;
+	wire [15:0] Imm16;
+
+	/* ~~~~~~~~~~ Implement Artificial Stalls ~~~~~~~~~~ */
+	//1 = yes, 0 = no
+	reg do_we_increment_the_pc = 1'b0;
+	reg do_we_write_to_regs = 1'b0;
+	wire actual_RegWr;
+	and_gate fixregwr(.x(RegWr), .y(do_we_write_to_regs), .z(actual_RegWr));
+
+	//Artificially insert x stalls 
+	integer counter_for_incrementing_the_pc = 4'h0; //integer tracking the current PC
+
+	always @(negedge(clk)) begin
+		if(counter_for_incrementing_the_pc >= 4'h5) begin
+			do_we_increment_the_pc <= 1'b1;
+			counter_for_incrementing_the_pc = 0;
+		end else begin 
+			do_we_increment_the_pc <= 1'b0;
+			counter_for_incrementing_the_pc = counter_for_incrementing_the_pc + 1;
+		end
+		if(counter_for_incrementing_the_pc == 4'h4) begin
+			do_we_write_to_regs <= 1'b1;
+		end else begin
+			do_we_write_to_regs <= 1'b0;
+		end
+	end
+
+	fetch_inst instmem(.clk(clk), .imm16(Imm16), .nPC_sel(nPC_sel), .inst(Inst), .steve(do_we_increment_the_pc));
+	//".steve" is the port which passes if we should be incrementing the PC or stalling 
+	wire [2:0] ALUctr;
+	wire [4:0] Rs, Rt, Rd;
+	assign Rt = Inst[20:16];
+	assign Rs = Inst[25:21];
+	assign Rd = Inst[15:11];
+	assign Imm16 = Inst[15:0];
+	wire [4:0] shamt;
+	assign shamt = Inst[10:6];
+	control controls(.Op(Inst[31:26]), .Fun(Inst[5:0]), .equal(equal), .sign(sign), .nPC_sel(nPC_sel), .RegWr(RegWr), .RegDst(RegDst), .ExtOp(ExtOp), .ALUSrc(ALUSrc), .ALUctr(ALUctr), .MemWr(MemWr), .MemtoReg(MemToReg));
+	
+	wire [31:0] busW, busA, busB;
+	wire [4:0] Rw;
+	mux_5 mux_rw(RegDst, Rt, Rd, Rw);
+	registers datareg(.clk(clk), .RegWr(actual_RegWr), .busW(busW), .Rw(Rw), .Ra(Rs), .Rb(Rt), .busA(busA), .busB(busB));
+>>>>>>> pipeline
 	
 	wire [31:0] Imm32;
 	extender immext(.in(EXImm16), .ext(EXExtOp), .out(Imm32));
@@ -166,6 +220,7 @@ module cpu(clk);
 	//read_0 testread(DataOut);
 	d_mem datamem(.clk(clk), .data_in(busB), .data_out(DataOut), .adr(ALUout), .WrEn(MemMemWr));
 	
+<<<<<<< HEAD
 	mux_32 datamux({31'b0, WrMemToReg}, WrALUout, WrDataOut, busW);
 	stall st (.IDfunc(IDfunc), .EXfunc(EXfunc), .IDRegWr(IDRegWr), .MemRegWr(MemRegWr), .EXRegWr(EXls), 
 	.WrRegWr(WrRegWr), .EXrw(EXRw), .Memrw(MemRw), .Wrrw(WrRw), .Rs(Rs), .IDRt(IDRt), .IFstall(IFstall), .IDstall(IDstall));
@@ -283,12 +338,18 @@ module cpu(clk);
 		MemWrRegWr <= MemRegWr;
 	end
 
+=======
+	mux_32 datamux({31'b0, MemToReg}, ALUout, DataOut, busW);
+	
+>>>>>>> pipeline
 endmodule
 
+/*
 module read_0(dout);
 	output [31:0] dout;
 	assign dout = 31'b0;
 endmodule
+*/
 
 module mux_5(sel, src0, src1, z);
 	input sel;

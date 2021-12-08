@@ -6,10 +6,10 @@ All of the testbench modules are located within cpu_tb.v. This includes:
 - unsigned_sum.dat
 - bills_branch.dat
 
-###### Source the Environment: 
+##### Source the Environment: 
 <code> source /vol/ece303/genus_tutorial/cadence.env </code>
 
-###### Run Command: 
+##### Run Command: 
 <code> xrun -64bit -gui -access r cpu.v cpu_tb.v </code>
 <br />
 and simulate desired testbench.

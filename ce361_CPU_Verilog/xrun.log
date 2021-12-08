@@ -1,14 +1,12 @@
 xrun(64): 18.09-s011: (c) Copyright 1995-2019 Cadence Design Systems, Inc.
-TOOL:	xrun(64)	18.09-s011: Started on Dec 07, 2021 at 21:08:35 CST
+TOOL:	xrun(64)	18.09-s011: Started on Dec 07, 2021 at 21:25:20 CST
 xrun
 	-64bit
 	-gui
 	-access r
 	cpu.v
 	cpu_tb.v
-Recompiling... reason: file './branch_pc.v' is newer than expected.
-	expected: Tue Dec  7 21:06:29 2021
-	actual:   Tue Dec  7 21:08:24 2021
+Recompiling... reason: unable to stat '/.//home/lcg3895/ce361/CE361SingleCycleProcessor/ce361_CPU_Verilog/ece361_alu_verilog/ALU.v'.
 file: cpu.v
         1'h2 : hex = 1;
            |
@@ -99,8 +97,6 @@ xmvlog: *W,TMTPAR (lib/syncram.v,172|17): A task enable with no arguments must n
 xmvlog: *W,TMTPAR (lib/syncram.v,177|17): A task enable with no arguments must not include an empty set of parentheses [10.2.2 (IEEE Std 1364-2005)].  The compiler has ignored the parentheses.  Use 'xmhelp xmvlog TMTPAR'  for further information.
 (`include file: lib/syncram.v line 177, `include file: d_mem.v line 2, file: cpu.v line 7)
 	module worklib.set_if_eq:v
-		errors: 0, warnings: 0
-	module worklib.pc_register:v
 		errors: 0, warnings: 0
         1'h2 : hex = 1;
            |
@@ -200,6 +196,7 @@ xmvlog: *W,RECOME (cpu.v,445|15): recompiling design unit worklib.set_if_eq:v.
 	Elaborating the design hierarchy:
 		Caching library 'worklib' ....... Done
 	Top level design units:
+		stall
 		pc_branch
 		read_0
 		hazard_detected
@@ -240,9 +237,6 @@ xmelab: *W,CUVMPW (./cpu.v,167|38): port sizes differ in port connection (1/32).
 	                                                            |
 xmelab: *W,CUVMPW (./cpu.v,169|61): port sizes differ in port connection (1/32).
 	Building instance overlay tables: .................... Done
-	Generating native compiled code:
-		worklib.pc_register:v <0x703993c4>
-			streams:   5, words:  1608
 	Building instance specific data structures.
 	d_mem datamem(.clk(clk), .data_in(busB), .data_out(DataOut), .adr(ALUout), .WrEn(MemMemWr));
 	                                     |
@@ -277,16 +271,16 @@ xmelab: *W,CSINFI (./cpu.v,481|29): implicit wire has no fanin (onestall_tb.cpu1
 	Loading native compiled code:     .................... Done
 	Design hierarchy summary:
 		                 Instances  Unique
-		Modules:             13056      47
+		Modules:             12796      47
 		Registers:            6051      88
-		Scalar wires:        12110       -
-		Expanded wires:       6850     310
-		Vectored wires:        826       -
+		Scalar wires:        11870       -
+		Expanded wires:       6775     295
+		Vectored wires:        842       -
 		Always blocks:        5681      14
 		Initial blocks:        240      52
 		Cont. assignments:     154      70
 		Pseudo assignments:    125      29
-	Writing initial simulation snapshot: worklib.pc_branch:v
+	Writing initial simulation snapshot: worklib.stall:v
 xmsim: *W,DSEM2009: This SystemVerilog design is simulated as per IEEE 1800-2009 SystemVerilog simulation semantics. Use -disable_sem2009 option for turning off SV 2009 simulation semantics.
 
 -------------------------------------
@@ -295,11 +289,11 @@ xcelium>
 xcelium> source /vol/cadence2018/XCELIUM1809/tools/xcelium/files/xmsimrc
 xcelium> database -open waves -into waves.shm -default
 Created default SHM database waves
-xcelium> probe -create -shm onestall_tb.clk onestall_tb.cpu1.datareg.Ra onestall_tb.cpu1.datareg.Rb onestall_tb.cpu1.datareg.RegWr onestall_tb.cpu1.datareg.Rw onestall_tb.cpu1.datareg.busA onestall_tb.cpu1.datareg.busB onestall_tb.cpu1.datareg.busW onestall_tb.cpu1.datareg.clk onestall_tb.cpu1.datareg.decoder_out onestall_tb.cpu1.datareg.mem_in onestall_tb.cpu1.datareg.mem_out onestall_tb.cpu1.datareg.reg_wr_en onestall_tb.cpu1.instmem.rpc.pc.clk onestall_tb.cpu1.instmem.rpc.pc.imm16 onestall_tb.cpu1.instmem.rpc.pc.in onestall_tb.cpu1.instmem.rpc.pc.nPC_sel onestall_tb.cpu1.instmem.rpc.pc.out onestall_tb.cpu1.instmem.rpc.pc.pc onestall_tb.cpu1.instmem.rpc.pc.steve
+xcelium> probe -create -shm unsigned_sum_tb.clk unsigned_sum_tb.cpu1.datareg.Ra unsigned_sum_tb.cpu1.datareg.Rb unsigned_sum_tb.cpu1.datareg.RegWr unsigned_sum_tb.cpu1.datareg.Rw unsigned_sum_tb.cpu1.datareg.busA unsigned_sum_tb.cpu1.datareg.busB unsigned_sum_tb.cpu1.datareg.busW unsigned_sum_tb.cpu1.datareg.clk unsigned_sum_tb.cpu1.datareg.decoder_out unsigned_sum_tb.cpu1.datareg.mem_in unsigned_sum_tb.cpu1.datareg.mem_out unsigned_sum_tb.cpu1.datareg.reg_wr_en
 Created probe 1
 xcelium> reset
 xmsim: *W,DSEM2009: This SystemVerilog design is simulated as per IEEE 1800-2009 SystemVerilog simulation semantics. Use -disable_sem2009 option for turning off SV 2009 simulation semantics.
-Loaded snapshot worklib.pc_branch:v
+Loaded snapshot worklib.stall:v
 xcelium> run
 Now initializing sram
 Addr is written: 00400020
@@ -4448,4 +4442,4 @@ Simulation complete via $finish(1) at time 1 US + 0
 ./cpu_tb.v:20 			$finish;
 xcelium> ^C
 xcelium> exit
-TOOL:	xrun(64)	18.09-s011: Exiting on Dec 07, 2021 at 21:09:41 CST  (total: 00:01:06)
+TOOL:	xrun(64)	18.09-s011: Exiting on Dec 07, 2021 at 21:25:49 CST  (total: 00:00:29)

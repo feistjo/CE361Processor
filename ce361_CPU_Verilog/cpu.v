@@ -167,7 +167,7 @@ module cpu(clk);
 	d_mem datamem(.clk(clk), .data_in(busB), .data_out(DataOut), .adr(ALUout), .WrEn(MemMemWr));
 	
 	mux_32 datamux({31'b0, WrMemToReg}, WrALUout, WrDataOut, busW);
-	stall st (.IDfunc(IDfunc), .EXfunc(EXfunc), .IDRegWr(IDRegWr), .MemRegWr(MemRegWr), .EXRegWr(EXRegWr), 
+	stall st (.IDfunc(IDfunc), .EXfunc(EXfunc), .IDRegWr(IDRegWr), .MemRegWr(MemRegWr), .EXRegWr(EXls), 
 	.WrRegWr(WrRegWr), .EXrw(EXRw), .Memrw(MemRw), .Wrrw(WrRw), .Rs(Rs), .IDRt(IDRt), .IFstall(IFstall), .IDstall(IDstall));
 
 

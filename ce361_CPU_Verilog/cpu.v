@@ -17,6 +17,9 @@ module cpu(clk);
 	/* ~~~~~~~~~~ Implement Artificial Stalls ~~~~~~~~~~ */
 	//1 = yes, 0 = no
 	reg do_we_increment_the_pc = 1'b0; 
+	reg do_we_write_to_regs = 1'b0;
+	wire actual_RegWr;
+	or fixregrw(.x(RegWr), .y(do_we_write_to_regs), .z(actual_RegWr));
 	//Artificially insert x stalls 
 	integer counter_for_incrementing_the_pc = 4'h0; //integer tracking the current PC
 
@@ -27,6 +30,11 @@ module cpu(clk);
 		end else begin 
 			do_we_increment_the_pc <= 1'b0;
 			counter_for_incrementing_the_pc = counter_for_incrementing_the_pc + 1;
+		end
+		if(counter_for_incrementing_the_pc == 4'h4) begin
+			do_we_write_to_regs <= 1'b1;
+		end else begin
+			do_we_write_to_regs <= 1'b0;
 		end
 	end
 
@@ -45,7 +53,7 @@ module cpu(clk);
 	wire [31:0] busW, busA, busB;
 	wire [4:0] Rw;
 	mux_5 mux_rw(RegDst, Rt, Rd, Rw);
-	registers datareg(.clk(clk), .RegWr(RegWr), .busW(busW), .Rw(Rw), .Ra(Rs), .Rb(Rt), .busA(busA), .busB(busB));
+	registers datareg(.clk(clk), .RegWr(actual_RegWr), .busW(busW), .Rw(Rw), .Ra(Rs), .Rb(Rt), .busA(busA), .busB(busB));
 	
 	wire [31:0] Imm32;
 	extender immext(.in(Imm16), .ext(ExtOp), .out(Imm32));
